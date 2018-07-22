@@ -135,8 +135,11 @@
         document.getElementsByClassName("TVGuide")[0].style.width = "26vw";  
         send('command(TV,Guide,all)');
     }  
- 
- 
+
+    function showTvChannels(){
+        document.getElementsByClassName("TVGuide")[0].style.width = "0px";
+        document.getElementsByClassName("TVChannel")[0].style.width = "26vw";
+    }
  
  
  
