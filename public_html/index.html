@@ -1562,12 +1562,12 @@ Noch so ein scheiss.
                     <div class="ctrlbutton normal  purple" onclick="showTvChannels();">
                                 Channels
                     </div>
-                    <div class="ctrlbutton normal purple">
+                    <div class="ctrlbutton normal purple" onclick="showTVINet()">
                                 Internet
                     </div>
                 </div>
                 <div class="spalte" style="height: 40vh; margin-right: 10px" >
-                        <div class="ctrlbutton normal purple" onclick="()">
+                        <div class="ctrlbutton normal purple" onclick="">
                                 Sender
                     </div>
                         <div class="ctrlbutton normal  purple" onclick="()">
@@ -2601,6 +2601,28 @@ Noch so ein scheiss.
 
 		</div>
 
+        <!-- ************************** Right - TV Internet Links **************************  -->
+        <div  class = "TVINet">
+            <div class="col">
+                <div class="IconButton small sandy" onclick="send('command(upnp,playlist,Musik)')" style="position: relative; top: 100px"  >
+                        <img  class="IconS" src="images/www.png"  />
+                        <span style="font-size: 18px; padding-top: 5px;">create all Music Playlists</span>
+                </div>
+                <div class="IconButton small sandy" onclick="" style="position: relative; top: 100px"  >
+                        <img  class="IconS" src="images/www.png"  />
+                        <span style="font-size: 22px; padding-top: 5px;">-  Audio  -             read-Server</span>
+                </div>
+                <div class="IconButton small sandy" onclick="" style="position: relative; top: 100px"  >
+                        <img class="IconS" src="images/www.png"  />
+                        <span style="font-size: 22px; padding-top: 5px;">-  Foto  -             read-Server</span>
+                </div>
+                <div class="IconButton small sandy" onclick="" style="position: relative; top: 100px"  >
+                        <img class="IconS" src="images/www.png"  />
+                        <span style="font-size: 22px; padding-top: 5px;">-  Video  -             read-Server</span>
+                </div>
+            </div>
+        </div>	
+
         <!-- ************************** Right - TV Sender **************************  -->
         <div class="TVChannel">
             <img class="iconTV" src="images/Sender/Das Erste HD.png" alt="image not found" onclick="send('command(TV,Channel,Das Erste HD)');" />
@@ -2635,7 +2657,6 @@ Noch so ein scheiss.
             <img class="iconTV" src="images/Sender/BBC HD.png" alt="image not found" onclick="send('command(TV,Channel,BBC HD)');" />
         </div>
                     
-		
 
 		<!-- ************************** Internet Radio Stationen  **************************  -->
 		<div class="RadioStation">
@@ -2660,7 +2681,8 @@ Noch so ein scheiss.
 
 		  </div>
 
-	  
+	
+
 	<!-- ************************** Container Ende  ************************** -->
 
 	</div>
