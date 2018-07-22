@@ -105,7 +105,7 @@ WebKit inertia scrolling is being added here for any present/future devices that
 .Network,
 .TVGuide,
 .TVChannel,
-.TVInet,
+.TVINet,
 .LibList,
 .upnp,
 .CoverCD,
@@ -678,15 +678,16 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	height: 95vh;
 	background: hsl(300, 1%, 10%);
 } 
-
 .TVINet {
 	position:absolute;
 	top: 5vh;
         left: 74vw;
+	flex-direction: column;
 	width: 0px;
 	height: 95vh;
-	background: hsl(300,  1%, 10%);
+	background: hsl(300, 1%, 10%);
 } 
+
 
 .CEOLServerCtrl {
 	position:absolute;

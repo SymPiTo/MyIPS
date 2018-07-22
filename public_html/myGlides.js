@@ -46,6 +46,7 @@
                 document.getElementsByClassName("CDctrl")[0].style.width = "0px"
                 document.getElementsByClassName("UpnpCD")[0].style.width = "0px"
                 document.getElementsByClassName("TVGuide")[0].style.width = "0px";
+                document.getElementsByClassName("TVINet")[0].style.width = "0px";
                 document.getElementsByClassName("upnp")[0].style.width = "0px";
                 document.getElementsByClassName("UPNPConfig")[0].style.width = "0px"
                 document.getElementsByClassName("CEOLctrl")[0].style.width = "0px";
@@ -57,6 +58,7 @@
                 document.getElementsByClassName("CEOLCDctrl")[0].style.width = "0px";
                 document.getElementsByClassName("upnp")[0].style.width = "0px";
                 document.getElementsByClassName("UpnpServerCtrl")[0].style.width = "0px";
+
         }
 
 

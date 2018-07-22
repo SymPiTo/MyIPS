@@ -131,18 +131,25 @@
         *    Samsung TV FUNKTIONEN    
        ********************************* */
     function showTVGuide(){ 
+        document.getElementsByClassName("TVINet")[0].style.width = "0px";  
         document.getElementsByClassName("TVChannel")[0].style.width = "0px";         
         document.getElementsByClassName("TVGuide")[0].style.width = "26vw";  
         send('command(TV,Guide,all)');
     }  
 
     function showTvChannels(){
+        document.getElementsByClassName("TVINet")[0].style.width = "0px";  
         document.getElementsByClassName("TVGuide")[0].style.width = "0px";
         document.getElementsByClassName("TVChannel")[0].style.width = "26vw";
     }
  
  
- 
+     function showTVINet(){
+              
+         document.getElementsByClassName("TVGuide")[0].style.width = "0px";
+         document.getElementsByClassName("TVChannel")[0].style.width = "0px";
+         document.getElementsByClassName("TVINet")[0].style.width = "26vw";   
+    }
  
    
     
