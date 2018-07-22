@@ -375,10 +375,7 @@
 
 
 
-        function showTvChannels(){
-                document.getElementsByClassName("TVGuide")[0].style.width = "0px";
-                document.getElementsByClassName("TVChannel")[0].style.width = "calc(30vw)";
-        }
+
 
         function back() {
                 document.getElementsByClassName("Left")[0].style.width = "8vw";
