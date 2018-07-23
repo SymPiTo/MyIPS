@@ -149,6 +149,12 @@
          document.getElementsByClassName("TVGuide")[0].style.width = "0px";
          document.getElementsByClassName("TVChannel")[0].style.width = "0px";
          document.getElementsByClassName("TVINet")[0].style.width = "26vw";   
+        
+    }
+    
+    function wwwLink(www){
+         //var www01 = "https://www.twitch.tv/summonersinnlive";
+         send('"command(TV,www," + www + ")" ');
     }
  
  
