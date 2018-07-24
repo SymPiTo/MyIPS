@@ -154,7 +154,7 @@
     
     function wwwLink(www){
          //var www01 = "https://www.twitch.tv/summonersinnlive";
-         send('"command(TV,www," + www + ")" ');
+         send('command(TV,www,https://www.twitch.tv/summonersinnlive) ');
     }
  
  
