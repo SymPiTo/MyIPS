@@ -1,4 +1,31 @@
-     function MediaValues(ips){
+     
+     function checkUsedVars(ips){
+
+            check(ips[0].ID23116, 1 );
+            check(ips[0].ID37045, 2);
+            check(ips[0].ID51079, 3);
+            check(ips[0].ID54070, 4);
+            
+            check(ips[0].ID58797, 5);
+            check(ips[0].ID26653, 6);
+            check(ips[0].ID33678, 7);
+            check(ips[0].ID57019, 8);
+            
+            check(ips[0].ID40508, 9);
+            check(ips[0].ID34758, 10);
+            check(ips[0].ID37300, 11);
+            check(ips[0].ID11137, 12);
+            
+            check(ips[0].ID57942, 13);
+            check(ips[0].ID11938, 14);
+
+ 
+     }
+    function check(value, n){
+        if (typeof value !== "undefined"){return value} else{$('fehler').innerHTML =  "Variable  wrong ID:" + value}
+    } 
+     
+    function MediaValues(ips){
 
             //client = ips[0].ID42831;
             //albumno = ips[0].ID22217;
@@ -124,92 +151,110 @@
         var cover_A = 'CDs/'+ ips[0].ID49481.substring(3, 7) +'.jpg'; 
         document.getElementById("CDCover_A").src=cover_A;
         
-        //<!-- -------------------------- TV Variable  ------------------------------  -->       
-        $('statVol_D').innerHTML =  ips[0].ID20803;
-        $('statCh_D').innerHTML =  ips[0].ID19036;
-        $('TVLine1_D').innerHTML =  ips[0].ID35706;
-        var TVChannel = ips[0].ID35706;
-        var TVChannelx = TVChannel.substr(1, TVChannel.length-2) + '.png';
-        document.getElementById("TVimg_D").src='images/Sender/' + TVChannelx   ;   
+        //<!-- -------------------------- TV Variable  ------------------------------  -->  
+        if (ips[0].ID37104 != null) {
+            $('statVol_D').innerHTML =  ips[0].ID37104;
+        }
+        if (ips[0].ID37005 != null) {
+            $('statCh_D').innerHTML =  ips[0].ID37005;
+        }
+        if (ips[0].ID58897 != null) {
+        $('TVLine1_D').innerHTML =  ips[0].ID58897;
+            var TVChannel = ips[0].ID58897;
+            var TVChannelx = TVChannel.substr(1, TVChannel.length-2) + '.png';
+            document.getElementById("TVimg_D").src='images/Sender/' + TVChannelx;
+        }    
         
-        var guide = ips[0].ID46007;
-        Woerter = guide.split(';');
-        $('TVz1').innerHTML =  Woerter[0];
-        $('TVz2').innerHTML =  Woerter[1];
-        $('TVz3').innerHTML =  Woerter[2];
-        $('TVz4').innerHTML =  Woerter[3];
-        $('TVz5').innerHTML =  Woerter[4];
-        $('TVz6').innerHTML =  Woerter[5];
-        $('TVz7').innerHTML =  Woerter[6];
-        $('TVz8').innerHTML =  Woerter[7];
-        $('TVz9').innerHTML =  Woerter[8];
-        $('TVz10').innerHTML =  Woerter[9];
-        $('TVz11').innerHTML =  Woerter[10];
-        $('TVz12').innerHTML =  Woerter[11];
-        $('TVz13').innerHTML =  Woerter[12];
-        $('TVz14').innerHTML =  Woerter[13];
-        $('TVz15').innerHTML =  Woerter[14];
-        $('TVz16').innerHTML =  Woerter[15];
-        $('TVz17').innerHTML =  Woerter[16];
-        $('TVz18').innerHTML =  Woerter[17];
-        $('TVz19').innerHTML =  Woerter[18];
-        $('TVz20').innerHTML =  Woerter[19];
-        $('TVz21').innerHTML =  Woerter[20];
-        $('TVz22').innerHTML =  Woerter[21];
-        $('TVz23').innerHTML =  Woerter[22];
-        $('TVz24').innerHTML =  Woerter[23];
-        $('TVz25').innerHTML =  Woerter[24];
-        $('TVz26').innerHTML =  Woerter[25];
-        $('TVz27').innerHTML =  Woerter[26];
-        $('TVz28').innerHTML =  Woerter[27];
-        $('TVz29').innerHTML =  Woerter[28];
-        $('TVz30').innerHTML =  Woerter[29];
-        $('TVz31').innerHTML =  Woerter[30];
-        $('TVz32').innerHTML =  Woerter[31];
-        $('TVz33').innerHTML =  Woerter[32];
-        $('TVz34').innerHTML =  Woerter[33];
-        $('TVz35').innerHTML =  Woerter[34];
-        $('TVz36').innerHTML =  Woerter[35];
-
-     }
+        if (ips[0].ID25544 != null) {
+            var guide = ips[0].ID25544;
+            Woerter = guide.split(';');
+            $('TVz1').innerHTML =  Woerter[0];
+            $('TVz2').innerHTML =  Woerter[1];
+            $('TVz3').innerHTML =  Woerter[2];
+            $('TVz4').innerHTML =  Woerter[3];
+            $('TVz5').innerHTML =  Woerter[4];
+            $('TVz6').innerHTML =  Woerter[5];
+            $('TVz7').innerHTML =  Woerter[6];
+            $('TVz8').innerHTML =  Woerter[7];
+            $('TVz9').innerHTML =  Woerter[8];
+            $('TVz10').innerHTML =  Woerter[9];
+            $('TVz11').innerHTML =  Woerter[10];
+            $('TVz12').innerHTML =  Woerter[11];
+            $('TVz13').innerHTML =  Woerter[12];
+            $('TVz14').innerHTML =  Woerter[13];
+            $('TVz15').innerHTML =  Woerter[14];
+            $('TVz16').innerHTML =  Woerter[15];
+            $('TVz17').innerHTML =  Woerter[16];
+            $('TVz18').innerHTML =  Woerter[17];
+            $('TVz19').innerHTML =  Woerter[18];
+            $('TVz20').innerHTML =  Woerter[19];
+            $('TVz21').innerHTML =  Woerter[20];
+            $('TVz22').innerHTML =  Woerter[21];
+            $('TVz23').innerHTML =  Woerter[22];
+            $('TVz24').innerHTML =  Woerter[23];
+            $('TVz25').innerHTML =  Woerter[24];
+            $('TVz26').innerHTML =  Woerter[25];
+            $('TVz27').innerHTML =  Woerter[26];
+            $('TVz28').innerHTML =  Woerter[27];
+            $('TVz29').innerHTML =  Woerter[28];
+            $('TVz30').innerHTML =  Woerter[29];
+            $('TVz31').innerHTML =  Woerter[30];
+            $('TVz32').innerHTML =  Woerter[31];
+            $('TVz33').innerHTML =  Woerter[32];
+            $('TVz34').innerHTML =  Woerter[33];
+            $('TVz35').innerHTML =  Woerter[34];
+            $('TVz36').innerHTML =  Woerter[35];
+        }
+    }
 			
-    function HomeValues(ips){
-
-		//<!-- -------------------------- Rollo Schaltzeiten  ------------------------------  -->	
-        $('BRolloTime').innerHTML =  ips[0].ID11938 +' - ' +  ips[0].ID57942;
-        $('WZRolloTime').innerHTML =  ips[0].ID11938 +' - ' +  ips[0].ID57942;
-        $('KZRolloTime').innerHTML =  ips[0].ID11938 +' - ' +  ips[0].ID57942;
-        $('KRolloTime').innerHTML =  ips[0].ID11938 +' - ' +  ips[0].ID57942;
-		//<!-- -------------------------- Temperatur  ------------------------------  -->	
+    function Temp(ips){
+        //<!-- ******************** Temperatur  Glide Floorplan **************************  -->	                
         $('tempkueche').innerHTML =  ips[0].ID54070 + '°C'  ;
         $('tempwohnzimmer').innerHTML =  ips[0].ID51079 + '°C'  ;
         $('tempschlafzimmer').innerHTML =  ips[0].ID23116 + '°C'  ;
         $('tempkinderzimmer').innerHTML =  ips[0].ID37045 + '°C';
-        $('tempkueche').innerHTML =  ips[0].ID54070 + '°C'  ;
+        //<!-- Temperatur Werte Floorplan  -->
+        $('tempkueche1').innerHTML =  ips[0].ID54070 + '°C'  ;
         $('tempwohnzimmer1').innerHTML =  ips[0].ID51079 + '°C'  ;
         $('tempschlafzimmer1').innerHTML =  ips[0].ID23116 + '°C'  ;
-        $('tempkinderzimmer1').innerHTML =  ips[0].ID37045 + '°C';
+        $('tempkinderzimmer1').innerHTML =  ips[0].ID37045 + '°C'; 
+        //<!-- Temperatur Werte Glide Button  -->
         $('tempkueche2').innerHTML =  ips[0].ID54070 + '°C'  ;
         $('tempwohnzimmer2').innerHTML =  ips[0].ID51079 + '°C'  ;
         $('tempschlafzimmer2').innerHTML =  ips[0].ID23116 + '°C'  ;
         $('tempkinderzimmer2').innerHTML =  ips[0].ID37045 + '°C';
+        //<!-- ************************ Heizung Ctrl xxxx ************************  -->
         $('tempkueche3').innerHTML =  ips[0].ID54070 + '°C'  ;
         $('tempwohnzimmer3').innerHTML =  ips[0].ID51079 + '°C'  ;
         $('tempschlafzimmer3').innerHTML =  ips[0].ID23116 + '°C'  ;
         $('tempkinderzimmer3').innerHTML =  ips[0].ID37045 + '°C'  ;
+        //<!-- ************************ Heizung Uebersicht ************************  -->
         $('tempkueche4').innerHTML =  'Kueche ' + ips[0].ID54070 + '°C'  ;
         $('tempwohnzimmer4').innerHTML =  'Wohnzimmer ' + ips[0].ID51079 + '°C'  ;
         $('tempschlafzimmer4').innerHTML =  'Schlafzimmer ' + ips[0].ID23116 + '°C'  ;
-        $('tempkinderzimmer4').innerHTML =  'Kinderzimmer ' + ips[0].ID37045 + '°C';
+        $('tempkinderzimmer4').innerHTML =  'Kinderzimmer ' + ips[0].ID37045 + '°C';        
+    }
+    
+     function HomeValues(ips){
+         
 
+
+    
+
+        
+/*        
+
+ */
+        
+/*
         $('positionwohnzimmer3').innerHTML =   Math.round(ips[0].ID18059).toFixed(1) + '%';
 				//$('tempvorwohnzimmer3').innerHTML =  ips[0].ID29170 + 'Â°C';	
 				//$('temprueckwohnzimmer3').innerHTML =  ips[0].ID47576 + 'Â°C';
         $('tempsollAKTwohnzimmer3').innerHTML =  ips[0].ID31769 + '°C';	
         $('tempsollAUSwohnzimmer3').innerHTML =  ips[0].ID27789 + '°C';
-
+*/
 				
-				
+/*				
 				$('positionkinderzimmer3').innerHTML =   Math.round(ips[0].ID49335).toFixed(1) + '%';
 				//$('tempvorkinderzimmer3').innerHTML =  ips[0].ID13356 + '°C';	
 				//$('temprueckkinderzimmer3').innerHTML =  ips[0].ID48511 + '°C';
@@ -229,6 +274,10 @@
 				////$('temprueckkueche3').innerHTML =  ips[0].ID99999 + 'Â°C';
 				$('tempsollAKTkueche3').innerHTML =  ips[0].ID54426 + '°C';	
 				$('tempsollAUSkueche3').innerHTML =  ips[0].ID21258 + '°C';
+
+  
+ 
+ */
 /*
 
 				if (ips[0].ID53071 == '0'){
@@ -353,7 +402,7 @@
 
  */				
 
-
+/*
                               	var actClient = ips[0].ID16761;
 				if (actClient =="CEOL"){
 					
@@ -387,6 +436,7 @@
  					document.getElementById('CDclientimg').src = 'images/musikpal.png';
 
 				}
+*/        
 /*
 				var actServer = ips[0].ID40574;
 				if (actServer == "Plex"){
@@ -407,9 +457,9 @@
 				}
 */
 
+/*
 
-
-		//<!-- -------------------------- Rollo Wohnzimmer  ------------------------------  -->		
+		//<!--   ************************** Rollo Wohnzimmer **********************************    -->		
 				if (ips[0].ID40508 == '100'){
 					$('ID40508').innerHTML =  'zu';	
  				}
@@ -474,12 +524,66 @@
 
 				
 
+*/
+ }
+			
+     function Rollo(ips){
+        //<!-- **************************  Rolladen Ctrl Wohnzimmer **************************  -->
+        if (ips[0].ID40508 == '0'){
+            $('RolloWZPos1').innerHTML =  'offen'; 
+        }else if (ips[0].ID40508 == '100'){
+            $('RolloWZPos1').innerHTML =  'zu'; 
+        }else {
+            $('RolloWZPos1').innerHTML =  ips[0].ID40508;    
+        }
+        if (ips[0].ID34758 == '1'){
+                 $('RolloWZMode1').innerHTML =  'Auto'; 
+        }else{
+                 $('RolloWZMode1').innerHTML =  'Man'; 
+        }
+        //<!-- **************************  Rolladen Ctrl Kinderzimmer **************************  -->
+        if (ips[0].ID33678 == '0'){
+            $('RolloKZPos1').innerHTML =  'offen'; 
+        }else if (ips[0].ID33678 == '100'){
+            $('RolloKZPos1').innerHTML =  'zu'; 
+        }else {
+            $('RolloKZPos1').innerHTML =  ips[0].ID33678;    
+        }
+        if (ips[0].ID57797 == '1'){
+                 $('RolloKZMode1').innerHTML =  'Auto'; 
+        }else{
+                 $('RolloKZMode1').innerHTML =  'Man'; 
+        }
+        //<!-- ************************** Rolladen Ctrl BalkontTuer **************************  -->
+        if (ips[0].ID11137 == '0'){
+            $('RolloBPos1').innerHTML =  'offen'; 
+        }else if (ips[0].ID11137 == '100'){
+            $('RolloBPos1').innerHTML =  'zu'; 
+        }else {
+            $('RolloBPos1').innerHTML =  ips[0].ID33678;    
+        }
+        if (ips[0].ID37300 == '1'){
+                 $('RolloBMode1').innerHTML =  'Auto'; 
+        }else{
+                 $('RolloBMode1').innerHTML =  'Man'; 
+        }
 
-
-
-
-
-
-
-
-                        }
+        //<!-- ************************** Rolladen Ctrl Kueche ************************** -->
+        if (ips[0].ID57019 == '0'){
+            $('RolloKPos1').innerHTML =  'offen'; 
+        }else if (ips[0].ID57019 == '100'){
+            $('RolloKPos1').innerHTML =  'zu'; 
+        }else {
+            $('RolloKPos1').innerHTML =  ips[0].ID33678;    
+        }
+        if (ips[0].ID26653 == '1'){
+                 $('RolloKMode1').innerHTML =  'Auto'; 
+        }else{
+                 $('RolloKMode1').innerHTML =  'Man'; 
+        }
+         //<!-- -------------------------- Rollo Schaltzeiten  ------------------------------  -->	
+        $('BRolloTime').innerHTML =  ips[0].ID11938 +' - ' +  ips[0].ID57942;
+        $('WZRolloTime').innerHTML =  ips[0].ID11938 +' - ' +  ips[0].ID57942;
+        $('KZRolloTime').innerHTML =  ips[0].ID11938 +' - ' +  ips[0].ID57942;
+        $('KRolloTime').innerHTML =  ips[0].ID11938 +' - ' +  ips[0].ID57942;       
+    }
