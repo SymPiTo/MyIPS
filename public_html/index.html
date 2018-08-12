@@ -50,9 +50,11 @@ Noch so ein scheiss.
                                                                         var ips = JSON.parse(jsontext); 
                                                                          //reply(ips[0].ID50311);
                                                                          //log(ips[0].ID24839);
-                                                                          Media(ips);
-                                                                         HomeValues(ips);
-                                                                         rollo(ips);
+                                                                         checkUsedVars(ips);
+                                                                         Media(ips);
+                                                                         Temp(ips);
+                                                                         //HomeValues(ips);
+                                                                         Rollo(ips);
 
                                                               };
                                 socket.onclose  = function(msg) { 
@@ -250,61 +252,7 @@ Noch so ein scheiss.
 				send('Heizung' + '*' + 'K' + '*' + tempsollK);
 			}
 
-			function rollo(ips){
-				
 
-
-
-
-				if (ips[0].ID58797 == '1'){
-					document.getElementById('KZRolloauto').style.color = 'green';
-					document.getElementById('KZRolloman').style.color = 'red';
-				}else{
-					document.getElementById('KZRolloauto').style.color = 'red';
-					document.getElementById('KZRolloman').style.color = 'green';
-				}
-
-
-				if (ips[0].ID26653 == '1'){
-					document.getElementById('KRolloauto').style.color = 'green';
-					document.getElementById('KRolloman').style.color = 'red';
-				}else{
-					document.getElementById('KRolloauto').style.color = 'red';
-					document.getElementById('KRolloman').style.color = 'green';
-				}
-
-
-
-
-
-
-				if (ips[0].ID33678 == '100'){
-					$('stattextKZ').innerHTML =  'geschlossen' ;
-					document.getElementById('stattextKZ').style.color = 'red';
-					document.getElementById('iconKZRollo').src = "images/_Rolladen_BW.png";
-					$('rolloKZ').innerHTML =  'zu' ;
- 				}
- 				else{
-					$('stattextKZ').innerHTML =  'offen' ;
-					document.getElementById('stattextKZ').style.color = 'lime';
-					document.getElementById('iconKZRollo').src = "images/_Rolladen_BW-offen.png";
-					$('rolloKZ').innerHTML =  'auf' ;
-				}
-
-				if (ips[0].ID57019 == '100'){
-					$('stattextK').innerHTML =  'geschlossen' ;
-					document.getElementById('stattextK').style.color = 'red';
-					document.getElementById('iconKRollo').src = "images/_Rolladen_BW.png";
-					$('rolloK').innerHTML =  'zu' ;
- 				}
- 				else{
-					$('stattextK').innerHTML =  'offen' ;
-					document.getElementById('stattextK').style.color = 'lime';
-					document.getElementById('iconKRollo').src = "images/_Rolladen_BW-offen.png";
-					$('rolloK').innerHTML =  'auf' ;
-				}
-
-			}
 			
                         <!-- ---------------- COMMANDS -----------------------  -->
 			function setDenonCeol(){
@@ -464,7 +412,7 @@ Noch so ein scheiss.
                         <a>Balkon</a>
                     </div>
                     <div class=container3>
-                        <div id=tempkueche2>
+                        <div >
                             <a >--°C</a>
                         </div>
                         <div>
@@ -2481,11 +2429,11 @@ Noch so ein scheiss.
 				<div class="spalte" >
 					<div class="anzeige cyan">
 						<span>Position</span>
-						<span id="ID40508" style=" font-size: 34px">---%</span>
+						<span id="RolloWZPos1" style=" font-size: 34px">---%</span>
 					</div>
 					<div class="anzeige cyan">
 						<span>Mode</span>
-						<span id="ID34758" style=" font-size: 34px">---</span>
+						<span id="RolloWZMode1" style=" font-size: 34px">---</span>
 					</div>
 					<div class="anzeige cyan">
 						<span>Schaltzeiten</span>
@@ -2515,11 +2463,11 @@ Noch so ein scheiss.
 				<div class="spalte" >
 					<div class="anzeige olive">
 						<span>Position</span>
-						<span id="ID33678" style=" font-size: 34px">---%</span>
+						<span id="RolloKZPos1" style=" font-size: 34px">---%</span>
 					</div>
 					<div class="anzeige olive">
 						<span>Mode</span>
-						<span id="ID58797" style=" font-size: 34px">---</span>
+						<span id="RolloKZMode1" style=" font-size: 34px">---</span>
 					</div>
 					<div class="anzeige olive">
 						<span>Schaltzeiten</span>
