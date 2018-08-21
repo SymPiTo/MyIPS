@@ -12,7 +12,7 @@
             check(ips[0].ID57019, 8);
             
             check(ips[0].ID40508, 9);
-            check(ips[0].ID34758, 10);
+            check(ips[0].ID37274, 10); //Rollo WZ Mode
             check(ips[0].ID37300, 11);
             check(ips[0].ID11137, 12);
             
@@ -474,7 +474,7 @@
         }else {
             $('RolloWZPos1').innerHTML =  ips[0].ID40508;    
         }
-        if (ips[0].ID34758 == '1'){
+        if (ips[0].ID37274 == '1'){
                  $('RolloWZMode1').innerHTML =  'Auto'; 
         }else{
                  $('RolloWZMode1').innerHTML =  'Man'; 
