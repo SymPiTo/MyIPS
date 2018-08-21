@@ -18,11 +18,12 @@
             
             check(ips[0].ID57942, 13);
             check(ips[0].ID11938, 14);
-
+            
+            check(ips[0].ID18059, 15);
  
      }
     function check(value, n){
-        if (typeof value !== "undefined"){return value} else{$('fehler').innerHTML =  "Variable  wrong ID:" + value}
+        if (typeof value !== "undefined"){return value} else{$('fehler').innerHTML =  "Variable  wrong ID:" + n}
     } 
      
     function MediaValues(ips){
@@ -228,6 +229,11 @@
         $('tempwohnzimmer3').innerHTML =  ips[0].ID51079 + '°C'  ;
         $('tempschlafzimmer3').innerHTML =  ips[0].ID23116 + '°C'  ;
         $('tempkinderzimmer3').innerHTML =  ips[0].ID37045 + '°C'  ;
+        $('positionwohnzimmer3').innerHTML =   Math.round(ips[0].ID18059).toFixed(1) + '%';
+        $('positionkinderzimmer3').innerHTML =   Math.round(ips[0].ID49335).toFixed(1) + '%';
+        $('positionschlafzimmer3').innerHTML =   Math.round(ips[0].ID36448).toFixed(1) + '%';
+        $('positionkueche3').innerHTML =   Math.round(ips[0].ID51619).toFixed(1) + '%';
+        
         //<!-- ************************ Heizung Uebersicht ************************  -->
         $('tempkueche4').innerHTML =  'Kueche ' + ips[0].ID54070 + '°C'  ;
         $('tempwohnzimmer4').innerHTML =  'Wohnzimmer ' + ips[0].ID51079 + '°C'  ;
@@ -247,7 +253,7 @@
  */
         
 /*
-        $('positionwohnzimmer3').innerHTML =   Math.round(ips[0].ID18059).toFixed(1) + '%';
+        
 				//$('tempvorwohnzimmer3').innerHTML =  ips[0].ID29170 + 'Â°C';	
 				//$('temprueckwohnzimmer3').innerHTML =  ips[0].ID47576 + 'Â°C';
         $('tempsollAKTwohnzimmer3').innerHTML =  ips[0].ID31769 + '°C';	
@@ -255,21 +261,21 @@
 */
 				
 /*				
-				$('positionkinderzimmer3').innerHTML =   Math.round(ips[0].ID49335).toFixed(1) + '%';
+				
 				//$('tempvorkinderzimmer3').innerHTML =  ips[0].ID13356 + '°C';	
 				//$('temprueckkinderzimmer3').innerHTML =  ips[0].ID48511 + '°C';
 				$('tempsollAKTkinderzimmer3').innerHTML =  ips[0].ID36377 + '°C';	
 				$('tempsollAUSkinderzimmer3').innerHTML =  ips[0].ID38441 + '°C';
 
 	
-				$('positionschlafzimmer3').innerHTML =   Math.round(ips[0].ID36448).toFixed(1) + '%';
+				
 				//$('tempvorschlafzimmer3').innerHTML =  ips[0].ID26565 + '°C';	
 				//$('temprueckschlafzimmer3').innerHTML =  ips[0].ID32007 + '°C';
 				$('tempsollAKTschlafzimmer3').innerHTML =  ips[0].ID17998 + '°C';	
 				$('tempsollAUSschlafzimmer3').innerHTML =  ips[0].ID51755 + '°C';
 
 				
-				$('positionkueche3').innerHTML =   Math.round(ips[0].ID51619).toFixed(1) + '%';
+				
 				//$('tempvorkueche3').innerHTML =  ips[0].ID99999 + 'Â°C';	
 				////$('temprueckkueche3').innerHTML =  ips[0].ID99999 + 'Â°C';
 				$('tempsollAKTkueche3').innerHTML =  ips[0].ID54426 + '°C';	
@@ -457,74 +463,6 @@
 				}
 */
 
-/*
-
-		//<!--   ************************** Rollo Wohnzimmer **********************************    -->		
-				if (ips[0].ID40508 == '100'){
-					$('ID40508').innerHTML =  'zu';	
- 				}
- 				else if (ips[0].ID40508 == '0'){
-					$('ID40508').innerHTML = 'offen';		
-				}
-				else {
-					$('ID40508').innerHTML =  ips[0].ID40508 + '%';	
-				} 
-				if (ips[0].ID34758 == '1'){
-					$('ID34758').innerHTML =  'Auto';				
-				}else{
-					$('ID34758').innerHTML =  'Man';				
-				}
-
-
-		//<!-- -------------------------- Rollo Kinderzimmer  ------------------------------  -->
-				if (ips[0].ID33678 == '100'){
-					$('ID33678').innerHTML =  'zu';	
- 				}
- 				else if (ips[0].ID33678 == '0'){
-					$('ID33678').innerHTML = 'offen';		
-				}
-				else {
-					$('ID33678').innerHTML =  ips[0].ID33678 + '%';	
-				} 
-				if (ips[0].ID58797 == '1'){
-					$('ID58797').innerHTML =  'Auto';				
-				}else{
-					$('ID58797').innerHTML =  'Man';				
-				}
-		//<!-- -------------------------- Rollo Balkon  ------------------------------  -->
-				if (ips[0].ID11137 == '100'){
-					$('ID11137').innerHTML =  'zu';	
- 				}
- 				else if (ips[0].ID11137 == '0'){
-					$('ID11137').innerHTML = 'offen';		
-				}
-				else {
-					$('ID11137').innerHTML =  ips[0].ID11137 + '%';	
-				} 
-				if (ips[0].ID37300 == '1'){
-					$('ID37300').innerHTML =  'Auto';				
-				}else{
-					$('ID37300').innerHTML =  'Man';				
-				}
-		//<!-- -------------------------- Rollo Kueche  ------------------------------  -->
-				if (ips[0].ID57019 == '100'){
-					$('ID57019').innerHTML =  'zu';	
- 				}
- 				else if (ips[0].ID57019 == '0'){
-					$('ID57019').innerHTML = 'offen';		
-				}
-				else {
-					$('ID57019').innerHTML =  ips[0].ID57019 + '%';	
-				} 
-				if (ips[0].ID26653 == '1'){
-					$('ID26653').innerHTML =  'Auto';				
-				}else{
-					$('ID26653').innerHTML =  'Man';				
-				}
-
-				
-
-*/
  }
 			
      function Rollo(ips){
