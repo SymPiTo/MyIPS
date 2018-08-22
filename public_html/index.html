@@ -1269,23 +1269,37 @@ Noch so ein scheiss.
 		<!-- ************************ Rolladen  Wohnzimmer ************************ -->
 		<div class="RolloWZ">	
 			<div class="reihe" style="margin-right: 50px; margin-left: 50px"   >
+                            <div class="spalte"> 
 				<div class="spalte">Mode
-					<div id="AutoWZ3" class="ctrlbutton cyan" onclick="send('command(Rollo,WZ,Auto)') "> 
+                                    <div id="AutoWZ3" class="ctrlbutton normal cyan" onclick="send('command(Rollo,WZ,Auto)') "> 
 		 				Automatik
 				    </div>
-					<div id="ManWZ3" class="ctrlbutton cyan" onclick="send('command(Rollo,WZ,Man)') "> 
+                                    <div id="ManWZ3" class="ctrlbutton normal cyan" onclick="send('command(Rollo,WZ,Man)') "> 
 		 				Manual
 				    </div>
 				</div>
+
+                                <div class="spalte">Step up -Step Down
+
+                                    <div  class="ctrlbutton normal cyan" onclick="send('command(Rollo,WZ,StepUp)') "> 
+                                                Step Up
+                                    </div>
+
+                                    <div class="ctrlbutton normal cyan" onclick="send('command(Rollo,WZ,StepDown)') "> 
+                                                Step Down
+                                    </div>
+                                </div>
+                            </div>                
+
 				<div class="spalte">PreSets
 
-					<div  class="ctrlbutton cyan" onclick="send('command(Rollo,WZ,up)') "> 
+					<div  class="ctrlbutton normal cyan" onclick="send('command(Rollo,WZ,up)') "> 
 		 				Hoch
 				    </div>
-					<div class="ctrlbutton cyan" onclick="send('command(Rollo,WZ,stop)') "> 
+					<div class="ctrlbutton normal cyan" onclick="send('command(Rollo,WZ,stop)') "> 
 		 				Stop
 				    </div>
-					<div class="ctrlbutton cyan" onclick="send('command(Rollo,WZ,down)') "> 
+					<div class="ctrlbutton normal cyan" onclick="send('command(Rollo,WZ,down)') "> 
 		 				Runter
 				    </div>
 

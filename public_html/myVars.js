@@ -11,7 +11,8 @@
             check(ips[0].ID33678, 7);
             check(ips[0].ID57019, 8);
             
-            check(ips[0].ID40508, 9);
+            check(ips[0].ID55451, 9);  //Rollo WZ up/down
+            check(ips[0].ID54692, 9);  //Rollo WZ Position
             check(ips[0].ID37274, 10); //Rollo WZ Mode
             check(ips[0].ID37300, 11);
             check(ips[0].ID11137, 12);
@@ -467,12 +468,12 @@
 			
      function Rollo(ips){
         //<!-- **************************  Rolladen Ctrl Wohnzimmer **************************  -->
-        if (ips[0].ID40508 == '0'){
+        if (ips[0].ID54692 == '0'|| ips[0].ID55451 == 0){
             $('RolloWZPos1').innerHTML =  'offen'; 
-        }else if (ips[0].ID40508 == '100'){
+        }else if (ips[0].ID54692 == '100' || ips[0].ID55451 == 1){
             $('RolloWZPos1').innerHTML =  'zu'; 
         }else {
-            $('RolloWZPos1').innerHTML =  ips[0].ID40508;    
+            $('RolloWZPos1').innerHTML =  ips[0].ID54692;    
         }
         if (ips[0].ID37274 == '1'){
                  $('RolloWZMode1').innerHTML =  'Auto'; 
