@@ -158,9 +158,16 @@
     }
  
  
+        /* ******************************
+        *    Rollo FUNKTIONEN    
+       ********************************* */
  
- 
-   
+     function showTimePicker(){
+              
+         document.getElementsByClassName("RolloCtrlWZ")[0].style.width = "0px";
+         document.getElementsByClassName("TimePicker")[0].style.width = "26vw";   
+        
+    }
     
 
         
