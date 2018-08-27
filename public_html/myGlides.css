@@ -409,15 +409,16 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	background: hsl(200, 100%, 10%);
 }
 .TimePicker {
-	position:absolute;
+	position:relative;
 	top: 5vh;
 	width: 0px;
 	height: 95vh;
-        left: 74vw;
+        left: 58vw;
 	background: hsl(300, 100%, 10%);
 	/*border-left-style: solid;
 	border-left-width: thin; */
 }
+
 .CDctrl {
 	position:absolute;
 	top: 5vh;
@@ -981,8 +982,19 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	z-index: 2;
 }
 
-
-
+.Wert1 {
+	width: 160px;
+	height: 20px;
+	position: relative;
+	background-color: #00FFFF;
+	color: black;
+	font-size: small;
+	font-family: Arial;
+	font-weight: bold;
+	font-family: helvetica;
+	z-index: 2;
+}
+ 
 
 
 #plan{
@@ -1022,11 +1034,17 @@ overflow: hidden;
 	height: 70px;
 	
 }
+
 .icon{
 	margin-top: 10px;
 	width: 70px;
 	height: 70px;
-	
+}
+
+.icon.wide{
+	margin-top: 10px;
+	width: 450px;
+	height: 170px;
 }
 
 
@@ -1652,10 +1670,10 @@ width:40%;
 	
 }
 .fontbutton.normal{
-    width: 70px;
-    height:70px;
+    width: 100px;
+    height: 50px;
  
-    margin:4px;
+    margin:1px;
 }
 
 .fontbutton.small{
@@ -1701,7 +1719,7 @@ width:40%;
 	background:-webkit-linear-gradient(hsl(200, 100%, 25%), hsl(200, 100%, 45%)); /* CHROME */
 }
 .fontbutton.grey {
-    background: -webkit-linear-gradient(hsl(200, 0%, 25%), hsl(200, 0%, 45%));
+    background: -webkit-linear-gradient(hsl(200, 0%, 25%), hsl(200, 0%, 45%),hsl(200, 0%, 25%));
 }
 
 .fontbutton:hover {
@@ -1725,7 +1743,7 @@ width:40%;
 	background: -webkit-linear-gradient(hsl(200, 100%, 5%), hsl(200, 100%, 15%));
 }
 .fontbutton.grey:active {
-    background: -webkit-linear-gradient(hsl(200, 0%, 5%), hsl(200, 0%, 15%));
+    background: -webkit-linear-gradient(hsl(200, 0%, 5%), hsl(200, 0%, 15%), hsl(200, 0%, 5%));
 }
 
 .ctrlbutton{
@@ -1742,6 +1760,7 @@ width:40%;
 	transition: All 0.5s ease;
 	font-size: xx-large;
 	padding-top: 20px;
+       
 	 
 }
 .ctrlbutton.xsmall {
@@ -1784,8 +1803,15 @@ width:40%;
         margin-bottom: 2px;
 	padding-top: 10px;
 }
+.ctrlbutton.smallwide {
+	height: 40px;
+	width: 225px;
+	font-size: 18px;
+        margin-bottom: 2px;
+	padding-top: 10px;
+}
 .ctrlbutton.cyan {
-	background: -webkit-linear-gradient(hsl(174, 100%, 25%), hsl(174, 100%, 45%));
+	background: -webkit-linear-gradient(hsl(174, 100%, 25%), hsl(174, 100%, 45%), hsl(174, 100%, 25%));
 }
 .ctrlbutton.olive {
 	background: -webkit-linear-gradient(hsl(82, 100%, 25%), hsl(82, 100%, 45%));
@@ -1816,7 +1842,7 @@ width:40%;
 	background: -webkit-linear-gradient(hsl(274, 100%, 5%), hsl(274, 100%, 15%));
 }
 .ctrlbutton.cyan:active {
-	background: -webkit-linear-gradient(hsl(174, 100%, 5%), hsl(174, 100%, 15%));
+	background: -webkit-linear-gradient(hsl(174, 100%, 5%), hsl(174, 100%, 15%),hsl(174, 100%, 5%));
 }
 .ctrlbutton.olive:active {
 	background: -webkit-linear-gradient(hsl(82, 100%, 5%), hsl(82, 100%, 15%));
@@ -1850,6 +1876,22 @@ width:40%;
 	background: -webkit-linear-gradient(hsl(0, 100%, 5%), hsl(0, 100%, 15%));
 }
 
+.var{
+	border-color: #666666;
+	border-style: solid;
+	border-width: 1px;
+    
+}
+.var.cyan{
+	background-color: hsl(174, 100%, 5%);	
+}
+.var.normal{
+    width: 75px;
+    height: 25px;
+    font-size: 14px;
+    padding-top: 5px;
+    z-index: 10;
+}
 
 .anzeige{
 	border-color: #666666;
@@ -1861,8 +1903,9 @@ width:40%;
 	width: 202px;
 	height: 75px;
 	margin: 5px;
-	font-size: large;
+	font-size: small;
 	padding: 5px;
+        
 }
 .anzeige.cyan{
 	background-color: hsl(174, 100%, 5%);	
@@ -1928,7 +1971,7 @@ width:40%;
 	flex-direction: column;
 	background-color: hsl(174, 100%, 5%);
 	width: 202px;
-	height: 150px;
+	height: 140px;
 	margin: 5px;
 }
 .tempcontrol.cyan{
@@ -2372,14 +2415,19 @@ background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 45%));
 .timeContainer {
     display: flex;
     overflow: hidden;
-    height: 270px;
-    margin-top: -100px;
-    padding-top: 100px;
+    height: 225px;
+    margin-top: -20px;
+    padding-top: 20px;
+    margin-bottom: -20px;
+    padding-bottom: 20px;    
     position: relative;
-    width: 250px;
+    top:10px;
+    width: 225px;
+    left:20px;
     backface-visibility: hidden;
     will-change: overflow;
     margin-left: 5px;
+    margin-bottom: 5px;
 
 }
 /*All the scrollable sections should overflow and be whatever height they need to be. As they are flex-items (due to being inside a flex container) they could be made to stretch full height at all times if needed.
@@ -2403,9 +2451,10 @@ WebKit inertia scrolling is being added here for any present/future devices that
 /*  Left and Right are set sizes while the Middle is set to flex one so it occupies all remaining space. This could be set as a width too if prefereable, perhaps using calc.*/
 .timeLeft {
     width: 12.5rem;
-    background: -webkit-linear-gradient(hsl(120, 56%, 0%), hsl(120, 56%, 15%),hsl(120, 56%, 75%), hsl(120, 56%, 15%),hsl(120, 56%, 0%));
+    background: green;
     font-size: 32px;
-
+	-webkit-mask-image: -webkit-linear-gradient(rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5)25%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0.1) 100%);
+	 background: -webkit-linear-gradient(hsl(120, 56%, 0%), hsl(120, 56%, 15%),hsl(120, 56%, 75%), hsl(120, 56%, 15%),hsl(120, 56%, 0%));
 }
 .timeMiddle {
     flex: 1;
@@ -2414,7 +2463,27 @@ WebKit inertia scrolling is being added here for any present/future devices that
 
 .timeRight {
     width: 12.5rem;
-    background: -webkit-linear-gradient(hsl(120, 56%, 0%), hsl(120, 56%, 15%),hsl(120, 56%, 75%), hsl(120, 56%, 15%),hsl(120, 56%, 0%));
+    
     font-size: 32px;
+	-webkit-mask-image: -webkit-linear-gradient(rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5)25%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0.1) 100%);
+	 background: -webkit-linear-gradient(hsl(120, 56%, 0%), hsl(120, 56%, 15%),hsl(120, 56%, 75%), hsl(120, 56%, 15%),hsl(120, 56%, 0%));
 
+}
+
+
+
+#timer1Right {
+  
+
+}
+#timer2Left {
+  
+	-webkit-mask-image: -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1) 50%, rgba(0,0,0,0));
+	-webkit-mask-image: linear-gradient(top, rgba(0,0,0,.1), rgba(0,100,100,1) 50%, rgba(0,0,0,.1));
+}
+
+#timer2Right {
+  
+	-webkit-mask-image: -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1) 50%, rgba(0,0,0,0));
+	-webkit-mask-image: linear-gradient(top, rgba(0,0,0,.1), rgba(0,100,100,1) 50%, rgba(0,0,0,.1));
 }

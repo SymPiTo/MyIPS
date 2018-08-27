@@ -1,4 +1,4 @@
- 
+  
     
     function Navigation(){ 
         document.getElementsByClassName("CEOLctrl")[0].style.width = "0px";
@@ -9,8 +9,6 @@
     }
     
 
-
-			
 
 
 

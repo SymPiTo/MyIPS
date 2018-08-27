@@ -1,30 +1,66 @@
      
      function checkUsedVars(ips){
-
-            check(ips[0].ID23116, 1 );
+            //Heizung
+            check(ips[0].ID23116, 1);
             check(ips[0].ID37045, 2);
             check(ips[0].ID51079, 3);
             check(ips[0].ID54070, 4);
+            check(ips[0].ID18059, 5);    
+            check(ips[0].ID49335, 6);
+            check(ips[0].ID23116, 7);
+            check(ips[0].ID37045, 8);
+            //Security
+            check(ips[0].ID36168, 9);  // Diele Präsenzmelder
+            check(ips[0].ID22196, 10);  // Diele Haustür
+            // Klima
+            check(ips[0].ID56454, 11);  // humidity KZ
+            check(ips[0].ID50329, 12);  // humidity SZ
             
-            check(ips[0].ID58797, 5);
-            check(ips[0].ID26653, 6);
-            check(ips[0].ID33678, 7);
-            check(ips[0].ID57019, 8);
+             // Rollo           
+            check(ips[0].ID58797, 13);  //Rollo KZ Mode
+            check(ips[0].ID33678, 14);  //Rollo KZ Postion         
             
-            check(ips[0].ID55451, 9);  //Rollo WZ up/down
-            check(ips[0].ID54692, 9);  //Rollo WZ Position
-            check(ips[0].ID37274, 10); //Rollo WZ Mode
-            check(ips[0].ID37300, 11);
-            check(ips[0].ID11137, 12);
+            check(ips[0].ID26653, 15);  //Rollo K Mode
+            check(ips[0].ID57019, 16);  //Rollo K Postion     
             
-            check(ips[0].ID57942, 13);
-            check(ips[0].ID11938, 14);
+
+            check(ips[0].ID13013, 17);  //Rollo WZ up/down
+            check(ips[0].ID39896, 18);  //Rollo WZ Position
+            check(ips[0].ID50459, 19); //Rollo WZ Mode
             
-            check(ips[0].ID18059, 15);
- 
+            check(ips[0].ID37300, 20); //Rollo B Mode
+            check(ips[0].ID11137, 21); //Rollo B Postion 
+            
+            check(ips[0].ID57942, 22);  //Sonnenuntergang
+            check(ips[0].ID11938, 23);  //Sonnenaufgang
+            
+            check(ips[0].ID37348, 24);  //Balkontür
+
+            check(ips[0].ID53071, 25);  //Soll Modus Hz WZ
+            check(ips[0].ID31769, 26);  //Soll Temp Hz WZ 
+            check(ips[0].ID27789, 27);  //Soll Temp Ausstehend Hz WZ
+            
+            check(ips[0].ID23472, 28);  //Bat Hz WZ
+            check(ips[0].ID52085, 29);  //Bat Hz KZ
+            check(ips[0].ID57118, 30);  //Bat Hz SZ
+            check(ips[0].ID22083, 31);  //Bat Hz K
+            
+            check(ips[0].ID34102, 31);  //Soll Modus Hz KZ
+            check(ips[0].ID36377, 32);  //Soll Temp Hz KZ 
+            check(ips[0].ID38441, 33);  //Soll Temp Ausstehend Hz KZ
+            
+            check(ips[0].ID31202, 34);  //Soll Modus Hz SZ
+            check(ips[0].ID17998, 35);  //Soll Temp Hz SZ 
+            check(ips[0].ID51755, 36);  //Soll Temp Ausstehend Hz SZ
+            check(ips[0].ID26565, 34);  //Temp Vor Hz SZ
+            check(ips[0].ID32007, 35);  //Temp Rueck Hz SZ  
+            
+            check(ips[0].ID39562, 37);  //Soll Modus Hz K
+            check(ips[0].ID54426, 38);  //Soll Temp Hz K 
+            check(ips[0].ID21258, 39);  //Soll Temp Ausstehend Hz K         
      }
     function check(value, n){
-        if (typeof value !== "undefined"){return value} else{$('fehler').innerHTML =  "Variable  wrong ID:" + n}
+        if (typeof value === "undefined") {$('fehler').innerHTML =  "Variable  wrong ID:" + n} else {return value}
     } 
      
     function MediaValues(ips){
@@ -209,31 +245,144 @@
         }
     }
 			
-    function Temp(ips){
-        //<!-- ******************** Temperatur  Glide Floorplan **************************  -->	                
-        $('tempkueche').innerHTML =  ips[0].ID54070 + '°C'  ;
-        $('tempwohnzimmer').innerHTML =  ips[0].ID51079 + '°C'  ;
-        $('tempschlafzimmer').innerHTML =  ips[0].ID23116 + '°C'  ;
-        $('tempkinderzimmer').innerHTML =  ips[0].ID37045 + '°C';
-        //<!-- Temperatur Werte Floorplan  -->
-        $('tempkueche1').innerHTML =  ips[0].ID54070 + '°C'  ;
-        $('tempwohnzimmer1').innerHTML =  ips[0].ID51079 + '°C'  ;
-        $('tempschlafzimmer1').innerHTML =  ips[0].ID23116 + '°C'  ;
-        $('tempkinderzimmer1').innerHTML =  ips[0].ID37045 + '°C'; 
+    function Heizung(ips){
+        //<!-- ******************** Temperatur   Werte Floorplan **************************  -->	                
+        $('tempK_E').innerHTML =  ips[0].ID54070 + '°C'  ;
+        $('tempWZ_E').innerHTML =  ips[0].ID51079 + '°C'  ;
+        $('tempSZ_E').innerHTML =  ips[0].ID23116 + '°C'  ;
+        $('tempKZ_E').innerHTML =  ips[0].ID37045 + '°C';
+        //<!-- Temperatur Glide Floorplan  -->
+        $('tempK1').innerHTML =  ips[0].ID54070 + '°C'  ;
+        $('tempWZ1').innerHTML =  ips[0].ID51079 + '°C'  ;
+        $('tempSZ1').innerHTML =  ips[0].ID23116 + '°C'  ;
+        $('tempKZ1').innerHTML =  ips[0].ID37045 + '°C'; 
         //<!-- Temperatur Werte Glide Button  -->
         $('tempkueche2').innerHTML =  ips[0].ID54070 + '°C'  ;
         $('tempwohnzimmer2').innerHTML =  ips[0].ID51079 + '°C'  ;
         $('tempschlafzimmer2').innerHTML =  ips[0].ID23116 + '°C'  ;
         $('tempkinderzimmer2').innerHTML =  ips[0].ID37045 + '°C';
-        //<!-- ************************ Heizung Ctrl xxxx ************************  -->
-        $('tempkueche3').innerHTML =  ips[0].ID54070 + '°C'  ;
-        $('tempwohnzimmer3').innerHTML =  ips[0].ID51079 + '°C'  ;
-        $('tempschlafzimmer3').innerHTML =  ips[0].ID23116 + '°C'  ;
-        $('tempkinderzimmer3').innerHTML =  ips[0].ID37045 + '°C'  ;
-        $('positionwohnzimmer3').innerHTML =   Math.round(ips[0].ID18059).toFixed(1) + '%';
-        $('positionkinderzimmer3').innerHTML =   Math.round(ips[0].ID49335).toFixed(1) + '%';
-        $('positionschlafzimmer3').innerHTML =   Math.round(ips[0].ID36448).toFixed(1) + '%';
-        $('positionkueche3').innerHTML =   Math.round(ips[0].ID51619).toFixed(1) + '%';
+        //<!-- ************************ Heizung Wohnzimmer ************************  -->
+        $('TempHzWZ1').innerHTML =  ips[0].ID51079 + '°C'  ;
+        $('PosHzWZ1').innerHTML =   Math.round(ips[0].ID18059).toFixed(0) + '%';
+        $('TempHzWZ2').innerHTML =  ips[0].ID51079 + '°C'  ;
+        $('PosHzWZ2').innerHTML =   Math.round(ips[0].ID18059).toFixed(0) + '%';
+        $('TempVorHzWZ1').innerHTML =  "--"  + '°C'  ;
+        $('TempRueckHzWZ1').innerHTML =  "--" + '°C' ;
+        $('SollTempHzWZ1').innerHTML =  ips[0].ID31769 + '°C'  ;
+        $('SollTempAusHzWZ1').innerHTML =  ips[0].ID27789 + '°C' ;
+        if(ips[0].ID18059 > 1){
+            $('iconHzWZ1').src =  "images/heizkoerper_rot.png";    
+        }
+        else {
+             $('iconHzWZ1').src =  "images/heizkoerper_blau.png";   
+        }
+        var ModeHzWZ1 = ips[0].ID53071;
+        if (ModeHzWZ1){
+           $('ModeHzWZ1').innerHTML =  "Man";   
+        }
+        else {
+           $('ModeHzWZ1').innerHTML =  "Auto";  
+        }
+        var BatHzWZ1 = ips[0].ID23472;
+        if (BatHzWZ1){
+            document.getElementById("BatHzWZ1").style.color  = 'red';
+          
+        }
+        else {
+           document.getElementById("BatHzWZ1").style.color = 'lime';
+        }
+        //<!-- ************************ Heizung Kinderzimmer ************************  -->
+        $('TempHzKZ1').innerHTML =  ips[0].ID37045 + '°C'  ;
+        $('PosHzKZ1').innerHTML =   Math.round(ips[0].ID49335).toFixed(0) + '%';
+        $('TempHzKZ2').innerHTML =  ips[0].ID37045 + '°C'  ;
+        $('PosHzKZ2').innerHTML =   Math.round(ips[0].ID49335).toFixed(0) + '%';
+        $('TempVorHzKZ1').innerHTML =  "--"  + '°C'  ;
+        $('TempRueckHzKZ1').innerHTML =  "--" + '°C'  ;
+        $('SollTempHzKZ1').innerHTML =  ips[0].ID36377 + '°C'  ;
+        $('SollTempAusHzKZ1').innerHTML =  ips[0].ID38441 + '°C' ;
+        if(ips[0].ID49335 > 1){
+            $('iconHzKZ1').src =  "images/heizkoerper_rot.png";    
+        }
+        else {
+             $('iconHzKZ1').src =  "images/heizkoerper_blau.png";   
+        }
+        var ModeHzKZ1 = ips[0].ID34102;
+        if (ModeHzKZ1){
+           $('ModeHzKZ1').innerHTML =  "Man";   
+        }
+        else {
+           $('ModeHzKZ1').innerHTML =  "Auto";  
+        }
+        var BatHzKZ1 = ips[0].ID52085;
+        if (BatHzKZ1){
+            document.getElementById("BatHzKWZ1").style.color  = 'red';
+          
+        }
+        else {
+           document.getElementById("BatHzKZ1").style.color = 'lime';
+        }
+         //<!-- ************************ Heizung Schlafzimmer ************************  -->
+        $('TempHzSZ1').innerHTML =  ips[0].ID23116 + '°C'  ;
+        $('PosHzSZ1').innerHTML =   Math.round(ips[0].ID36448).toFixed(0) + '%';
+        $('TempHzSZ2').innerHTML =  ips[0].ID23116 + '°C'  ;
+        $('PosHzSZ2').innerHTML =   Math.round(ips[0].ID36448).toFixed(0) + '%';
+        $('TempVorHzSZ1').innerHTML =  ips[0].ID26565 + '°C'  ;
+        $('TempRueckHzSZ1').innerHTML = ips[0].ID32007 + '°C'  ;
+        $('SollTempHzSZ1').innerHTML =  ips[0].ID17998 + '°C'  ;
+        $('SollTempAusHzSZ1').innerHTML =  ips[0].ID51755 + '°C' ;
+        if(ips[0].ID36448 > 1){
+            $('iconHzSZ1').src =  "images/heizkoerper_rot.png";    
+        }
+        else {
+             $('iconHzSZ1').src =  "images/heizkoerper_blau.png";   
+        }
+        var ModeHzSZ1 = ips[0].ID31202;
+        if (ModeHzSZ1){
+           $('ModeHzSZ1').innerHTML =  "Man";   
+        }
+        else {
+           $('ModeHzSZ1').innerHTML =  "Auto";  
+        }
+        var BatHzSZ1 = ips[0].ID57118;
+        if (BatHzSZ1){
+            document.getElementById("BatHzSZ1").style.color  = 'red';
+          
+        }
+        else {
+           document.getElementById("BatHzSZ1").style.color = 'lime';
+        }
+        //<!-- ************************ Heizung Kueche ************************  -->
+        $('TempHzK1').innerHTML =  ips[0].ID54070 + '°C'  ;
+        $('PosHzK1').innerHTML =   Math.round(ips[0].ID51619).toFixed(0) + '%';
+         $('TempHzK2').innerHTML =  ips[0].ID54070 + '°C'  ;
+        $('PosHzK2').innerHTML =   Math.round(ips[0].ID51619).toFixed(0) + '%';
+        $('TempVorHzK1').innerHTML =  "--"  + '°C'  ;
+        $('TempRueckHzK1').innerHTML =  "--" + '°C'  ;
+        $('SollTempHzK1').innerHTML =  ips[0].ID54426 + '°C'  ;
+        $('SollTempAusHzK1').innerHTML =  ips[0].ID21258 + '°C' ;
+        if(ips[0].ID51619 > 1){
+            $('iconHzK1').src =  "images/heizkoerper_rot.png";    
+        }
+        else {
+             $('iconHzK1').src =  "images/heizkoerper_blau.png";   
+        }
+        var ModeHzK1 = ips[0].ID39562;
+        if (ModeHzK1){
+           $('ModeHzK1').innerHTML =  "Man";   
+        }
+        else {
+           $('ModeHzK1').innerHTML =  "Auto";  
+        }
+         var BatHzK1 = ips[0].ID22083;
+        if (BatHzK1){
+            document.getElementById("BatHzK1").style.color  = 'red';
+          
+        }
+        else {
+           document.getElementById("BatHzK1").style.color = 'lime';
+        }
+
+        
         
         //<!-- ************************ Heizung Uebersicht ************************  -->
         $('tempkueche4').innerHTML =  'Kueche ' + ips[0].ID54070 + '°C'  ;
@@ -468,14 +617,14 @@
 			
      function Rollo(ips){
         //<!-- **************************  Rolladen Ctrl Wohnzimmer **************************  -->
-        if (ips[0].ID54692 == '0'|| ips[0].ID55451 == 0){
+        if (ips[0].ID39896 == '0'|| ips[0].ID13013 == 0){
             $('RolloWZPos1').innerHTML =  'offen'; 
-        }else if (ips[0].ID54692 == '100' || ips[0].ID55451 == 1){
+        }else if (ips[0].ID39896 == '100' || ips[0].ID13013 == 1){
             $('RolloWZPos1').innerHTML =  'zu'; 
         }else {
-            $('RolloWZPos1').innerHTML =  ips[0].ID54692;    
+            $('RolloWZPos1').innerHTML =  ips[0].ID39896;    
         }
-        if (ips[0].ID37274 == '1'){
+        if (ips[0].ID50459 == '1'){
                  $('RolloWZMode1').innerHTML =  'Auto'; 
         }else{
                  $('RolloWZMode1').innerHTML =  'Man'; 
@@ -526,3 +675,31 @@
         $('KZRolloTime').innerHTML =  ips[0].ID11938 +' - ' +  ips[0].ID57942;
         $('KRolloTime').innerHTML =  ips[0].ID11938 +' - ' +  ips[0].ID57942;       
     }
+    
+        function Klima(ips){
+        //<!-- **************************  Feuchte Floorplan **************************  -->
+            $('FeuchteSZ_E').innerHTML =  ips[0].ID50329 + ' %';
+            $('FeuchteKZ_E').innerHTML =  ips[0].ID56454 + ' %';
+
+        } 
+        
+        function Security(ips){
+        //<!-- **************************    Security **************************  -->
+            if (ips[0].ID36168 == '1'){
+                     $('humanD_E').innerHTML =  'Person anwensend'; 
+                     let now = new Date();
+                     var options = { weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric' };
+                     $('humanTimeD_E').innerHTML = now.toLocaleTimeString('de-DE', options); 
+            }else{
+                     $('humanD_E').innerHTML =  'X'; 
+            }
+
+           if (ips[0].ID22196 == '1'){
+                     $('door_E').innerHTML =  'open'; 
+                     let now = new Date();
+                     var options = { weekday: 'short', year: 'numeric', month: 'numeric', day: 'numeric' };
+                     $('humanDoor_E').innerHTML = now.toLocaleTimeString('de-DE', options); 
+            }else{
+                     $('door_E').innerHTML =  'close'; 
+            }
+        } 
