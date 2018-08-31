@@ -40,7 +40,7 @@ function setScrollTime(TimerID){
     send(cmd);
 }
 
-function addCtrlButton(ButID, Ident, posTop, posLeft, size, color, text,  command){
+function addCtrlButton(ParentID, Ident, posTop, posLeft, size, color, text,  command){
     var elem = document.createElement("div");
     elem.className = "ctrlbutton";
     elem.classList.add(size, color);
@@ -50,7 +50,7 @@ function addCtrlButton(ButID, Ident, posTop, posLeft, size, color, text,  comman
     elem.style.left = posLeft;
     elem.style.top = posTop;
     elem.setAttribute("onclick", command);
-    document.getElementById(ButID).appendChild(elem);			 
+    document.getElementById(ParentID).appendChild(elem);			 
 }
 
 function addTitle(TitleID, posTop, posLeft, fontsize, fontcolor, text){
@@ -65,7 +65,7 @@ function addTitle(TitleID, posTop, posLeft, fontsize, fontcolor, text){
     document.getElementById(TitleID).appendChild(elem);			 
 }
 
-function addIcon(ParentID, Ident, src, posTop, posLeft, size){
+function addImage(ParentID, Ident, src, posTop, posLeft, size){
     var elem = document.createElement("img");
     elem.className = "icon";
     elem.classList.add(size);
@@ -78,10 +78,51 @@ function addIcon(ParentID, Ident, src, posTop, posLeft, size){
     document.getElementById(ParentID).appendChild(elem);			 
 }
 
+function updateImage(ID, value, ImageBaseName){
+    if(value == 0){
+        document.getElementById(ID).src = "images/" + ImageBaseName +"0.png";
+    }
+    else if(value == 1){
+        document.getElementById(ID).src = "images/" + ImageBaseName +"1.png";
+    }
+    else if(value > 1 && value < 11){
+        document.getElementById(ID).src = "images/" + ImageBaseName +"10.png";
+    }
+    else if(value > 10 && value < 21){
+        document.getElementById(ID).src = "images/" + ImageBaseName +"20.png";
+    }
+    else if(value > 20 && value < 31){
+        document.getElementById(ID).src = "images/" + ImageBaseName +"30.png";
+    }
+    else if(value > 30 && value < 41){
+        document.getElementById(ID).src = "images/" + ImageBaseName +"40.png";
+    }
+    else if(value > 40 && value < 51){
+        document.getElementById(ID).src = "images/" + ImageBaseName +"50.png";
+    }
+    else if(value > 50 && value < 61){
+        document.getElementById(ID).src = "images/" + ImageBaseName +"60.png";
+    }
+    else if(value > 60 && value < 71){
+        document.getElementById(ID).src = "images/" + ImageBaseName +"70.png";
+    }
+    else if(value > 70 && value < 81){
+        document.getElementById(ID).src = "images/" + ImageBaseName +"80.png";
+    }
+    else if(value > 80 && value < 91){
+        document.getElementById(ID).src = "images/" + ImageBaseName +"90.png";
+    }
+    else if(value > 90 && value < 101){
+        document.getElementById(ID).src = "images/" + ImageBaseName +"100.png";
+    }
+    else{}
+  
+}
 function addDisplay(ParentID, Ident, color, posTop, posLeft, titel){
     var elem1 = document.createElement("div");
     elem1.className = "anzeige";  
     elem1.classList.add(color);
+    elem1.style.color = "lime";
     elem1.style.position = "absolute";
     elem1.style.left = posLeft;
     elem1.style.top = posTop;
@@ -90,10 +131,24 @@ function addDisplay(ParentID, Ident, color, posTop, posLeft, titel){
     elem3.id = Ident;
     elem3.innerHTML = "----";
     elem3.style.fontSize = "28px";
-    elem3.style.paddingTop = "10px";
+    elem3.style.paddingTop = "5px";
+    elem3.style.color = "white";
     elem1.append(elem3);
     document.getElementById(ParentID).appendChild(elem1);			 
 }
+
+function updateDisplay(ID, textColor, value, einheit, stateOff, stateOn){
+    if (stateOff == ""){
+        $(ID).innerHTML =  value + einheit;
+    }else{
+        if (value == '1' ){
+            $(ID).innerHTML =  stateOn; 
+        }else{
+            $(ID).innerHTML =  stateOff; 
+        }
+    }    
+}
+
 
 function addVar(ParentID, Ident, color, posTop, posLeft, size, value){
     var elem = document.createElement("div");
@@ -110,10 +165,11 @@ function addVar(ParentID, Ident, color, posTop, posLeft, size, value){
 }
 
 
-function addTempCtrl(ParentID, Ident, color, posTop, posLeft, Titel, valueID, valueLeftID, valueRightID, cmd1, cmd2){
+function addTempCtrl(ParentID, Ident, color, posTop, posLeft, Titel, valueID, valueLeftID, valueRightID, room){
     var elem1 = document.createElement("div");
     elem1.className = "tempcontrol";  
     elem1.classList.add(color);
+    elem1.style.color = "lime";
     elem1.id = Ident; 
     elem1.style.position = "absolute";
     elem1.style.left = posLeft;
@@ -129,7 +185,7 @@ function addTempCtrl(ParentID, Ident, color, posTop, posLeft, Titel, valueID, va
     elem3.style.justifyContent = "space-between";
     elem3.style.paddingTop = "15px";
     elem3.style.marginBottom = "5px";
-    
+    elem3.style.color = "white";
     var elem4 = document.createElement("span");
     elem4.id = valueLeftID;
     elem4.innerHTML = "--";
@@ -139,7 +195,7 @@ function addTempCtrl(ParentID, Ident, color, posTop, posLeft, Titel, valueID, va
     
     var elem5 = document.createElement("span");
     elem5.id = valueID;
-    elem5.innerHTML = "--";
+    elem5.innerHTML = "22.0";
     elem5.style.fontSize = "28px";
     
     
@@ -163,6 +219,7 @@ function addTempCtrl(ParentID, Ident, color, posTop, posLeft, Titel, valueID, va
     elem9.className = "fa fa-plus"; 
     elem9.style.fontSize = "24px";
     elem9.style.padding = "12px";
+    var cmd1 = "incTemp('" + valueID + "')";
     elem8.setAttribute("onclick", cmd1);
     elem8.append(elem9);
     elem7.append(elem8);
@@ -175,21 +232,47 @@ function addTempCtrl(ParentID, Ident, color, posTop, posLeft, Titel, valueID, va
     elem11.className = "fa fa-minus"; 
     elem11.style.fontSize = "24px";
     elem11.style.padding = "12px";
+    var cmd2 = "decTemp('" + valueID + "')";
     elem10.setAttribute("onclick", cmd2);
     elem10.append(elem11);
     elem7.append(elem10); 
     
+    var elem12 = document.createElement("div");
+    elem12.className = "ctrlbutton";
+    elem12.classList.add("normal", color);
+    elem12.innerHTML = "set";
     
-     
-    elem1.append(elem3);
-    elem1.append(elem7);
-    
+    var cmd3 = "setSollTemp('" + valueID + "', '" + room + "');";
+    elem12.setAttribute("onclick", cmd3);
+    elem12.style.width = "199px";
     elem3.append(elem4);
     elem3.append(elem5);
     elem3.append(elem6);
-
+    
+    elem1.append(elem3);
+    elem1.append(elem7);   
+    elem1.append(elem12);
     
     document.getElementById(ParentID).appendChild(elem1);	
+}
+
+function incTemp(valueID){
+    var solltempS = document.getElementById(valueID).innerHTML;
+    var solltemp =  parseFloat(solltempS)+0.5;
+    document.getElementById(valueID).innerHTML  = solltemp;
+}
+
+function decTemp(valueID){
+    var solltempS = document.getElementById(valueID).innerHTML;
+    var solltemp =  parseFloat(solltempS)-0.5;
+   document.getElementById(valueID).innerHTML  = solltemp;
+}
+
+function setSollTemp(valueID, room){
+    var sollTemp = document.getElementById(valueID).innerHTML;
+    var cmd =  "command(Heizung," + room + "," + sollTemp + ")";
+    
+    send(cmd);
 }
 
 function addStatus(ParentID, Ident, color, posTop, posLeft,   text){
@@ -212,5 +295,22 @@ function addStatus(ParentID, Ident, color, posTop, posLeft,   text){
     document.getElementById(ParentID).appendChild(elem);			 
 }
 
-
  
+function addFontButton(ParentID, color, size, posTop, posLeft, symbol, cmd){
+    var elem = document.createElement("div");
+    elem.className = "fontbutton";   
+    elem.classList.add(size, color);
+    elem.style.position = "absolute";
+    elem.style.left = posLeft;
+    elem.style.top = posTop;
+    elem.setAttribute("onclick", cmd);
+    
+    var elem1 = document.createElement("span");
+    elem1.className = symbol; 
+    elem1.style.fontSize = "30px";
+    elem1.style.padding = "5px";
+    elem1.style.marginTop = "10px"
+    
+    elem.append(elem1);
+    document.getElementById(ParentID).appendChild(elem);	
+}

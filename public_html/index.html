@@ -33,7 +33,7 @@ Noch so ein scheiss.
 			
 
                 function init() {
-                        var host = 'ws://192.168.178.28:9000'; // SET THIS TO YOUR SERVER
+                        var host = 'ws://ylgsiletvcrasj6i.myfritz.net:9000'; // SET THIS TO YOUR SERVER
                         try {
                                 socket = new WebSocket(host);
                                 state('WebSocket: '+socket.readyState);
@@ -48,18 +48,24 @@ Noch so ein scheiss.
 
                                 socket.onmessage = function(msg) { 
                                                                         var jsontext = msg.data;
-                                                                        var ips = JSON.parse(jsontext); 
-                                                                         //reply(ips[0].ID50311);
-                                                                         //log(ips[0].ID24839);
-                                                                        checkUsedVars(ips);
-                                                                         /////Media(ips);
-                                                                        Heizung(ips);
-                                                                        Security(ips);
-                                                                         //HomeValues(ips);
-                                                                        Rollo(ips);
-                                                                        
-                                                                        Klima(ips)
-                                                                        
+                                                                        if(jsontext.substring(0, 6) == "REPLY:"){
+                                                                            
+                                                                            var feedback = jsontext.substr(6,jsontext.length-6) ;
+                                                                            reply(feedback);
+                                                                        }
+                                                                        else{
+                                                                            var ips = JSON.parse(jsontext); 
+                                                                             //
+                                                                             //log(ips[0].ID24839);
+                                                                            checkUsedVars(ips);
+                                                                             /////Media(ips);
+                                                                            Heizung(ips);
+                                                                            Security(ips);
+                                                                            Klima(ips); 
+                                                                            updateValues(ips);
+
+                                                                            
+                                                                        }
 
                                                               };
                                 socket.onclose  = function(msg) { 
@@ -135,14 +141,7 @@ Noch so ein scheiss.
 			
 			function cmd(msg){ $('cmd').innerHTML =  msg; }
 			
-			function reply(msg){
-			 	$('reply').innerHTML =  msg; 
-			 	
-			 	if (msg.substring(0,3) == 'TV-'){
-			 		document.getElementById("sendericon").src = msg.substring(3, msg.length);    
-			 	}
-			 
-			 }
+
 			
 			function close(msg){
 				if (msg === doclose) {
@@ -192,78 +191,10 @@ Noch so ein scheiss.
 			
 
  
- 
-			function tempWZinc(){
-				var tempsollWZ=document.getElementById('tempsollwohnzimmer3').innerHTML; 
-				tempsollWZ=tempsollWZ.substring(0,(tempsollWZ.length-2));
-				tempsollWZ=Number(tempsollWZ)+0.5;
-				document.getElementById('tempsollwohnzimmer3').innerHTML = tempsollWZ+'°C';
-				send('Heizung' + '*' + 'WZ' + '*' + tempsollWZ);
-			}
-			
-			function tempWZdec(){
-				var tempsollWZ=document.getElementById('tempsollwohnzimmer3').innerHTML; 
-				tempsollWZ=tempsollWZ.substring(0,(tempsollWZ.length-2));
-				tempsollWZ=Number(tempsollWZ)-0.5;
-				document.getElementById('tempsollwohnzimmer3').innerHTML = tempsollWZ+'°C';
-				send('Heizung' + '*' + 'WZ' + '*' + tempsollWZ);
-			}
-     		
-			function tempKZinc(){
-				var tempsollKZ=document.getElementById('tempsollkinderzimmer3').innerHTML; 
-				tempsollKZ=tempsollKZ.substring(0,(tempsollKZ.length-2));
-				tempsollKZ=Number(tempsollKZ)+0.5;
-				document.getElementById('tempsollkinderzimmer3').innerHTML = tempsollKZ+'°C';
-				send('Heizung' + '*' + 'KZ' + '*' + tempsollKZ);
-			}
-			
-			function tempKZdec(){
-				var tempsollKZ=document.getElementById('tempsollkinderzimmer3').innerHTML; 
-				tempsollKZ=tempsollKZ.substring(0,(tempsollKZ.length-2));
-				tempsollKZ=Number(tempsollKZ)-0.5;
-				document.getElementById('tempsollkinderzimmer3').innerHTML = tempsollKZ+'°C';
-				send('Heizung' + '*' + 'KZ' + '*' + tempsollKZ);
-			}
-     		
-			function tempSZinc(){
-				var tempsollSZ=document.getElementById('tempsollschlafzimmer3').innerHTML; 
-				tempsollSZ=tempsollSZ.substring(0,(tempsollSZ.length-2));
-				tempsollSZ=Number(tempsollSZ)+0.5;
-				document.getElementById('tempsollschlafzimmer3').innerHTML = tempsollSZ+'°C';
-				send('Heizung' + '*' + 'SZ' + '*' + tempsollSZ);
-			}
-			
-			function tempSZdec(){
-				var tempsollSZ=document.getElementById('tempsollschlafzimmer3').innerHTML; 
-				tempsollSZ=tempsollSZ.substring(0,(tempsollSZ.length-2));
-				tempsollSZ=Number(tempsollSZ)-0.5;
-				document.getElementById('tempsollschlafzimmer3').innerHTML = tempsollSZ+'°C';
-				send('Heizung' + '*' + 'SZ' + '*' + tempsollSZ);
-			}
-     		
-			function tempKinc(){
-				var tempsollK = document.getElementById('tempsollkueche3').innerHTML; 
-				tempsollK = tempsollK.substring(0,(tempsollK.length-2));
-				tempsollK = Number(tempsollK)+0.5;
-				document.getElementById('tempsollkueche3').innerHTML = tempsollK+'°C';
-				send('Heizung' + '*' + 'K' + '*' + tempsollK);
-			}
-			
-			function tempKdec(){
-				var tempsollK = document.getElementById('tempsollkueche3').innerHTML; 
-				tempsollK = tempsollK.substring(0,(tempsollK.length-2));
-				tempsollK = Number(tempsollK)-0.5;
-				document.getElementById('tempsollkueche3').innerHTML = tempsollK+'°C';
-				send('Heizung' + '*' + 'K' + '*' + tempsollK);
-			}
 
 
-			
-                        <!-- ---------------- COMMANDS -----------------------  -->
-			function setDenonCeol(){
- 				document.getElementByID("Client1").style.color = "lime";
-				send('UPNP' + '*' + 'setClient' + '*' + 'CEOL');
-			}
+
+
 
 
 	
@@ -942,17 +873,17 @@ Noch so ein scheiss.
         addVar("Mid_HzWZ", "var2", "cyan", "190px", "350px", "normal", "TempRueckHzWZ1");
         addVar("Mid_HzWZ", "var3", "cyan", "20px", "100px", "normal", "TempHzWZ1");
         addVar("Mid_HzWZ", "var4", "cyan", "20px", "200px", "normal", "PosHzWZ1");
-        addIcon("Mid_HzWZ", "iconHzWZ1", "images/heizkoerper_blau.png","40px", "70px", "wide");
+        addImage("Mid_HzWZ", "iconHzWZ1", "images/heizkoerper_blau.png","40px", "70px", "wide");
         addTitle("Mid_HzWZ", "240px", "120px", "18px", "white", "Mode");
-        addCtrlButton("Mid_HzWZ", "btn1", "300px", "50px", "normal", "cyan", "Automatik", "send('command(Heizung,WZ,auto)') ");
-        addCtrlButton("Mid_HzWZ", "btn2", "360px", "50px", "normal", "cyan", "Manual", "send('command(Heizung,WZ,man)') ");
-        addCtrlButton("Mid_HzWZ", "btn3", "420px", "50px", "normal", "cyan", "Urlaub", "send('command(Heizung,WZ,Urlaub)') ");
-        addCtrlButton("Mid_HzWZ", "btn4", "480px", "50px", "normal", "cyan", "Party", "send('command(Heizung,WZ,Party)') ");
+        addCtrlButton("Mid_HzWZ", "btnHzWZauto", "300px", "50px", "normal", "cyan", "Automatik", "send('command(Heizung,WZ,auto)') ");
+        addCtrlButton("Mid_HzWZ", "btnHzWZman", "360px", "50px", "normal", "cyan", "Manual", "send('command(Heizung,WZ,man)') ");
+        addCtrlButton("Mid_HzWZ", "btn3", "420px", "50px", "normal", "cyan", "Urlaub", "send('command(Heizung,WZ,urlaub)') ");
+        addCtrlButton("Mid_HzWZ", "btn4", "480px", "50px", "normal", "cyan", "Party", "send('command(Heizung,WZ,party)') ");
         addTitle("Mid_HzWZ", "240px", "400px", "18px", "white", "Presets");
-        addCtrlButton("Mid_HzWZ", "btn5", "300px", "350px", "normal", "cyan", "Heizen", "send('command(Heizung,WZ,heizen)') ");
-        addCtrlButton("Mid_HzWZ", "btn6", "360px", "350px", "normal", "cyan", "Absenken", "send('command(Heizung,WZ,absenken)') ");
-        addCtrlButton("Mid_HzWZ", "btn7", "420px", "350px", "normal", "cyan", "Aus", "send('command(Heizung,WZ,aus)') ");
-        addCtrlButton("Mid_HzWZ", "btn8", "480px", "350px", "normal", "cyan", "Auf", "send('command(Heizung,WZ,auf)')");
+        addCtrlButton("Mid_HzWZ", "btn5", "300px", "350px", "normal", "cyan", "Heizen", "{send('command(Heizung,WZ,heizen)'); document.getElementById('AdjTempHzWZ1').innerHTML='22.5';} ");
+        addCtrlButton("Mid_HzWZ", "btn6", "360px", "350px", "normal", "cyan", "Absenken", "{send('command(Heizung,WZ,absenken)'); document.getElementById('AdjTempHzWZ1').innerHTML='16.0';}");
+        addCtrlButton("Mid_HzWZ", "btn7", "420px", "350px", "normal", "cyan", "Aus", "{send('command(Heizung,WZ,aus)'); document.getElementById('AdjTempHzWZ1').innerHTML='6.0';} ");
+        addCtrlButton("Mid_HzWZ", "btn8", "480px", "350px", "normal", "cyan", "Auf", "{send('command(Heizung,WZ,auf)'); document.getElementById('AdjTempHzWZ1').innerHTML='30.0';}");
   </script>
  		
  
@@ -962,11 +893,11 @@ Noch so ein scheiss.
 
                 
    <script>
-       addStatus("ctrl_HzWZ", "BatHzWZ1", "cyan", "5px", "50px", "Battery");      
-       addTempCtrl("ctrl_HzWZ", "TempCtrl1", "cyan", "350px", "50px", "Soll Temperatur", "AdjTempHzWZ1", "SollTempAusHzWZ1", "SollTempHzWZ1", "send('command(Heizung,WZ,SollPlus)')", "send('command(Heizung,WZ,SollMinus)')");
-       addDisplay("ctrl_HzWZ", "ModeHzWZ1", "cyan", "50px", "50px", "Mode");
-       addDisplay("ctrl_HzWZ", "TempHzWZ2", "cyan", "150px", "50px",  "Temperatur");
-       addDisplay("ctrl_HzWZ", "PosHzWZ2", "cyan", "250px", "50px", "Position");
+       addStatus("ctrl_HzWZ", "BatHzWZ1", "cyan", "5px", "30px", "Battery");      
+       addTempCtrl("ctrl_HzWZ", "TempCtrl1", "cyan", "260px", "30px", "Soll Temperatur", "AdjTempHzWZ1", "SollTempAusHzWZ1", "SollTempHzWZ1", "sollTempWZ");
+       addDisplay("ctrl_HzWZ", "ModeHzWZ1", "cyan", "50px", "30px", "Mode");
+       addDisplay("ctrl_HzWZ", "TempHzWZ2", "cyan", "120px", "30px",  "Temperatur");
+       addDisplay("ctrl_HzWZ", "PosHzWZ2", "cyan", "190px", "30px", "Position");
 
   </script>
 		
@@ -980,31 +911,29 @@ Noch so ein scheiss.
         addVar("Mid_HzKZ", "var6", "olive", "190px", "350px", "normal", "TempRueckHzKZ1");
         addVar("Mid_HzKZ", "var7", "olive", "20px", "100px", "normal", "TempHzKZ1");
         addVar("Mid_HzKZ", "var8", "olive", "20px", "200px", "normal", "PosHzKZ1");
-        addIcon("Mid_HzKZ", "iconHzKZ1", "images/heizkoerper_blau.png","40px", "70px", "wide");
+        addImage("Mid_HzKZ", "iconHzKZ1", "images/heizkoerper_blau.png","40px", "70px", "wide");
         addTitle("Mid_HzKZ", "240px", "120px", "18px", "white", "Mode");
         addCtrlButton("Mid_HzKZ", "btn9", "300px", "50px", "normal", "olive", "Automatik", "send('command(Heizung,KZ,auto)') ");
         addCtrlButton("Mid_HzKZ", "btn10", "360px", "50px", "normal", "olive", "Manual", "send('command(Heizung,KZ,man)') ");
-        addCtrlButton("Mid_HzKZ", "btn11", "420px", "50px", "normal", "olive", "Urlaub", "send('command(Heizung,KZ,Urlaub)') ");
-        addCtrlButton("Mid_HzKZ", "btn12", "480px", "50px", "normal", "olive", "Party", "send('command(Heizung,KZ,Party)') ");
+        addCtrlButton("Mid_HzKZ", "btn11", "420px", "50px", "normal", "olive", "Urlaub", "send('command(Heizung,KZ,urlaub)') ");
+        addCtrlButton("Mid_HzKZ", "btn12", "480px", "50px", "normal", "olive", "Party", "send('command(Heizung,KZ,party)') ");
         addTitle("Mid_HzKZ", "240px", "400px", "18px", "white", "Presets");
-        addCtrlButton("Mid_HzKZ", "btn13", "300px", "350px", "normal", "olive", "Heizen", "send('command(Heizung,KZ,heizen)') ");
-        addCtrlButton("Mid_HzKZ", "btn14", "360px", "350px", "normal", "olive", "Absenken", "send('command(Heizung,KZ,absenken)') ");
-        addCtrlButton("Mid_HzKZ", "btn15", "420px", "350px", "normal", "olive", "Aus", "send('command(Heizung,KZ,aus)') ");
-        addCtrlButton("Mid_HzKZ", "btn16", "480px", "350px", "normal", "olive", "Auf", "send('command(Heizung,KZ,auf)')");
+        addCtrlButton("Mid_HzKZ", "btn13", "300px", "350px", "normal", "olive", "Heizen", "{send('command(Heizung,KZ,heizen)'); document.getElementById('AdjTempHzKZ1').innerHTML='22.5';} ");
+        addCtrlButton("Mid_HzKZ", "btn14", "360px", "350px", "normal", "olive", "Absenken", "{send('command(Heizung,KZ,absenken)');  document.getElementById('AdjTempHzKZ1').innerHTML='16.0';} ");
+        addCtrlButton("Mid_HzKZ", "btn15", "420px", "350px", "normal", "olive", "Aus", "{send('command(Heizung,KZ,aus)'); document.getElementById('AdjTempHzKZ1').innerHTML='6.0';} ");
+        addCtrlButton("Mid_HzKZ", "btn16", "480px", "350px", "normal", "olive", "Auf", "{send('command(Heizung,KZ,auf)'); document.getElementById('AdjTempHzKZ1').innerHTML='30.0';}");
   </script>
 		<!-- ************************ Heizung Ctrl Kinderzimmer ************************ -->
 
 		<div id="ctrl_HzKZ" class="HeizungCtrlKZ"></div>
 		
-				 		
 
- 
    <script>
-       addStatus("ctrl_HzKZ", "BatHzKZ1", "olive", "5px", "50px", "Battery");      
-       addTempCtrl("ctrl_HzKZ", "TempCtrl2", "olive", "350px", "50px", "Soll Temperatur", "AdjTempHzKZ1", "SollTempAusHzKZ1", "SollTempHzKZ1", "send('command(Heizung,KZ,SollPlus)')", "send('command(Heizung,KZ,SollMinus)')");
-       addDisplay("ctrl_HzKZ", "ModeHzKZ1", "olive", "50px", "50px", "Mode");
-       addDisplay("ctrl_HzKZ", "TempHzKZ2", "olive", "150px", "50px",  "Temperatur");
-       addDisplay("ctrl_HzKZ", "PosHzKZ2", "olive", "250px", "50px", "Position");
+       addStatus("ctrl_HzKZ", "BatHzKZ1", "olive", "5px", "30px", "Battery");      
+       addTempCtrl("ctrl_HzKZ", "TempCtrl2", "olive", "260px", "30px", "Soll Temperatur", "AdjTempHzKZ1", "SollTempAusHzKZ1", "SollTempHzKZ1", "sollTempKZ");
+       addDisplay("ctrl_HzKZ", "ModeHzKZ1", "olive", "50px", "30px", "Mode");
+       addDisplay("ctrl_HzKZ", "TempHzKZ2", "olive", "120px", "30px",  "Temperatur");
+       addDisplay("ctrl_HzKZ", "PosHzKZ2", "olive", "190px", "30px", "Position");
 
   </script>
 		<!-- ************************ Heizung Schlafzimmer ************************  -->
@@ -1015,27 +944,27 @@ Noch so ein scheiss.
         addVar("Mid_HzSZ", "var10", "sandy", "190px", "350px", "normal", "TempRueckHzSZ1");
         addVar("Mid_HzSZ", "var11", "sandy", "20px", "100px", "normal", "TempHzSZ1");
         addVar("Mid_HzSZ", "var12", "sandy", "20px", "200px", "normal", "PosHzSZ1");
-        addIcon("Mid_HzSZ", "iconHzSZ1", "images/heizkoerper_blau.png","40px", "70px", "wide");
+        addImage("Mid_HzSZ", "iconHzSZ1", "images/heizkoerper_blau.png","40px", "70px", "wide");
         addTitle("Mid_HzSZ", "240px", "120px", "18px", "white", "Mode");
         addCtrlButton("Mid_HzSZ", "btn17", "300px", "50px", "normal", "sandy", "Automatik", "send('command(Heizung,SZ,auto)') ");
         addCtrlButton("Mid_HzSZ", "btn18", "360px", "50px", "normal", "sandy", "Manual", "send('command(Heizung,SZ,man)') ");
-        addCtrlButton("Mid_HzSZ", "btn19", "420px", "50px", "normal", "sandy", "Urlaub", "send('command(Heizung,SZ,Urlaub)') ");
-        addCtrlButton("Mid_HzSZ", "btn20", "480px", "50px", "normal", "sandy", "Party", "send('command(Heizung,SZ,Party)') ");
+        addCtrlButton("Mid_HzSZ", "btn19", "420px", "50px", "normal", "sandy", "Urlaub", "send('command(Heizung,SZ,urlaub)') ");
+        addCtrlButton("Mid_HzSZ", "btn20", "480px", "50px", "normal", "sandy", "Party", "send('command(Heizung,SZ,party)') ");
         addTitle("Mid_HzSZ", "240px", "400px", "18px", "white", "Presets");
-        addCtrlButton("Mid_HzSZ", "btn21", "300px", "350px", "normal", "sandy", "Heizen", "send('command(Heizung,SZ,heizen)') ");
-        addCtrlButton("Mid_HzSZ", "btn22", "360px", "350px", "normal", "sandy", "Absenken", "send('command(Heizung,SZ,absenken)') ");
-        addCtrlButton("Mid_HzSZ", "btn23", "420px", "350px", "normal", "sandy", "Aus", "send('command(Heizung,SZ,aus)') ");
-        addCtrlButton("Mid_HzSZ", "btn24", "480px", "350px", "normal", "sandy", "Auf", "send('command(Heizung,SZ,auf)')");
+        addCtrlButton("Mid_HzSZ", "btn21", "300px", "350px", "normal", "sandy", "Heizen", "{send('command(Heizung,SZ,heizen)'); document.getElementById('AdjTempHzSZ1').innerHTML='22.5';} ");
+        addCtrlButton("Mid_HzSZ", "btn22", "360px", "350px", "normal", "sandy", "Absenken", "{send('command(Heizung,SZ,absenken)'); document.getElementById('AdjTempHzSZ1').innerHTML='16.0';} ");
+        addCtrlButton("Mid_HzSZ", "btn23", "420px", "350px", "normal", "sandy", "Aus", "{send('command(Heizung,SZ,aus)'); document.getElementById('AdjTempHzSZ1').innerHTML='6.0';} ");
+        addCtrlButton("Mid_HzSZ", "btn24", "480px", "350px", "normal", "sandy", "Auf", "{send('command(Heizung,SZ,auf)'); document.getElementById('AdjTempHzSZ1').innerHTML='30.0';}");
   </script>
 		<!-- ************************ Heizung Ctrl Schlafzimmer ************************  -->
 		<div id="ctrl_HzSZ" class="HeizungCtrlSZ">  </div>
 
    <script>
-       addStatus("ctrl_HzSZ", "BatHzSZ1", "sandy", "5px", "50px", "Battery");      
-       addTempCtrl("ctrl_HzSZ", "TempCtrl3", "sandy", "350px", "50px", "Soll Temperatur", "AdjTempHzSZ1", "SollTempAusHzSZ1", "SollTempHzSZ1", "send('command(Heizung,SZ,SollPlus)')", "send('command(Heizung,SZ,SollMinus)')");
-       addDisplay("ctrl_HzSZ", "ModeHzSZ1", "sandy", "50px", "50px", "Mode");
-       addDisplay("ctrl_HzSZ", "TempHzSZ2", "sandy", "150px", "50px",  "Temperatur");
-       addDisplay("ctrl_HzSZ", "PosHzSZ2", "sandy", "250px", "50px", "Position");
+       addStatus("ctrl_HzSZ", "BatHzSZ1", "sandy", "5px", "30px", "Battery");      
+       addTempCtrl("ctrl_HzSZ", "TempCtrl3", "sandy", "260px", "30px", "Soll Temperatur", "AdjTempHzSZ1", "SollTempAusHzSZ1", "SollTempHzSZ1", "sollTempSZ");
+       addDisplay("ctrl_HzSZ", "ModeHzSZ1", "sandy", "50px", "30px", "Mode");
+       addDisplay("ctrl_HzSZ", "TempHzSZ2", "sandy", "120px", "30px",  "Temperatur");
+       addDisplay("ctrl_HzSZ", "PosHzSZ2", "sandy", "190px", "30px", "Position");
 
   </script>
 
@@ -1049,157 +978,103 @@ Noch so ein scheiss.
         addVar("Mid_HzK", "var14", "red", "190px", "350px", "normal", "TempRueckHzK1");
         addVar("Mid_HzK", "var15", "red", "20px", "100px", "normal", "TempHzK1");
         addVar("Mid_HzK", "var16", "red", "20px", "200px", "normal", "PosHzK1");
-        addIcon("Mid_HzK", "iconHzK1", "images/heizkoerper_blau.png","40px", "70px", "wide");
+        addImage("Mid_HzK", "iconHzK1", "images/heizkoerper_blau.png","40px", "70px", "wide");
         addTitle("Mid_HzK", "240px", "120px", "18px", "white", "Mode");
-        addCtrlButton("Mid_HzK", "btn25", "300px", "50px", "normal", "red", "Automatik", "send('command(Heizung,K,auto)') ");
+        addCtrlButton("Mid_HzK", "btnHzKauto", "300px", "50px", "normal", "red", "Automatik", "send('command(Heizung,K,auto)') ");
         addCtrlButton("Mid_HzK", "btn26", "360px", "50px", "normal", "red", "Manual", "send('command(Heizung,K,man)') ");
-        addCtrlButton("Mid_HzK", "btn27", "420px", "50px", "normal", "red", "Urlaub", "send('command(Heizung,K,Urlaub)') ");
-        addCtrlButton("Mid_HzK", "btn28", "480px", "50px", "normal", "red", "Party", "send('command(Heizung,K,Party)') ");
+        addCtrlButton("Mid_HzK", "btn27", "420px", "50px", "normal", "red", "Urlaub", "send('command(Heizung,K,urlaub)') ");
+        addCtrlButton("Mid_HzK", "btn28", "480px", "50px", "normal", "red", "Party", "send('command(Heizung,K,party)') ");
         addTitle("Mid_HzK", "240px", "400px", "18px", "white", "Presets");
-        addCtrlButton("Mid_HzK", "btn29", "300px", "350px", "normal", "red", "Heizen", "send('command(Heizung,K,heizen)') ");
-        addCtrlButton("Mid_HzK", "btn30", "360px", "350px", "normal", "red", "Absenken", "send('command(Heizung,K,absenken)') ");
-        addCtrlButton("Mid_HzK", "btn31", "420px", "350px", "normal", "red", "Aus", "send('command(Heizung,K,aus)') ");
-        addCtrlButton("Mid_HzK", "btn32", "480px", "350px", "normal", "red", "Auf", "send('command(Heizung,K,auf)')");
+        addCtrlButton("Mid_HzK", "btn29", "300px", "350px", "normal", "red", "Heizen", "{send('command(Heizung,K,heizen)'); document.getElementById('AdjTempHzK1').innerHTML='22.5';} ");
+        addCtrlButton("Mid_HzK", "btn30", "360px", "350px", "normal", "red", "Absenken", "{send('command(Heizung,K,absenken)'); document.getElementById('AdjTempHzK1').innerHTML='16.0';} ");
+        addCtrlButton("Mid_HzK", "btn31", "420px", "350px", "normal", "red", "Aus", "{send('command(Heizung,K,aus)'); document.getElementById('AdjTempHzK1').innerHTML='6.0';} ");
+        addCtrlButton("Mid_HzK", "btn32", "480px", "350px", "normal", "red", "Auf", "{send('command(Heizung,K,auf)'); document.getElementById('AdjTempHzK1').innerHTML='30.0';}");
   </script>
 		<!-- ************************ Heizung Ctrl Kueche ************************  -->
 		<div id="ctrl_HzK"  class="HeizungCtrlK">
 
 		</div>
    <script>
-       addStatus("ctrl_HzK", "BatHzK1", "red", "5px", "50px", "Battery");      
-       addTempCtrl("ctrl_HzK", "TempCtrl4", "red", "350px", "50px", "Soll Temperatur", "AdjTempHzK1", "SollTempAusHzK1", "SollTempHzK1", "send('command(Heizung,K,SollPlus)')", "send('command(Heizung,K,SollMinus)')");
-       addDisplay("ctrl_HzK", "ModeHzK1", "red", "50px", "50px", "Mode");
-       addDisplay("ctrl_HzK", "TempHzK2", "red", "150px", "50px",  "Temperatur");
-       addDisplay("ctrl_HzK", "PosHzK2", "red", "250px", "50px", "Position");
+       addStatus("ctrl_HzK", "BatHzK1", "red", "5px", "30px", "Battery");      
+       addTempCtrl("ctrl_HzK", "TempCtrl4", "red", "260px", "30px", "Soll Temperatur", "AdjTempHzK1", "SollTempAusHzK1", "SollTempHzK1", "sollTempK");
+       addDisplay("ctrl_HzK", "ModeHzK1", "red", "50px", "30px", "Mode");
+       addDisplay("ctrl_HzK", "TempHzK2", "red", "120px", "30px",  "Temperatur");
+       addDisplay("ctrl_HzK", "PosHzK2", "red", "190px", "30px", "Position");
 
   </script>
 		<!-- ************************ Rolladen  Wohnzimmer ************************ -->
-		<div class="RolloWZ">	
-			<div class="reihe" style="margin-right: 50px; margin-left: 50px"   >
-                            <div class="spalte"> 
-				<div class="spalte">Mode
-                                    <div id="AutoWZ3" class="ctrlbutton normal cyan" onclick="send('command(Rollo,WZ,Auto)') "> 
-		 				Automatik
-				    </div>
-                                    <div id="ManWZ3" class="ctrlbutton normal cyan" onclick="send('command(Rollo,WZ,Man)') "> 
-		 				Manual
-				    </div>
-				</div>
-				<div class="spalte">Positions
-                                    <div  class="ctrlbutton normal cyan" onclick="send('command(Rollo,WZ,dark)') "> 
-		 				75%
-				    </div>
-                                    <div class="ctrlbutton normal cyan" onclick="send('command(Rollo,WZ,mid)') "> 
-		 				50%
-				    </div>
-                                    <div class="ctrlbutton normal cyan" onclick="send('command(Rollo,WZ,bright)') "> 
-		 				25%
-				    </div>
-                                </div>
-
-                            </div>                
-                            <div class="spalte">
-				<div class="spalte">PreSets
-                                    <div  class="ctrlbutton normal cyan" onclick="send('command(Rollo,WZ,up)') "> 
-		 				Hoch
-				    </div>
-                                    <div class="ctrlbutton normal cyan" onclick="send('command(Rollo,WZ,stop)') "> 
-		 				Stop
-				    </div>
-                                    <div class="ctrlbutton normal cyan" onclick="send('command(Rollo,WZ,down)') "> 
-		 				Runter
-				    </div>
-                                </div>
-                                <div class="spalte">Step up -Step Down
-
-                                    <div  class="ctrlbutton normal cyan" onclick="send('command(Rollo,WZ,StepUp)') "> 
-                                                Step Up
-                                    </div>
-
-                                    <div class="ctrlbutton normal cyan" onclick="send('command(Rollo,WZ,StepDown)') "> 
-                                                Step Down
-                                    </div>
-                                </div>
-                            </div>        
-	 		</div>
- 		</div>
-
+		<div id="MainRolloWZ"   class="RolloWZ"> </div>
+ 		
+                
+    <script>      
+        addImage("MainRolloWZ", "imageRolloWZ1", "images/rollo0.png", "30px", "170px", "normal");
+        addTitle("MainRolloWZ", "210px", "100px", "18px", "white", "Presets");
+        addCtrlButton("MainRolloWZ", "btn33", "260px", "50px", "normal", "cyan", "Automatik", "send('command(Rollo,WZ,Auto)') ");
+        addCtrlButton("MainRolloWZ", "btn34", "320px", "50px", "normal", "cyan", "Manual", "send('command(Rollo,WZ,Man)') ");     
+        addCtrlButton("MainRolloWZ", "btn35", "380px", "50px", "normal", "cyan", "75%", "send('command(Rollo,WZ,dark)') ");
+        addCtrlButton("MainRolloWZ", "btn36", "440px", "50px", "normal", "cyan", "50%", "send('command(Rollo,WZ,mid)') ");
+        addCtrlButton("MainRolloWZ", "btn37", "500px", "50px", "normal", "cyan", "25%", "send('command(Rollo,WZ,bright)') ");
+        addTitle("MainRolloWZ", "210px", "400px", "18px", "white", "Control");
+        addCtrlButton("MainRolloWZ", "btn38", "260px", "350px", "normal", "cyan", "Hoch", "send('command(Rollo,WZ,up)') ");
+        addCtrlButton("MainRolloWZ", "btn39", "320px", "350px", "normal", "cyan", "Stop", "send('command(Rollo,WZ,stop)') ");     
+        addCtrlButton("MainRolloWZ", "btn40", "380px", "350px", "normal", "cyan", "Runter", "send('command(Rollo,WZ,down)') ");
+        addCtrlButton("MainRolloWZ", "btn41", "440px", "350px", "normal", "cyan", "Step Up", "send('command(Rollo,WZ,StepUp)') ");
+        addCtrlButton("MainRolloWZ", "btn42", "500px", "350px", "normal", "cyan", "Step Down", "send('command(Rollo,WZ,StepDown)') ");
+    </script>
  		<!-- ************************ Rolladen  BalkonTuer ************************  -->
-		<div class="RolloB">	
-			<div class="reihe" style="margin-right: 50px; margin-left: 50px"   >
-				<div class="spalte">Mode
-					<div id="AutoB3" class="ctrlbutton blue" onclick="send('command(Rollo,B,Auto)') "> 
-		 				Automatik
-				    </div>
-					<div id="ManB3" class="ctrlbutton blue" onclick="send('command(Rollo,B,Man)') "> 
-		 				Manual
-				    </div>
-				</div>
-				<div class="spalte">PreSets
-					<div  class="ctrlbutton blue" onclick="send('command(Rollo,B,up)') "> 
-		 				Hoch
-				    </div>
-					<div class="ctrlbutton blue" onclick="send('command(Rollo,B,stop)') "> 
-		 				Stop
-				    </div>
-					<div class="ctrlbutton blue" onclick="send('command(Rollo,B,down)') "> 
-		 				Runter
-				    </div>
+		<div id="MainRolloB"  class="RolloB">	</div>
 
-				</div>
-	 		</div>
- 		</div>
-
+     <script>      
+        addImage("MainRolloB", "imageRolloWZ1", "images/rollo0.png", "30px", "170px", "normal");
+        addTitle("MainRolloB", "210px", "100px", "18px", "white", "Presets");
+        addCtrlButton("MainRolloB", "btn73", "260px", "50px", "normal", "blue", "Automatik", "send('command(Rollo,B,Auto)') ");
+        addCtrlButton("MainRolloB", "btn74", "320px", "50px", "normal", "blue", "Manual", "send('command(Rollo,B,Man)') ");     
+        addCtrlButton("MainRolloB", "btn75", "380px", "50px", "normal", "blue", "75%", "send('command(Rollo,B,dark)') ");
+        addCtrlButton("MainRolloB", "btn76", "440px", "50px", "normal", "blue", "50%", "send('command(Rollo,B,mid)') ");
+        addCtrlButton("MainRolloB", "btn77", "500px", "50px", "normal", "blue", "25%", "send('command(Rollo,B,bright)') ");
+        addTitle("MainRolloB", "210px", "400px", "18px", "white", "Control");
+        addCtrlButton("MainRolloB", "btn78", "260px", "350px", "normal", "blue", "Hoch", "send('command(Rollo,B,up)') ");
+        addCtrlButton("MainRolloB", "btn79", "320px", "350px", "normal", "blue", "Stop", "send('command(Rollo,B,stop)') ");     
+        addCtrlButton("MainRolloB", "btn80", "380px", "350px", "normal", "blue", "Runter", "send('command(Rollo,B,down)') ");
+        addCtrlButton("MainRolloB", "btn81", "440px", "350px", "normal", "blue", "Step Up", "send('command(Rollo,B,StepUp)') ");
+        addCtrlButton("MainRolloB", "btn82", "500px", "350px", "normal", "blue", "Step Down", "send('command(Rollo,B,StepDown)') ");
+    </script>
  		<!-- ************************ Rolladen  Kinderzimmer ************************  -->
-		<div class="RolloKZ">	
-			<div class="reihe" style="margin-right: 50px; margin-left: 50px"   >
-				<div class="spalte">Mode
-					<div id="AutoB3" class="ctrlbutton olive" onclick="send('command(Rollo,KZ,Auto)') "> 
-		 				Automatik
-				    </div>
-					<div id="ManB3" class="ctrlbutton olive" onclick="send('command(Rollo,KZ,Man)') "> 
-		 				Manual
-				    </div>
-				</div>
-				<div class="spalte">PreSets
-					<div  class="ctrlbutton olive" onclick="send('command(Rollo,KZ,up)') "> 
-		 				Hoch
-				    </div>
-					<div class="ctrlbutton olive" onclick="send('command(Rollo,KZ,stop)') "> 
-		 				Stop
-				    </div>
-					<div class="ctrlbutton olive" onclick="send('command(Rollo,KZ,down)') "> 
-		 				Runter
-				    </div>
- 				</div>
-	 		</div>
- 		</div>
+		<div id="MainRolloKZ"  class="RolloKZ">	</div>
 
+    <script>      
+        addImage("MainRolloKZ", "imageRolloKZ1", "images/rollo0.png", "30px", "170px", "normal");
+        addTitle("MainRolloKZ", "210px", "100px", "18px", "white", "Presets");
+        addCtrlButton("MainRolloKZ", "btn43", "260px", "50px", "normal", "olive", "Automatik", "send('command(Rollo,KZ,Auto)') ");
+        addCtrlButton("MainRolloKZ", "btn44", "320px", "50px", "normal", "olive", "Manual", "send('command(Rollo,KZ,Man)') ");     
+        addCtrlButton("MainRolloKZ", "btn45", "380px", "50px", "normal", "olive", "75%", "send('command(Rollo,KZ,dark)') ");
+        addCtrlButton("MainRolloKZ", "btn46", "440px", "50px", "normal", "olive", "50%", "send('command(Rollo,KZ,mid)') ");
+        addCtrlButton("MainRolloKZ", "btn47", "500px", "50px", "normal", "olive", "25%", "send('command(Rollo,KZ,bright)') ");
+        addTitle("MainRolloKZ", "210px", "400px", "18px", "white", "Control");
+        addCtrlButton("MainRolloKZ", "btn48", "260px", "350px", "normal", "olive", "Hoch", "send('command(Rollo,KZ,up)') ");
+        addCtrlButton("MainRolloKZ", "btn49", "320px", "350px", "normal", "olive", "Stop", "send('command(Rollo,KZ,stop)') ");     
+        addCtrlButton("MainRolloKZ", "btn50", "380px", "350px", "normal", "olive", "Runter", "send('command(Rollo,KZ,down)') ");
+        addCtrlButton("MainRolloKZ", "btn51", "440px", "350px", "normal", "olive", "Step Up", "send('command(Rollo,KZ,StepUp)') ");
+        addCtrlButton("MainRolloKZ", "btn52", "500px", "350px", "normal", "olive", "Step Down", "send('command(Rollo,KZ,StepDown)') ");
+    </script>
  		<!-- ************************ Rolladen  Kueche ************************ -->
-		<div class="RolloK">	
-			<div class="reihe" style="margin-right: 50px; margin-left: 50px"   >
-				<div class="spalte">Mode
-					<div id="AutoB3" class="ctrlbutton red" onclick="send('command(Rollo,K,Auto)') "> 
-		 				Automatik
-				    </div>
-					<div id="ManB3" class="ctrlbutton red" onclick="send('command(Rollo,K,Man)') "> 
-		 				Manual
-				    </div>
-				</div>
-				<div class="spalte">PreSets
-					<div  class="ctrlbutton red" onclick="send('command(Rollo,K,up)') "> 
-		 				Hoch
-				    </div>
-					<div class="ctrlbutton red" onclick="send('command(Rollo,K,stop)') "> 
-		 				Stop
-				    </div>
-					<div class="ctrlbutton red" onclick="send('command(Rollo,K,down)') "> 
-		 				Runter
-				    </div>
-				</div>
-	 		</div>
- 		</div>
-
+		<div id="MainRolloK"  class="RolloK">	</div>
+ 		
+    <script>      
+        addImage("MainRolloK", "imageRolloK1", "images/rollo0.png", "30px", "170px", "normal");
+        addTitle("MainRolloK", "210px", "100px", "18px", "white", "Presets");
+        addCtrlButton("MainRolloK", "btn53", "260px", "50px", "normal", "red", "Automatik", "send('command(Rollo,K,Auto)') ");
+        addCtrlButton("MainRolloK", "btn54", "320px", "50px", "normal", "red", "Manual", "send('command(Rollo,K,Man)') ");     
+        addCtrlButton("MainRolloK", "btn55", "380px", "50px", "normal", "red", "75%", "send('command(Rollo,K,dark)') ");
+        addCtrlButton("MainRolloK", "btn56", "440px", "50px", "normal", "red", "50%", "send('command(Rollo,K,mid)') ");
+        addCtrlButton("MainRolloK", "btn57", "500px", "50px", "normal", "red", "25%", "send('command(Rollo,K,bright)') ");
+        addTitle("MainRolloK", "210px", "400px", "18px", "white", "Control");
+        addCtrlButton("MainRolloK", "btn58", "260px", "350px", "normal", "red", "Hoch", "send('command(Rollo,K,up)') ");
+        addCtrlButton("MainRolloK", "btn59", "320px", "350px", "normal", "red", "Stop", "send('command(Rollo,K,stop)') ");     
+        addCtrlButton("MainRolloK", "btn60", "380px", "350px", "normal", "red", "Runter", "send('command(Rollo,K,down)') ");
+        addCtrlButton("MainRolloK", "btn61", "440px", "350px", "normal", "red", "Step Up", "send('command(Rollo,K,StepUp)') ");
+        addCtrlButton("MainRolloK", "btn62", "500px", "350px", "normal", "red", "Step Down", "send('command(Rollo,K,StepDown)') ");
+    </script>
 
  
         <!-- ***********************************************************************************      -->
@@ -2217,155 +2092,61 @@ Noch so ein scheiss.
 		</div>
 
 		<!-- **************************  Rolladen Ctrl Wohnzimmer **************************  -->
-		<div class="RolloCtrlWZ">
+		<div id = CtrlRolloWZ class="RolloCtrlWZ"></div>
 			 			
-				<div class="spalte" >
-					<div class="anzeige cyan" >
-						<span>Position</span>
-						<span id="RolloWZPos1" style=" font-size: 34px">---%</span>
-					</div>
-					<div class="anzeige cyan">
-						<span>Mode</span>
-						<span id="RolloWZMode1" style=" font-size: 34px">---</span>
-					</div>
-					<div class="anzeige cyan"  onclick="showTimePicker()">
-						<span>Schaltzeiten Mo-Fr</span>
-						<span id="WZRolloTime" style="padding-top:10px; font-size: 24px"></span>
-					</div>
-					<div class="anzeige cyan"  onclick="showTimePicker()">
-						<span>Schaltzeiten Sa-So</span>
-						<span id="WZRolloTime" style="padding-top:10px; font-size: 24px"></span>
-					</div>
-	 				<div class="RowLeft" >
-						<div class="fontbutton big cyan" onclick="send('command(Rollo,WZ,up)') "> 
-							<span class="fa fa-angle-double-up" style="padding: 5px; font-size:45px; position: relative; left:  0px; top:5px">
-							 </span>	
-						</div>
-						<div class="fontbutton big cyan" onclick="send('command(Rollo,WZ,stop)') "> 
-							<span class="fa fa-stop" style="padding: 5px; font-size:30px; position: relative; left:  0px; top:15px">
-							 </span>	
-						</div>
-						<div class="fontbutton big cyan" onclick="send('command(Rollo,WZ,down)') "> 
-							<span class="fa fa-angle-double-down" style="padding: 5px; font-size:45px; position: relative; left:  0px; top:5px">
-							 </span>	
-						</div>
-					</div>
-	 				<div class="RowLeft" >
-						<div class="fontbutton big cyan" onclick="send('command(Rollo,WZ,StepUp)') "> 
-							<span class="fa fa-angle-up" style="padding: 5px; font-size:45px; position: relative; left:  0px; top:5px">
-							 </span>	
-						</div>
-
-						<div class="fontbutton big cyan" onclick="send('command(Rollo,WZ,StepDown)') "> 
-							<span class="fa fa-angle-down" style="padding: 5px; font-size:45px; position: relative; left:  0px; top:5px">
-							 </span>	
-						</div>
-					</div>
-				</div>				
-	 
-		</div>
+    <script>
+        addDisplay("CtrlRolloWZ", "PosRolloWZ1", "cyan", "50px", "30px", "Position");
+        addDisplay("CtrlRolloWZ", "ModeRolloWZ1", "cyan", "120px", "30px", "Mode");   
+        addDisplay("CtrlRolloWZ", "MoFrRolloWZ1", "cyan", "190px", "30px", "Schaltzeiten Mo-Fr");
+        addDisplay("CtrlRolloWZ", "SaSoRolloWZ1", "cyan", "260px", "30px", "Schaltzeiten Sa-so");   
+        addFontButton("CtrlRolloWZ", "cyan", "big", "350px", "10px", "fa fa-chevron-up", "send('command(Rollo,WZ,up)')");
+        addFontButton("CtrlRolloWZ", "cyan", "big", "350px", "90px", "fa fa-stop", "send('command(Rollo,WZ,stop)')");
+        addFontButton("CtrlRolloWZ", "cyan", "big", "350px", "170px", "fa fa-chevron-up", "send('command(Rollo,WZ,down)')");
+        addFontButton("CtrlRolloWZ", "cyan", "big", "430px", "10px", "fa fa-plus", "send('command(Rollo,WZ,StepUp)')");
+        addFontButton("CtrlRolloWZ", "cyan", "big", "430px", "170px", "fa fa-minus", "send('command(Rollo,WZ,StepDown)')");
+    </script>    
 		<!-- ************************** Rolladen Ctrl Kinderzimmer **************************  -->
-		<div class="RolloCtrlKZ">
-			<div class="reiheM" > 			
-				<div class="spalte" >
-					<div class="anzeige olive">
-						<span>Position</span>
-						<span id="RolloKZPos1" style=" font-size: 34px">---%</span>
-					</div>
-					<div class="anzeige olive">
-						<span>Mode</span>
-						<span id="RolloKZMode1" style=" font-size: 34px">---</span>
-					</div>
-					<div class="anzeige olive">
-						<span>Schaltzeiten</span>
-						<span id="KZRolloTime" style=" font-size: 34px"></span>
-					</div>
-				<div class="RowLeft">
-					<div class="fontbutton big olive" onclick="send('command(Rollo,KZ,up)') "> 
-						<span class="fa fa-chevron-up" style="padding: 5px; font-size:30px; position: relative; left:  0px; top:15px">
-						 </span>	
-					</div>
-					<div class="fontbutton big olive" onclick="send('command(Rollo,KZ,stop)') "> 
-						<span class="fa fa-stop" style="padding: 5px; font-size:30px; position: relative; left:  0px; top:15px">
-						 </span>	
-					</div>
-					<div class="fontbutton big olive" onclick="send('command(Rollo,KZ,down)') "> 
-						<span class="fa fa-chevron-down" style="padding: 5px; font-size:30px; position: relative; left:  0px; top:15px">
-						 </span>	
-					</div>
-				</div>
-				</div>				
-			</div>
-		</div>
-		<!-- ************************** Rolladen Ctrl BalkontTuer **************************  -->
-		<div class="RolloCtrlB">
-			
-				<div class="spalte" >
-					<div class="anzeige blue">
-						<span>Position</span>
-						<span id="RolloBPos1" style=" font-size: 34px">---%</span>
-					</div>
-					<div class="anzeige blue">
-						<span>Mode</span>
-						<span id="RolloBMode1" style=" font-size: 34px">---</span>
-					</div>
-					<div class="anzeige blue">
-						<span>Schaltzeiten</span>
-						<span id="BRolloTime" style=" font-size: 34px"></span>
-					</div>
-	 				<div class="RowLeft" >
-						<div class="fontbutton big blue" onclick="send('command(Rollo,B,up)') "> 
-							<span class="fa fa-chevron-up" style="padding: 5px; font-size:30px; position: relative; left:  0px; top:15px">
-							 </span>	
-						</div>
-						<div class="fontbutton big blue" onclick="send('command(Rollo,B,stop)') "> 
-							<span class="fa fa-stop" style="padding: 5px; font-size:30px; position: relative; left:  0px; top:15px">
-							 </span>	
-						</div>
-						<div class="fontbutton big blue" onclick="send('command(Rollo,B,down)') "> 
-							<span class="fa fa-chevron-down" style="padding: 5px; font-size:30px; position: relative; left:  0px; top:15px">
-							 </span>	
-						</div>
-					</div>
-
-				</div>				
-
-		</div>
-
-		<!-- ************************** Rolladen Ctrl Kueche ************************** -->
-		<div class="RolloCtrlK">
+		<div id = CtrlRolloKZ  class="RolloCtrlKZ"> </div>
 		
-				<div class="spalte" >
-					<div class="anzeige red">
-						<span>Position</span>
-						<span id="RolloKPos1" style=" font-size: 34px">---%</span>
-					</div>
-					<div class="anzeige red">
-						<span>Mode</span>
-						<span id="RolloKMode1" style=" font-size: 34px">---</span>
-					</div>
-					<div class="anzeige red">
-						<span>Schaltzeiten</span>
-						<span id="KRolloTime" style=" font-size: 34px"></span>
-					</div>
-	 				<div class="RowLeft"  >
-						<div class="fontbutton big red" onclick="send('command(Rollo,K,up)') "> 
-							<span class="fa fa-chevron-up" style="padding: 5px; font-size:30px; position: relative; left:  0px; top:15px">
-							 </span>	
-						</div>
-						<div class="fontbutton big red" onclick="send('command(Rollo,K,stop)') "> 
-							<span class="fa fa-stop" style="padding: 5px; font-size:30px; position: relative; left:  0px; top:15px">
-							 </span>	
-						</div>
-						<div class="fontbutton big red" onclick="send('command(Rollo,K,down)') "> 
-							<span class="fa fa-chevron-down" style="padding: 5px; font-size:30px; position: relative; left:  0px; top:15px">
-							 </span>	
-						</div>
-					</div>
-				</div>				
-
-		</div>
-
+    <script>
+        addDisplay("CtrlRolloKZ", "PosRolloWZ1", "olive", "50px", "30px", "Position");
+        addDisplay("CtrlRolloKZ", "ModeRolloWZ1", "olive", "120px", "30px", "Mode");   
+        addDisplay("CtrlRolloKZ", "MoFrRolloWZ1", "olive", "190px", "30px", "Schaltzeiten Mo-Fr");
+        addDisplay("CtrlRolloKZ", "SaSoRolloWZ1", "olive", "260px", "30px", "Schaltzeiten Sa-so");   
+        addFontButton("CtrlRolloKZ", "olive", "big", "350px", "10px", "fa fa-chevron-up", "send('command(Rollo,KZ,up)')");
+        addFontButton("CtrlRolloKZ", "olive", "big", "350px", "90px", "fa fa-stop", "send('command(Rollo,KZ,stop)')");
+        addFontButton("CtrlRolloKZ", "olive", "big", "350px", "170px", "fa fa-chevron-up", "send('command(Rollo,KZ,down)')");
+        addFontButton("CtrlRolloKZ", "olive", "big", "430px", "10px", "fa fa-plus", "send('command(Rollo,KZ,StepUp)')");
+        addFontButton("CtrlRolloKZ", "olive", "big", "430px", "170px", "fa fa-minus", "send('command(Rollo,KZ,StepDown)')");
+    </script>   
+		<!-- ************************** Rolladen Ctrl BalkontTuer **************************  -->
+		<div id = CtrlRolloB  class="RolloCtrlB"></div>
+		
+    <script>
+        addDisplay("CtrlRolloB", "PosRolloB1", "blue", "50px", "30px", "Position");
+        addDisplay("CtrlRolloB", "ModeRolloB1", "blue", "120px", "30px", "Mode");   
+        addDisplay("CtrlRolloB", "MoFrRolloB1", "blue", "190px", "30px", "Schaltzeiten Mo-Fr");
+        addDisplay("CtrlRolloB", "SaSoRolloB1", "blue", "260px", "30px", "Schaltzeiten Sa-so");   
+        addFontButton("CtrlRolloB", "blue", "big", "350px", "10px", "fa fa-chevron-up", "send('command(Rollo,B,up)')");
+        addFontButton("CtrlRolloB", "blue", "big", "350px", "90px", "fa fa-stop", "send('command(Rollo,B,stop)')");
+        addFontButton("CtrlRolloB", "blue", "big", "350px", "170px", "fa fa-chevron-up", "send('command(Rollo,B,down)')");
+        addFontButton("CtrlRolloB", "blue", "big", "430px", "10px", "fa fa-plus", "send('command(Rollo,B,StepUp)')");
+        addFontButton("CtrlRolloB", "blue", "big", "430px", "170px", "fa fa-minus", "send('command(Rollo,B,StepDown)')");
+    </script>   
+		<!-- ************************** Rolladen Ctrl Kueche ************************** -->
+		<div id = CtrlRolloK  class="RolloCtrlK"></div>
+		
+    <script>
+        addDisplay("CtrlRolloK", "PosRolloK1", "red", "50px", "30px", "Position");
+        addDisplay("CtrlRolloK", "ModeRolloK1", "red", "120px", "30px", "Mode");   
+        addDisplay("CtrlRolloK", "MoFrRolloK1", "red", "190px", "30px", "Schaltzeiten Mo-Fr");
+        addDisplay("CtrlRolloK", "SaSoRolloK1", "red", "260px", "30px", "Schaltzeiten Sa-so");   
+        addFontButton("CtrlRolloK", "red", "big", "350px", "10px", "fa fa-chevron-up", "send('command(Rollo,K,up)')");
+        addFontButton("CtrlRolloK", "red", "big", "350px", "90px", "fa fa-stop", "send('command(Rollo,K,stop)')");
+        addFontButton("CtrlRolloK", "red", "big", "350px", "170px", "fa fa-chevron-up", "send('command(Rollo,K,down)')");
+        addFontButton("CtrlRolloK", "red", "big", "430px", "10px", "fa fa-plus", "send('command(Rollo,K,StepUp)')");
+        addFontButton("CtrlRolloK", "red", "big", "430px", "170px", "fa fa-minus", "send('command(Rollo,K,StepDown)')");
+    </script>   
 		<!-- **************************Time Picker  ************************** -->
                 <div class="TimePicker" >
 

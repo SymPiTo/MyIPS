@@ -1,3 +1,59 @@
+    function reply(msg){
+        switch(msg) {
+            case "HzWZauto":
+                document.getElementById('ModeHzWZ1').style.color = 'yellow';
+                break;
+            case "HzWZman":
+                document.getElementById('ModeHzWZ1').style.color = 'yellow';
+                break;
+            case "HzWZparty":
+                document.getElementById('ModeHzWZ1').style.color = 'yellow';
+                break;
+            case "HzWZurlaub":
+                document.getElementById('ModeHzWZ1').style.color = 'yellow';
+                break;
+                
+            case "HzKZauto":
+                document.getElementById('ModeHzKZ1').style.color = 'yellow';
+                break;
+            case "HzKZman":
+                document.getElementById('ModeHzKZ1').style.color = 'yellow';
+                break;
+            case "HzKZparty":
+                document.getElementById('ModeHzKZ1').style.color = 'yellow';
+                break;
+            case "HzKZurlaub":
+                document.getElementById('ModeHzKZ1').style.color = 'yellow';
+                break;
+                
+            case "HzSZauto":
+                document.getElementById('ModeHzSZ1').style.color = 'yellow';
+                break;
+            case "HzSZman":
+                document.getElementById('ModeHzSZ1').style.color = 'yellow';
+                break;
+            case "HzSZparty":
+                document.getElementById('ModeHzSZ1').style.color = 'yellow';
+                break;
+            case "HzSZurlaub":
+                document.getElementById('ModeHzSZ1').style.color = 'yellow';
+                break;
+                
+            case "HzKauto":
+                document.getElementById('ModeHzK1').style.color = 'yellow';
+                break;
+            case "HzKman":
+                document.getElementById('ModeHzK1').style.color = 'yellow';
+                break;
+            case "HzKparty":
+                document.getElementById('ModeHzK1').style.color = 'yellow';
+                break;
+            case "HzKurlaub":
+                document.getElementById('ModeHzK1').style.color = 'yellow';
+                break;
+        }		 		
+    }
+     
      
      function checkUsedVars(ips){
             //Heizung
@@ -27,15 +83,21 @@
             check(ips[0].ID13013, 17);  //Rollo WZ up/down
             check(ips[0].ID39896, 18);  //Rollo WZ Position
             check(ips[0].ID50459, 19); //Rollo WZ Mode
+            check(ips[0].ID29948, 18);  //Rollo WZ Schaltzeit Mo-Fr
+            check(ips[0].ID56266, 19); //Rollo WZ Schaltzeit Sa-So
             
-            check(ips[0].ID37300, 20); //Rollo B Mode
-            check(ips[0].ID11137, 21); //Rollo B Postion 
+            check(ips[0].ID29574, 20); //Rollo B Mode
+            check(ips[0].ID46035, 21); //Rollo B Postion 
+            check(ips[0].ID53721, 42);  //Rollo B up/down
+            check(ips[0].ID48410, 43);  //Rollo B Schaltzeit Mo-Fr
+            check(ips[0].ID12438, 44); //Rollo B Schaltzeit Sa-So
+            
             
             check(ips[0].ID57942, 22);  //Sonnenuntergang
             check(ips[0].ID11938, 23);  //Sonnenaufgang
             
             check(ips[0].ID37348, 24);  //Balkontür
-
+            //Heizung
             check(ips[0].ID53071, 25);  //Soll Modus Hz WZ
             check(ips[0].ID31769, 26);  //Soll Temp Hz WZ 
             check(ips[0].ID27789, 27);  //Soll Temp Ausstehend Hz WZ
@@ -57,10 +119,13 @@
             
             check(ips[0].ID39562, 37);  //Soll Modus Hz K
             check(ips[0].ID54426, 38);  //Soll Temp Hz K 
-            check(ips[0].ID21258, 39);  //Soll Temp Ausstehend Hz K         
+            check(ips[0].ID21258, 39);  //Soll Temp Ausstehend Hz K     
+            
+            check(ips[0].ID20854, 40);  //Battery Alarm  
+            check(ips[0].ID44517, 41);  //AlarmCode
      }
     function check(value, n){
-        if (typeof value === "undefined") {$('fehler').innerHTML =  "Variable  wrong ID:" + n} else {return value}
+        if (typeof value === "undefined") {$('fehler').innerHTML =  "Variable  wrong ID:" + n;} else {return value;}
     } 
      
     function MediaValues(ips){
@@ -276,13 +341,43 @@
         else {
              $('iconHzWZ1').src =  "images/heizkoerper_blau.png";   
         }
+        
         var ModeHzWZ1 = ips[0].ID53071;
-        if (ModeHzWZ1){
-           $('ModeHzWZ1').innerHTML =  "Man";   
-        }
-        else {
-           $('ModeHzWZ1').innerHTML =  "Auto";  
-        }
+        switch(ModeHzWZ1) {
+            case 0:
+                var a = document.getElementById("ModeHzWZ1").innerHTML; 
+                if(a ===  "Man" || a ===  "Party" || a ===  "Urlaub"){
+                   document.getElementById("ModeHzWZ1").style.color = "white"; 
+                }
+                 $('ModeHzWZ1').innerHTML =  "Auto";  
+                break;
+            case 1:
+                var a = document.getElementById("ModeHzWZ1").innerHTML; 
+                if(a ===  "Auto" || a ===  "Party" || a ===  "Urlaub"){
+                   document.getElementById("ModeHzWZ1").style.color = "white"; 
+                }
+                $('ModeHzWZ1').innerHTML =  "Man";
+                break;
+            case 2:
+                var a = document.getElementById("ModeHzWZ1").innerHTML; 
+                if(a ===  "Auto" || a ===  "Man" || a ===  "Party"){
+                   document.getElementById("ModeHzWZ1").style.color = "white"; 
+                }
+                $('ModeHzWZ1').innerHTML =  "Urlaub";
+                break;
+            case 3:
+                var a = document.getElementById("ModeHzWZ1").innerHTML; 
+                if (a ===  "Auto" || a ===  "Man" || a ===  "Urlaub"){
+                   document.getElementById("ModeHzWZ1").style.color = "white"; 
+                }
+                $('ModeHzWZ1').innerHTML =  "Party";
+                break;
+        }        
+ 
+ 
+
+      
+        
         var BatHzWZ1 = ips[0].ID23472;
         if (BatHzWZ1){
             document.getElementById("BatHzWZ1").style.color  = 'red';
@@ -307,12 +402,38 @@
              $('iconHzKZ1').src =  "images/heizkoerper_blau.png";   
         }
         var ModeHzKZ1 = ips[0].ID34102;
-        if (ModeHzKZ1){
-           $('ModeHzKZ1').innerHTML =  "Man";   
-        }
-        else {
-           $('ModeHzKZ1').innerHTML =  "Auto";  
-        }
+        switch(ModeHzKZ1) {
+            case 0:
+                var a = document.getElementById("ModeHzKZ1").innerHTML; 
+                if(a ===  "Man" || a ===  "Party" || a ===  "Urlaub"){
+                   document.getElementById("ModeHzKZ1").style.color = "white"; 
+                }
+                 $('ModeHzKZ1').innerHTML =  "Auto";  
+                break;
+            case 1:
+                var a = document.getElementById("ModeHzKZ1").innerHTML; 
+                if(a ===  "Auto" || a ===  "Party" || a ===  "Urlaub"){
+                   document.getElementById("ModeHzKZ1").style.color = "white"; 
+                }
+                $('ModeHzKZ1').innerHTML =  "Man";
+                break;
+            case 2:
+                var a = document.getElementById("ModeHzKZ1").innerHTML; 
+                if(a ===  "Auto" || a ===  "Man" || a ===  "Party"){
+                   document.getElementById("ModeHzKZ1").style.color = "white"; 
+                }
+                $('ModeHzKZ1').innerHTML =  "Urlaub";
+                break;
+            case 3:
+                var a = document.getElementById("ModeHzKZ1").innerHTML; 
+                if (a ===  "Auto" || a ===  "Man" || a ===  "Urlaub"){
+                   document.getElementById("ModeHzKZ1").style.color = "white"; 
+                }
+                $('ModeHzKZ1').innerHTML =  "Party";
+                break;
+        } 
+ 
+        
         var BatHzKZ1 = ips[0].ID52085;
         if (BatHzKZ1){
             document.getElementById("BatHzKWZ1").style.color  = 'red';
@@ -337,12 +458,37 @@
              $('iconHzSZ1').src =  "images/heizkoerper_blau.png";   
         }
         var ModeHzSZ1 = ips[0].ID31202;
-        if (ModeHzSZ1){
-           $('ModeHzSZ1').innerHTML =  "Man";   
-        }
-        else {
-           $('ModeHzSZ1').innerHTML =  "Auto";  
-        }
+        switch(ModeHzSZ1) {
+            case 0:
+                var a = document.getElementById("ModeHzSZ1").innerHTML; 
+                if(a ===  "Man" || a ===  "Party" || a ===  "Urlaub"){
+                   document.getElementById("ModeHzSZ1").style.color = "white"; 
+                }
+                 $('ModeHzSZ1').innerHTML =  "Auto";  
+                break;
+            case 1:
+                var a = document.getElementById("ModeHzSZ1").innerHTML; 
+                if(a ===  "Auto" || a ===  "Party" || a ===  "Urlaub"){
+                   document.getElementById("ModeHzSZ1").style.color = "white"; 
+                }
+                $('ModeHzSZ1').innerHTML =  "Man";
+                break;
+            case 2:
+                var a = document.getElementById("ModeHzSZ1").innerHTML; 
+                if(a ===  "Auto" || a ===  "Man" || a ===  "Party"){
+                   document.getElementById("ModeHzSZ1").style.color = "white"; 
+                }
+                $('ModeHzSZ1').innerHTML =  "Urlaub";
+                break;
+            case 3:
+                var a = document.getElementById("ModeHzSZ1").innerHTML; 
+                if (a ===  "Auto" || a ===  "Man" || a ===  "Urlaub"){
+                   document.getElementById("ModeHzSZ1").style.color = "white"; 
+                }
+                $('ModeHzSZ1').innerHTML =  "Party";
+                break;
+        } 
+        
         var BatHzSZ1 = ips[0].ID57118;
         if (BatHzSZ1){
             document.getElementById("BatHzSZ1").style.color  = 'red';
@@ -367,12 +513,37 @@
              $('iconHzK1').src =  "images/heizkoerper_blau.png";   
         }
         var ModeHzK1 = ips[0].ID39562;
-        if (ModeHzK1){
-           $('ModeHzK1').innerHTML =  "Man";   
-        }
-        else {
-           $('ModeHzK1').innerHTML =  "Auto";  
-        }
+        switch(ModeHzK1) {
+            case 0:
+                var a = document.getElementById("ModeHzK1").innerHTML; 
+                if(a ===  "Man" || a ===  "Party" || a ===  "Urlaub"){
+                   document.getElementById("ModeHzK1").style.color = "white"; 
+                }
+                 $('ModeHzK1').innerHTML =  "Auto";  
+                break;
+            case 1:
+                var a = document.getElementById("ModeHzK1").innerHTML; 
+                if(a ===  "Auto" || a ===  "Party" || a ===  "Urlaub"){
+                   document.getElementById("ModeHzK1").style.color = "white"; 
+                }
+                $('ModeHzK1').innerHTML =  "Man";
+                break;
+            case 2:
+                var a = document.getElementById("ModeHzK1").innerHTML; 
+                if(a ===  "Auto" || a ===  "Man" || a ===  "Party"){
+                   document.getElementById("ModeHzK1").style.color = "white"; 
+                }
+                $('ModeHzK1').innerHTML =  "Urlaub";
+                break;
+            case 3:
+                var a = document.getElementById("ModeHzK1").innerHTML; 
+                if (a ===  "Auto" || a ===  "Man" || a ===  "Urlaub"){
+                   document.getElementById("ModeHzK1").style.color = "white"; 
+                }
+                $('ModeHzK1').innerHTML =  "Party";
+                break;
+        } 
+        
          var BatHzK1 = ips[0].ID22083;
         if (BatHzK1){
             document.getElementById("BatHzK1").style.color  = 'red';
@@ -391,244 +562,27 @@
         $('tempkinderzimmer4').innerHTML =  'Kinderzimmer ' + ips[0].ID37045 + '°C';        
     }
     
-     function HomeValues(ips){
-         
-
 
     
-
+    
+    function updateValues(ips){
+        updateDisplay("ModeRolloWZ1", "white", ips[0].ID50459, "", "Man", "Auto");
+        updateDisplay("PosRolloWZ1", "white", ips[0].ID39896, "%", "", "");
+        updateImage("imageRolloWZ1", ips[0].ID39896, "rollo");
+        updateDisplay("MoFrRolloWZ1", "white", ips[0].ID29948, "", "", "");
+        updateDisplay("SaSoRolloWZ1", "white", ips[0].ID56266, "", "", "");
         
-/*        
-
- */
+        updateDisplay("ModeRolloB1", "white", ips[0].ID29574, "", "Man", "Auto");
+        updateDisplay("PosRolloB1", "white", ips[0].ID46035, "%", "", "");
+        updateImage("imageRolloB1", ips[0].ID46035, "rollo");
+        updateDisplay("MoFrRolloB1", "white", ips[0].ID48410, "", "", "");
+        updateDisplay("SaSoRolloB1", "white", ips[0].ID12438, "", "", "");        
         
-/*
-        
-				//$('tempvorwohnzimmer3').innerHTML =  ips[0].ID29170 + 'Â°C';	
-				//$('temprueckwohnzimmer3').innerHTML =  ips[0].ID47576 + 'Â°C';
-        $('tempsollAKTwohnzimmer3').innerHTML =  ips[0].ID31769 + '°C';	
-        $('tempsollAUSwohnzimmer3').innerHTML =  ips[0].ID27789 + '°C';
-*/
-				
-/*				
-				
-				//$('tempvorkinderzimmer3').innerHTML =  ips[0].ID13356 + '°C';	
-				//$('temprueckkinderzimmer3').innerHTML =  ips[0].ID48511 + '°C';
-				$('tempsollAKTkinderzimmer3').innerHTML =  ips[0].ID36377 + '°C';	
-				$('tempsollAUSkinderzimmer3').innerHTML =  ips[0].ID38441 + '°C';
-
-	
-				
-				//$('tempvorschlafzimmer3').innerHTML =  ips[0].ID26565 + '°C';	
-				//$('temprueckschlafzimmer3').innerHTML =  ips[0].ID32007 + '°C';
-				$('tempsollAKTschlafzimmer3').innerHTML =  ips[0].ID17998 + '°C';	
-				$('tempsollAUSschlafzimmer3').innerHTML =  ips[0].ID51755 + '°C';
-
-				
-				
-				//$('tempvorkueche3').innerHTML =  ips[0].ID99999 + 'Â°C';	
-				////$('temprueckkueche3').innerHTML =  ips[0].ID99999 + 'Â°C';
-				$('tempsollAKTkueche3').innerHTML =  ips[0].ID54426 + '°C';	
-				$('tempsollAUSkueche3').innerHTML =  ips[0].ID21258 + '°C';
-
-  
- 
- */
-/*
-
-				if (ips[0].ID53071 == '0'){
-					document.getElementById('AutoWZ3').style.color = 'red';
-					document.getElementById('ManWZ3').style.color = 'white';
-					document.getElementById('UrlaubWZ3').style.color = 'white';
-					document.getElementById('PartyWZ3').style.color = 'white';				
-				} 
-				if (ips[0].ID53071 == '1'){
-					document.getElementById('ManWZ3').style.color = 'red';
-					document.getElementById('AutoWZ3').style.color = 'white';
-					document.getElementById('UrlaubWZ3').style.color = 'white';
-					document.getElementById('PartyWZ3').style.color = 'white';
-				} 
-				if (ips[0].ID53071 == '2'){
-					document.getElementById('UrlaubWZ3').style.color = 'red';
-					document.getElementById('ManWZ3').style.color = 'white';
-					document.getElementById('PartyWZ3').style.color = 'white';
-					document.getElementById('AutoWZ3').style.color = 'white'
-				} 
-				if (ips[0].ID53071 == '3'){
-					document.getElementById('PartyWZ3').style.color = 'red';
-					document.getElementById('ManWZ3').style.color = 'white';
-					document.getElementById('UrlaubWZ3').style.color = 'white';
-					document.getElementById('PartyWZ3').style.color = 'white';
-				}
-				if (ips[0].ID34102 == '0'){
-					document.getElementById('AutoKZ3').style.color = 'red';
-					document.getElementById('ManKZ3').style.color = 'white';
-					document.getElementById('UrlaubKZ3').style.color = 'white';
-					document.getElementById('PartyKZ3').style.color = 'white';				
-				}else if (ips[0].ID34102 == '1'){
-					document.getElementById('ManKZ3').style.color = 'red';
-					document.getElementById('AutoKZ3').style.color = 'white';
-					document.getElementById('UrlaubKZ3').style.color = 'white';
-					document.getElementById('PartyKZ3').style.color = 'white';
-				}else if (ips[0].ID34102 == '2'){
-					document.getElementById('UrlaubKZ3').style.color = 'red';
-					document.getElementById('ManKZ3').style.color = 'white';
-					document.getElementById('PartyKZ3').style.color = 'white';
-					document.getElementById('AutoKZ3').style.color = 'white'
-				}else if (ips[0].ID34102 == '3'){
-					document.getElementById('PartyKZ3').style.color = 'red';
-					document.getElementById('ManKZ3').style.color = 'white';
-					document.getElementById('UrlaubKZ3').style.color = 'white';
-					document.getElementById('PartyKZ3').style.color = 'white';
-				}
-
-				if (ips[0].ID31202 == '0'){
-					document.getElementById('AutoSZ3').style.color = 'red';
-					document.getElementById('ManSZ3').style.color = 'white';
-					document.getElementById('UrlaubsZ3').style.color = 'white';
-					document.getElementById('PartySZ3').style.color = 'white';				
-				}else if (ips[0].ID31202 == '1'){
-					document.getElementById('ManSZ3').style.color = 'red';
-					document.getElementById('AutoSZ3').style.color = 'white';
-					document.getElementById('UrlaubSZ3').style.color = 'white';
-					document.getElementById('PartySZ3').style.color = 'white';
-				}else if (ips[0].ID31202 == '2'){
-					document.getElementById('UrlaubSZ3').style.color = 'red';
-					document.getElementById('ManSZ3').style.color = 'white';
-					document.getElementById('PartySZ3').style.color = 'white';
-					document.getElementById('AutoSZ3').style.color = 'white'
-				}else if (ips[0].ID31202 == '3'){
-					document.getElementById('PartySZ3').style.color = 'red';
-					document.getElementById('ManSZ3').style.color = 'white';
-					document.getElementById('UrlaubSZ3').style.color = 'white';
-					document.getElementById('PartySZ3').style.color = 'white';
-				}
-
-				if (ips[0].ID39562 == '0'){
-					document.getElementById('AutoK3').style.color = 'red';
-					document.getElementById('ManK3').style.color = 'white';
-					document.getElementById('UrlaubK3').style.color = 'white';
-					document.getElementById('PartyK3').style.color = 'white';				
-				}else if (ips[0].ID39562 == '1'){
-					document.getElementById('ManK3').style.color = 'red';
-					document.getElementById('AutoK3').style.color = 'white';
-					document.getElementById('UrlaubK3').style.color = 'white';
-					document.getElementById('PartyK3').style.color = 'white';
-				}else if (ips[0].ID39562 == '2'){
-					document.getElementById('UrlaubK3').style.color = 'red';
-					document.getElementById('ManK3').style.color = 'white';
-					document.getElementById('PartyK3').style.color = 'white';
-					document.getElementById('AutoK3').style.color = 'white'
-				}else if (ips[0].ID39562 == '3'){
-					document.getElementById('PartyK3').style.color = 'red';
-					document.getElementById('ManK3').style.color = 'white';
-					document.getElementById('UrlaubK3').style.color = 'white';
-					document.getElementById('PartyK3').style.color = 'white';
-				}
-				
-
-				
-				
-				if (ips[0].ID23472 == '1'){
-					document.getElementById('BatWZ3').style.color = 'red';
-				}
-				else {
-					document.getElementById('BatWZ3').style.color = 'lime';
-				}
-				if (ips[0].ID52085 == '1'){
-					document.getElementById('BatKZ3').style.color = 'red';
-				}
-				else {
-					document.getElementById('BatKZ3').style.color = 'lime';
-				}
-
-				if (ips[0].ID57118 == '1'){
-					document.getElementById('BatSZ3').style.color = 'red';
-				} 
-				else {
-					document.getElementById('BatSZ3').style.color = 'lime';
-				}
-
-				if (ips[0].ID522083 == '1'){
-					document.getElementById('BatK3').style.color = 'red';
-				}
-				else {
-					document.getElementById('BatK3').style.color = 'lime';
-				}
-
- */				
-
-/*
-                              	var actClient = ips[0].ID16761;
-				if (actClient =="CEOL"){
-					
-					document.getElementById('CEOLclientimg').src = 'images/DenonCeolAnlage.png';
- 					document.getElementById('CDclientimg').src = 'images/DenonCeolAnlage.png';
-					
-					if (ips[0].ID18628 == '1'){
-						document.getElementById('activeClient').style.color = 'lime';
-					}
-					else{
-						document.getElementById('activeClient').style.color = 'red';
-					}
-				}
-				else if (actClient =="SonosK"){
-					document.getElementById('CEOLclientimg').src = 'images/SonosK.png';
- 					document.getElementById('CDclientimg').src = 'images/SonosK.png';
-
-				}
-				else if (actClient =="SonosSZ"){
-					document.getElementById('CEOLclientimg').src = 'images/SonosS.png';
- 					document.getElementById('CDclientimg').src = 'images/SonosS.png';
-
-				}
-				else if (actClient =="[TV]UE40D8"){
-					document.getElementById('CEOLclientimg').src = 'images/samsungtv.png';
- 					document.getElementById('CDclientimg').src = 'images/samsungtv.png';
-
-				}
-				else {
-					document.getElementById('CEOLclientimg').src = 'images/musikpal.png';
- 					document.getElementById('CDclientimg').src = 'images/musikpal.png';
-
-				}
-*/        
-/*
-				var actServer = ips[0].ID40574;
-				if (actServer == "Plex"){
-					if (ips[0].ID43713 == '1'){
-						document.getElementById('activeServer').style.color = 'lime';
-					}
-					else{
-						document.getElementById('activeServer').style.color = 'red';
-					}
-				}
-				else if (actServer == "AVM"){
-					if (ips[0].ID22877 == '1'){
-						document.getElementById('activeServer').style.color = 'lime';
-					}
-					else{
-						document.getElementById('activeServer').style.color = 'red';
-					}
-				}
-*/
-
- }
+    }
 			
      function Rollo(ips){
-        //<!-- **************************  Rolladen Ctrl Wohnzimmer **************************  -->
-        if (ips[0].ID39896 == '0'|| ips[0].ID13013 == 0){
-            $('RolloWZPos1').innerHTML =  'offen'; 
-        }else if (ips[0].ID39896 == '100' || ips[0].ID13013 == 1){
-            $('RolloWZPos1').innerHTML =  'zu'; 
-        }else {
-            $('RolloWZPos1').innerHTML =  ips[0].ID39896;    
-        }
-        if (ips[0].ID50459 == '1'){
-                 $('RolloWZMode1').innerHTML =  'Auto'; 
-        }else{
-                 $('RolloWZMode1').innerHTML =  'Man'; 
-        }
+ 
+
         //<!-- **************************  Rolladen Ctrl Kinderzimmer **************************  -->
         if (ips[0].ID33678 == '0'){
             $('RolloKZPos1').innerHTML =  'offen'; 
@@ -642,19 +596,7 @@
         }else{
                  $('RolloKZMode1').innerHTML =  'Man'; 
         }
-        //<!-- ************************** Rolladen Ctrl BalkontTuer **************************  -->
-        if (ips[0].ID11137 == '0'){
-            $('RolloBPos1').innerHTML =  'offen'; 
-        }else if (ips[0].ID11137 == '100'){
-            $('RolloBPos1').innerHTML =  'zu'; 
-        }else {
-            $('RolloBPos1').innerHTML =  ips[0].ID33678;    
-        }
-        if (ips[0].ID37300 == '1'){
-                 $('RolloBMode1').innerHTML =  'Auto'; 
-        }else{
-                 $('RolloBMode1').innerHTML =  'Man'; 
-        }
+  
 
         //<!-- ************************** Rolladen Ctrl Kueche ************************** -->
         if (ips[0].ID57019 == '0'){
@@ -702,4 +644,19 @@
             }else{
                      $('door_E').innerHTML =  'close'; 
             }
+            
+           var alarmCode =  ips[0].ID44517;
+           var alarm = "";
+           switch(alarmCode) {
+                case 1:
+                    var alarm = "Battery Low";
+                    break;
+                case 2:
+                     
+                    break;
+                default:
+                     
+            }
+           $('fehler').innerHTML =  alarm; 
+            
         } 
