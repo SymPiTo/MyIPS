@@ -162,12 +162,28 @@
  
      function showTimePicker(){
               
-         document.getElementsByClassName("RolloCtrlWZ")[0].style.width = "0px";
-         document.getElementsByClassName("TimePicker")[0].style.width = "26vw";   
+              
+         document.getElementsByClassName("RolloB")[0].style.width = "0px";
+         document.getElementsByClassName("RolloCtrlB")[0].style.width = "0px";
+         document.getElementsByClassName("TimePicker")[0].style.width = "86vw";   
         
     }
     
 
         
 
-        
+    function slideSwitchTimeRollo(room, group){
+        let ctrlClass = "RolloCtrl" + room;
+        Timer1.room = room; 
+        Timer2.room = room;
+        Timer1.group = group;
+        Timer2.group = group;
+        Timer1.direction = "up";
+        Timer2.direction = "down";
+        document.getElementsByClassName(ctrlClass)[0].style.width = "0px";
+        document.getElementsByClassName("TimePicker")[0].style.width = "26vw"; 
+    }
+    
+function TbtnRolloB1Sub1(){
+    
+}

@@ -122,7 +122,9 @@ WebKit inertia scrolling is being added here for any present/future devices that
 .UpnpServerCtrl,
 .ScrollReihe,
 .TimePicker,
+.TimePickerX,
 .Wetter,
+.SecurityCode,
 .TV {
     overflow: auto;
     padding: .0rem;
@@ -191,6 +193,8 @@ WebKit inertia scrolling is being added here for any present/future devices that
 .Wetter::-webkit-scrollbar,
 .ScrollReihe::-webkit-scrollbar,
 .TimePicker::-webkit-scrollbar,
+.TimePickerX::-webkit-scrollbar,
+.SecurityCode::-webkit-scrollbar,
 .TV::-webkit-scrollbar {
     display: none;
 }
@@ -211,6 +215,7 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	background-color: black;
 	margin-bottom: 1px;
 	margin-right: 1px;
+        
 }
 
 .HeizungAll{
@@ -418,6 +423,16 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	/*border-left-style: solid;
 	border-left-width: thin; */
 }
+.TimePickerX {
+	position:relative;
+	top: 5vh;
+	width: 0px;
+	height: 95vh;
+        left: 58vw;
+	background: hsl(300, 100%, 10%);
+	/*border-left-style: solid;
+	border-left-width: thin; */
+}
 
 .CDctrl {
 	position:absolute;
@@ -570,6 +585,13 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	height: 95vh;
 	background: hsl(0, 100%, 10%);
  }
+.MenuSec{
+	position:relative;
+	top: 5vh;
+        width: 0px;
+	height: 95vh;
+	background: hsl(152,70%,45%);
+ }
 
 .MenuB{
 	position:relative;
@@ -647,7 +669,15 @@ WebKit inertia scrolling is being added here for any present/future devices that
   	background: hsl(30, 56%, 25%); */
 }
 
-
+.SecurityCode{
+	position:absolute;
+	top: 5vh;
+        left: 16vw;
+        width: 0vw;
+	height: 95vh;	
+	 
+        color: black;
+}
 
 .Network{
 	position:absolute;
@@ -809,7 +839,10 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	  /*Gradient*/
 	  background: -webkit-linear-gradient(hsl(120, 56%, 25%), hsl(120, 56%, 45%)); /* CHROME */
 }
-
+.GlideButton.midgreen{
+	  /*Gradient*/
+	  background: -webkit-linear-gradient(hsl(152, 70%, 25%), hsl(152,70%,45%),hsl(152, 70%, 25%)); /* CHROME */
+}
 
 .GlideButton:hover {
 }	 
@@ -857,7 +890,10 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	  /*Gradient*/
 	  background: -webkit-linear-gradient(hsl(120, 56%, 15%), hsl(120, 56%, 25%)); /* CHROME */
 }
-
+.GlideButton.midgreen:hover{
+	  /*Gradient*/
+	  background: -webkit-linear-gradient(hsl(152, 70%, 15%), hsl(152,70%,25%),hsl(152, 70%, 15%)); /* CHROME */
+}
 
 .GlideButton:active {
 	 
@@ -906,7 +942,10 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	  /*Gradient*/
 	  background: -webkit-linear-gradient(hsl(120, 56%, 5%), hsl(120, 56%, 15%)); /* CHROME */
 }
-
+.GlideButton.midgreen:active{
+	  /*Gradient*/
+	  background: -webkit-linear-gradient(hsl(152, 70%, 5%), hsl(152,70%,15%),hsl(152, 70%, 5%)); /* CHROME */
+}
 
 
 
@@ -1660,7 +1699,15 @@ width:40%;
   box-shadow: inset rgba(0,0,0,.5) 0px 5px 10px;
 }
 
-
+.ZahlenContainer {
+	border: thin black solid;
+	height: 300px;
+	width: 320px;
+        display: flex;
+        flex-wrap: Wrap ;
+        justify-content: space-evenly;
+        color: white;
+}
 
 .fontbutton{
 	border: thin #000000 solid;
@@ -1832,11 +1879,13 @@ width:40%;
 }
 
 .ctrlbutton.blue {
-	background: -webkit-linear-gradient(hsl(200, 100%, 25%), hsl(200, 100%, 45%));
+	background: -webkit-linear-gradient(hsl(200, 100%, 25%), hsl(200, 100%, 35%), hsl(200, 100%, 45%), hsl(200, 100%, 35%),hsl(200, 100%, 25%));
 }
-
+.ctrlbutton.blueToggle {
+	background: -webkit-linear-gradient(hsl(200, 100%, 20%), hsl(200, 100%, 15%),hsl(200, 100%, 10%),  hsl(200, 100%, 15%), hsl(200, 100%, 20%));
+}
 .ctrlbutton.grey {
-	background: -webkit-linear-gradient(hsl(200, 0%, 25%), hsl(200, 0%, 45%));
+	background: -webkit-linear-gradient(hsl(200, 0%, 25%), hsl(200, 0%, 45%), hsl(200, 100%, 25%));
 }
 
 .ctrlbutton:hover {
@@ -1859,6 +1908,9 @@ width:40%;
 }
 .ctrlbutton.purple:active {
 	background: -webkit-linear-gradient(hsl(300, 100%, 5%), hsl(300, 100%, 15%));
+}
+.ctrlbutton.blue:active {
+	background: -webkit-linear-gradient(hsl(200, 100%, 5%), hsl(200, 100%, 15%), hsl(200, 100%, 5%));
 }
 
 .ctrlbutton.grey:active {
@@ -1925,10 +1977,14 @@ width:40%;
 	background-color: hsl(0, 100%, 5%);	
 }
 .anzeige.blue{
-	background-color: hsl(200, 100%, 5%);	
+	background-color: hsl(200, 100%, 5%); 
 }
-
-
+.anzeige.blueA{
+        background: -webkit-linear-gradient(hsl(200, 100%, 25%), hsl(200, 100%, 45%), hsl(200, 100%, 25%));
+}
+.anzeige.blueA:active {
+	background: -webkit-linear-gradient(hsl(200, 0%, 5%), hsl(200, 0%, 15%), hsl(200, 100%, 5%));
+}
 
 .status{
 	border-color:#666666;
@@ -2475,19 +2531,88 @@ WebKit inertia scrolling is being added here for any present/future devices that
 }
 
 
-
-#timer1Right {
-  
-
+/* Check Box 
+ /* The container */
+.CBcontainer {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    padding-top: 7px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+ 
+    width: 240px;
+    height: 40px;
 }
-#timer2Left {
-  
-	-webkit-mask-image: -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1) 50%, rgba(0,0,0,0));
-	-webkit-mask-image: linear-gradient(top, rgba(0,0,0,.1), rgba(0,100,100,1) 50%, rgba(0,0,0,.1));
+.CBcontainer.blue {
+    background: -webkit-linear-gradient(hsl(200, 100%, 25%), hsl(200, 100%, 35%), hsl(200, 100%, 45%), hsl(200, 100%, 35%),hsl(200, 100%, 25%));
+}
+.CBcontainer.cyan {
+	background: -webkit-linear-gradient(hsl(174, 100%, 25%),hsl(174, 100%, 35%), hsl(174, 100%, 45%), hsl(174, 100%, 35%), hsl(174, 100%, 25%));
+}
+.CBcontainer.olive {
+	background: -webkit-linear-gradient(hsl(82, 100%, 25%), hsl(82, 100%, 35%), hsl(82, 100%, 45%), hsl(82, 100%, 35%), hsl(82, 100%, 25%));
+}
+.CBcontainer.sandy {
+	background: -webkit-linear-gradient(hsl(28, 100%, 25%), hsl(28, 100%, 35%), hsl(28, 100%, 45%),  hsl(28, 100%, 35%), hsl(28, 100%, 25%));
+}
+.CBcontainer.red {
+	background: -webkit-linear-gradient(hsl(0, 100%, 25%), hsl(0, 100%, 35%), hsl(0, 100%, 45%),hsl(0, 100%, 35%), hsl(0, 100%, 25%));
+}
+.CBcontainer.purple {
+	background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 35%), hsl(300, 100%, 45%), hsl(300, 100%, 35%) , hsl(300, 100%, 25%));
+	padding-bottom: 20px;
 }
 
-#timer2Right {
-  
-	-webkit-mask-image: -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1) 50%, rgba(0,0,0,0));
-	-webkit-mask-image: linear-gradient(top, rgba(0,0,0,.1), rgba(0,100,100,1) 50%, rgba(0,0,0,.1));
+/* Hide the browser's default checkbox */
+.CBcontainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    height: 30px;
+    width: 30px;
+    background-color: transparent;
+}
+
+ 
+/* When the checkbox is checked, add a blue background */
+.CBcontainer input:checked ~ .checkmark {
+    background-color: transparent;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.CBcontainer input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.CBcontainer .checkmark:after {
+    left: 10px;
+    top: 3px;
+    width: 5px;
+    height: 20px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }

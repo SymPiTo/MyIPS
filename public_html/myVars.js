@@ -1,55 +1,55 @@
     function reply(msg){
         switch(msg) {
             case "HzWZauto":
-                document.getElementById('ModeHzWZ1').style.color = 'yellow';
+             //   DisModeHzWZ.setTextColor("yellow");
                 break;
             case "HzWZman":
-                document.getElementById('ModeHzWZ1').style.color = 'yellow';
+            //    DisModeHzWZ.setTextColor("yellow");
                 break;
             case "HzWZparty":
-                document.getElementById('ModeHzWZ1').style.color = 'yellow';
+            //    DisModeHzWZ.setTextColor("yellow");
                 break;
             case "HzWZurlaub":
-                document.getElementById('ModeHzWZ1').style.color = 'yellow';
+           //     DisModeHzWZ.setTextColor("yellow");
                 break;
                 
             case "HzKZauto":
-                document.getElementById('ModeHzKZ1').style.color = 'yellow';
+            //    DisModeHzKZ.setTextColor("yellow");
                 break;
             case "HzKZman":
-                document.getElementById('ModeHzKZ1').style.color = 'yellow';
+            //    DisModeHzKZ.setTextColor("yellow");
                 break;
             case "HzKZparty":
-                document.getElementById('ModeHzKZ1').style.color = 'yellow';
+             //   DisModeHzKZ.setTextColor("yellow");
                 break;
             case "HzKZurlaub":
-                document.getElementById('ModeHzKZ1').style.color = 'yellow';
+              //  DisModeHzKZ.setTextColor("yellow");
                 break;
                 
             case "HzSZauto":
-                document.getElementById('ModeHzSZ1').style.color = 'yellow';
+              //  DisModeHzSZ.setTextColor("yellow");
                 break;
             case "HzSZman":
-                document.getElementById('ModeHzSZ1').style.color = 'yellow';
+              //  DisModeHzSZ.setTextColor("yellow");
                 break;
             case "HzSZparty":
-                document.getElementById('ModeHzSZ1').style.color = 'yellow';
+             //   DisModeHzSZ.setTextColor("yellow");
                 break;
             case "HzSZurlaub":
-                document.getElementById('ModeHzSZ1').style.color = 'yellow';
+              //  DisModeHzSZ.setTextColor("yellow");
                 break;
                 
             case "HzKauto":
-                document.getElementById('ModeHzK1').style.color = 'yellow';
+             //   DisModeHzK.setTextColor("yellow");
                 break;
             case "HzKman":
-                document.getElementById('ModeHzK1').style.color = 'yellow';
+             //  DisModeHzK.setTextColor("yellow");
                 break;
             case "HzKparty":
-                document.getElementById('ModeHzK1').style.color = 'yellow';
+             //   DisModeHzK.setTextColor("yellow");
                 break;
             case "HzKurlaub":
-                document.getElementById('ModeHzK1').style.color = 'yellow';
+            //   DisModeHzK.setTextColor("yellow");
                 break;
         }		 		
     }
@@ -76,21 +76,27 @@
             check(ips[0].ID58797, 13);  //Rollo KZ Mode
             check(ips[0].ID33678, 14);  //Rollo KZ Postion         
             
-            check(ips[0].ID26653, 15);  //Rollo K Mode
-            check(ips[0].ID57019, 16);  //Rollo K Postion     
-            
+            check(ips[0].ID13703, 15);  //Rollo K Mode
+            check(ips[0].ID20994, 16);  //Rollo K Postion     
+            check(ips[0].ID21851, 47);  //Rollo K up/down
+            check(ips[0].ID10780, 48);  //Rollo K Schaltzeit Mo-Fr
+            check(ips[0].ID48287, 49); //Rollo K Schaltzeit Sa-So
+            check(ips[0].ID18813, 50); //Rollo K SSunSet
+           
 
             check(ips[0].ID13013, 17);  //Rollo WZ up/down
             check(ips[0].ID39896, 18);  //Rollo WZ Position
             check(ips[0].ID50459, 19); //Rollo WZ Mode
             check(ips[0].ID29948, 18);  //Rollo WZ Schaltzeit Mo-Fr
             check(ips[0].ID56266, 19); //Rollo WZ Schaltzeit Sa-So
+            check(ips[0].ID49927, 46); //Rollo WZ SSunSet
             
             check(ips[0].ID29574, 20); //Rollo B Mode
             check(ips[0].ID46035, 21); //Rollo B Postion 
             check(ips[0].ID53721, 42);  //Rollo B up/down
             check(ips[0].ID48410, 43);  //Rollo B Schaltzeit Mo-Fr
             check(ips[0].ID12438, 44); //Rollo B Schaltzeit Sa-So
+            check(ips[0].ID56785, 45); //Rollo B SSunSet
             
             
             check(ips[0].ID57942, 22);  //Sonnenuntergang
@@ -123,6 +129,10 @@
             
             check(ips[0].ID20854, 40);  //Battery Alarm  
             check(ips[0].ID44517, 41);  //AlarmCode
+            
+            check(ips[0].ID16709, 51);  //Temperatur Balkon Aussen
+            check(ips[0].ID27502, 52);  //Humidity Balkon Aussen
+            
      }
     function check(value, n){
         if (typeof value === "undefined") {$('fehler').innerHTML =  "Variable  wrong ID:" + n;} else {return value;}
@@ -317,66 +327,32 @@
         $('tempSZ_E').innerHTML =  ips[0].ID23116 + '°C'  ;
         $('tempKZ_E').innerHTML =  ips[0].ID37045 + '°C';
         //<!-- Temperatur Glide Floorplan  -->
-        $('tempK1').innerHTML =  ips[0].ID54070 + '°C'  ;
-        $('tempWZ1').innerHTML =  ips[0].ID51079 + '°C'  ;
-        $('tempSZ1').innerHTML =  ips[0].ID23116 + '°C'  ;
-        $('tempKZ1').innerHTML =  ips[0].ID37045 + '°C'; 
+        LeftMenuFP.update(ips[0].ID54070, "°C", ips[0].ID51079, "°C",  ips[0].ID23116, "°C",  ips[0].ID37045, "°C");
+        
+ 
         //<!-- Temperatur Werte Glide Button  -->
-        $('tempkueche2').innerHTML =  ips[0].ID54070 + '°C'  ;
-        $('tempwohnzimmer2').innerHTML =  ips[0].ID51079 + '°C'  ;
-        $('tempschlafzimmer2').innerHTML =  ips[0].ID23116 + '°C'  ;
-        $('tempkinderzimmer2').innerHTML =  ips[0].ID37045 + '°C';
+        LeftMenuK.update(ips[0].ID54070, "°C","","","","","","" );
+        LeftMenuWZ.update(ips[0].ID54070, "°C","","","","","","" );
+        LeftMenuSZ.update(ips[0].ID54070, "°C","","","","","","" );
+        LeftMenuKZ.update(ips[0].ID54070, "°C","","","","","","");
+ 
         //<!-- ************************ Heizung Wohnzimmer ************************  -->
-        $('TempHzWZ1').innerHTML =  ips[0].ID51079 + '°C'  ;
-        $('PosHzWZ1').innerHTML =   Math.round(ips[0].ID18059).toFixed(0) + '%';
-        $('TempHzWZ2').innerHTML =  ips[0].ID51079 + '°C'  ;
-        $('PosHzWZ2').innerHTML =   Math.round(ips[0].ID18059).toFixed(0) + '%';
+       // $('TempHzWZ1').innerHTML =  ips[0].ID51079 + '°C'  ;
+       // $('PosHzWZ1').innerHTML =   Math.round(ips[0].ID18059).toFixed(0) + '%';
+        MainTempHzWZ.update(ips[0].ID51079, 1);
+        MainPosHzWZ.update(ips[0].ID18059, 0);
+      //  $('TempHzWZ2').innerHTML =  ips[0].ID51079 + '°C'  ;
+      //  $('PosHzWZ2').innerHTML =   Math.round(ips[0].ID18059).toFixed(0) + '%';
         $('TempVorHzWZ1').innerHTML =  "--"  + '°C'  ;
         $('TempRueckHzWZ1').innerHTML =  "--" + '°C' ;
         $('SollTempHzWZ1').innerHTML =  ips[0].ID31769 + '°C'  ;
         $('SollTempAusHzWZ1').innerHTML =  ips[0].ID27789 + '°C' ;
-        if(ips[0].ID18059 > 1){
-            $('iconHzWZ1').src =  "images/heizkoerper_rot.png";    
-        }
-        else {
-             $('iconHzWZ1').src =  "images/heizkoerper_blau.png";   
-        }
-        
-        var ModeHzWZ1 = ips[0].ID53071;
-        switch(ModeHzWZ1) {
-            case 0:
-                var a = document.getElementById("ModeHzWZ1").innerHTML; 
-                if(a ===  "Man" || a ===  "Party" || a ===  "Urlaub"){
-                   document.getElementById("ModeHzWZ1").style.color = "white"; 
-                }
-                 $('ModeHzWZ1').innerHTML =  "Auto";  
-                break;
-            case 1:
-                var a = document.getElementById("ModeHzWZ1").innerHTML; 
-                if(a ===  "Auto" || a ===  "Party" || a ===  "Urlaub"){
-                   document.getElementById("ModeHzWZ1").style.color = "white"; 
-                }
-                $('ModeHzWZ1').innerHTML =  "Man";
-                break;
-            case 2:
-                var a = document.getElementById("ModeHzWZ1").innerHTML; 
-                if(a ===  "Auto" || a ===  "Man" || a ===  "Party"){
-                   document.getElementById("ModeHzWZ1").style.color = "white"; 
-                }
-                $('ModeHzWZ1').innerHTML =  "Urlaub";
-                break;
-            case 3:
-                var a = document.getElementById("ModeHzWZ1").innerHTML; 
-                if (a ===  "Auto" || a ===  "Man" || a ===  "Urlaub"){
-                   document.getElementById("ModeHzWZ1").style.color = "white"; 
-                }
-                $('ModeHzWZ1').innerHTML =  "Party";
-                break;
-        }        
- 
- 
 
-      
+        iHzWZ.update(ips[0].ID18059);
+        
+        DisModeHzWZ.update(ips[0].ID53071);
+        DisTempHzWZ.update(ips[0].ID51079);
+        DisPosHzWZ.update(Math.round(ips[0].ID18059).toFixed(0));
         
         var BatHzWZ1 = ips[0].ID23472;
         if (BatHzWZ1){
@@ -387,52 +363,23 @@
            document.getElementById("BatHzWZ1").style.color = 'lime';
         }
         //<!-- ************************ Heizung Kinderzimmer ************************  -->
-        $('TempHzKZ1').innerHTML =  ips[0].ID37045 + '°C'  ;
-        $('PosHzKZ1').innerHTML =   Math.round(ips[0].ID49335).toFixed(0) + '%';
-        $('TempHzKZ2').innerHTML =  ips[0].ID37045 + '°C'  ;
-        $('PosHzKZ2').innerHTML =   Math.round(ips[0].ID49335).toFixed(0) + '%';
+     //   $('TempHzKZ1').innerHTML =  ips[0].ID37045 + '°C'  ;
+     //   $('PosHzKZ1').innerHTML =   Math.round(ips[0].ID49335).toFixed(0) + '%';
+        MainTempHzKZ.update(ips[0].ID37045, 1);
+        MainPosHzKZ.update(ips[0].ID49335, 0);        
+       // $('TempHzKZ2').innerHTML =  ips[0].ID37045 + '°C'  ;
+        //$('PosHzKZ2').innerHTML =   Math.round(ips[0].ID49335).toFixed(0) + '%';
         $('TempVorHzKZ1').innerHTML =  "--"  + '°C'  ;
         $('TempRueckHzKZ1').innerHTML =  "--" + '°C'  ;
         $('SollTempHzKZ1').innerHTML =  ips[0].ID36377 + '°C'  ;
         $('SollTempAusHzKZ1').innerHTML =  ips[0].ID38441 + '°C' ;
-        if(ips[0].ID49335 > 1){
-            $('iconHzKZ1').src =  "images/heizkoerper_rot.png";    
-        }
-        else {
-             $('iconHzKZ1').src =  "images/heizkoerper_blau.png";   
-        }
-        var ModeHzKZ1 = ips[0].ID34102;
-        switch(ModeHzKZ1) {
-            case 0:
-                var a = document.getElementById("ModeHzKZ1").innerHTML; 
-                if(a ===  "Man" || a ===  "Party" || a ===  "Urlaub"){
-                   document.getElementById("ModeHzKZ1").style.color = "white"; 
-                }
-                 $('ModeHzKZ1').innerHTML =  "Auto";  
-                break;
-            case 1:
-                var a = document.getElementById("ModeHzKZ1").innerHTML; 
-                if(a ===  "Auto" || a ===  "Party" || a ===  "Urlaub"){
-                   document.getElementById("ModeHzKZ1").style.color = "white"; 
-                }
-                $('ModeHzKZ1').innerHTML =  "Man";
-                break;
-            case 2:
-                var a = document.getElementById("ModeHzKZ1").innerHTML; 
-                if(a ===  "Auto" || a ===  "Man" || a ===  "Party"){
-                   document.getElementById("ModeHzKZ1").style.color = "white"; 
-                }
-                $('ModeHzKZ1').innerHTML =  "Urlaub";
-                break;
-            case 3:
-                var a = document.getElementById("ModeHzKZ1").innerHTML; 
-                if (a ===  "Auto" || a ===  "Man" || a ===  "Urlaub"){
-                   document.getElementById("ModeHzKZ1").style.color = "white"; 
-                }
-                $('ModeHzKZ1').innerHTML =  "Party";
-                break;
-        } 
  
+        iHzKZ.update(ips[0].ID49335);
+        
+       
+        DisModeHzKZ.update(ips[0].ID34102);
+        DisTempHzKZ.update(ips[0].ID37045);
+        DisPosHzKZ.update(Math.round(ips[0].ID49335).toFixed(0));
         
         var BatHzKZ1 = ips[0].ID52085;
         if (BatHzKZ1){
@@ -443,51 +390,24 @@
            document.getElementById("BatHzKZ1").style.color = 'lime';
         }
          //<!-- ************************ Heizung Schlafzimmer ************************  -->
-        $('TempHzSZ1').innerHTML =  ips[0].ID23116 + '°C'  ;
-        $('PosHzSZ1').innerHTML =   Math.round(ips[0].ID36448).toFixed(0) + '%';
-        $('TempHzSZ2').innerHTML =  ips[0].ID23116 + '°C'  ;
-        $('PosHzSZ2').innerHTML =   Math.round(ips[0].ID36448).toFixed(0) + '%';
+      // $('TempHzSZ1').innerHTML =  ips[0].ID23116 + '°C'  ;
+      //  $('PosHzSZ1').innerHTML =   Math.round(ips[0].ID36448).toFixed(0) + '%';
+        MainTempHzSZ.update(ips[0].ID23116, 1);
+        MainPosHzSZ.update(ips[0].ID36448, 0); 
+      //  $('TempHzSZ2').innerHTML =  ips[0].ID23116 + '°C'  ;
+      //  $('PosHzSZ2').innerHTML =   Math.round(ips[0].ID36448).toFixed(0) + '%';
         $('TempVorHzSZ1').innerHTML =  ips[0].ID26565 + '°C'  ;
         $('TempRueckHzSZ1').innerHTML = ips[0].ID32007 + '°C'  ;
         $('SollTempHzSZ1').innerHTML =  ips[0].ID17998 + '°C'  ;
         $('SollTempAusHzSZ1').innerHTML =  ips[0].ID51755 + '°C' ;
-        if(ips[0].ID36448 > 1){
-            $('iconHzSZ1').src =  "images/heizkoerper_rot.png";    
-        }
-        else {
-             $('iconHzSZ1').src =  "images/heizkoerper_blau.png";   
-        }
-        var ModeHzSZ1 = ips[0].ID31202;
-        switch(ModeHzSZ1) {
-            case 0:
-                var a = document.getElementById("ModeHzSZ1").innerHTML; 
-                if(a ===  "Man" || a ===  "Party" || a ===  "Urlaub"){
-                   document.getElementById("ModeHzSZ1").style.color = "white"; 
-                }
-                 $('ModeHzSZ1').innerHTML =  "Auto";  
-                break;
-            case 1:
-                var a = document.getElementById("ModeHzSZ1").innerHTML; 
-                if(a ===  "Auto" || a ===  "Party" || a ===  "Urlaub"){
-                   document.getElementById("ModeHzSZ1").style.color = "white"; 
-                }
-                $('ModeHzSZ1').innerHTML =  "Man";
-                break;
-            case 2:
-                var a = document.getElementById("ModeHzSZ1").innerHTML; 
-                if(a ===  "Auto" || a ===  "Man" || a ===  "Party"){
-                   document.getElementById("ModeHzSZ1").style.color = "white"; 
-                }
-                $('ModeHzSZ1').innerHTML =  "Urlaub";
-                break;
-            case 3:
-                var a = document.getElementById("ModeHzSZ1").innerHTML; 
-                if (a ===  "Auto" || a ===  "Man" || a ===  "Urlaub"){
-                   document.getElementById("ModeHzSZ1").style.color = "white"; 
-                }
-                $('ModeHzSZ1').innerHTML =  "Party";
-                break;
-        } 
+  
+        iHzSZ.update(ips[0].ID36448);
+        
+       
+        DisModeHzSZ.update(ips[0].ID31202);
+        DisTempHzSZ.update(ips[0].ID23116);
+        DisPosHzSZ.update(Math.round(ips[0].ID36448).toFixed(0));
+
         
         var BatHzSZ1 = ips[0].ID57118;
         if (BatHzSZ1){
@@ -498,51 +418,23 @@
            document.getElementById("BatHzSZ1").style.color = 'lime';
         }
         //<!-- ************************ Heizung Kueche ************************  -->
-        $('TempHzK1').innerHTML =  ips[0].ID54070 + '°C'  ;
-        $('PosHzK1').innerHTML =   Math.round(ips[0].ID51619).toFixed(0) + '%';
-         $('TempHzK2').innerHTML =  ips[0].ID54070 + '°C'  ;
-        $('PosHzK2').innerHTML =   Math.round(ips[0].ID51619).toFixed(0) + '%';
+         $('TempHzK1').innerHTML =  ips[0].ID54070 + '°C'  ;
+         $('PosHzK1').innerHTML =   Math.round(ips[0].ID51619).toFixed(0) + '%';
+        MainTempHzK.update(ips[0].ID54070, 1);
+        MainPosHzK.update(ips[0].ID51619, 0);   
+     //    $('TempHzK2').innerHTML =  ips[0].ID54070 + '°C'  ;
+     //   $('PosHzK2').innerHTML =   Math.round(ips[0].ID51619).toFixed(0) + '%';
         $('TempVorHzK1').innerHTML =  "--"  + '°C'  ;
         $('TempRueckHzK1').innerHTML =  "--" + '°C'  ;
         $('SollTempHzK1').innerHTML =  ips[0].ID54426 + '°C'  ;
         $('SollTempAusHzK1').innerHTML =  ips[0].ID21258 + '°C' ;
-        if(ips[0].ID51619 > 1){
-            $('iconHzK1').src =  "images/heizkoerper_rot.png";    
-        }
-        else {
-             $('iconHzK1').src =  "images/heizkoerper_blau.png";   
-        }
-        var ModeHzK1 = ips[0].ID39562;
-        switch(ModeHzK1) {
-            case 0:
-                var a = document.getElementById("ModeHzK1").innerHTML; 
-                if(a ===  "Man" || a ===  "Party" || a ===  "Urlaub"){
-                   document.getElementById("ModeHzK1").style.color = "white"; 
-                }
-                 $('ModeHzK1').innerHTML =  "Auto";  
-                break;
-            case 1:
-                var a = document.getElementById("ModeHzK1").innerHTML; 
-                if(a ===  "Auto" || a ===  "Party" || a ===  "Urlaub"){
-                   document.getElementById("ModeHzK1").style.color = "white"; 
-                }
-                $('ModeHzK1').innerHTML =  "Man";
-                break;
-            case 2:
-                var a = document.getElementById("ModeHzK1").innerHTML; 
-                if(a ===  "Auto" || a ===  "Man" || a ===  "Party"){
-                   document.getElementById("ModeHzK1").style.color = "white"; 
-                }
-                $('ModeHzK1').innerHTML =  "Urlaub";
-                break;
-            case 3:
-                var a = document.getElementById("ModeHzK1").innerHTML; 
-                if (a ===  "Auto" || a ===  "Man" || a ===  "Urlaub"){
-                   document.getElementById("ModeHzK1").style.color = "white"; 
-                }
-                $('ModeHzK1').innerHTML =  "Party";
-                break;
-        } 
+  
+        iHzK.update(ips[0].ID51619);
+        
+       
+        DisModeHzK.update(ips[0].ID39562);
+        DisTempHzK.update(ips[0].ID54070);
+        DisPosHzK.update(Math.round(ips[0].ID51619).toFixed(0));
         
          var BatHzK1 = ips[0].ID22083;
         if (BatHzK1){
@@ -566,18 +458,42 @@
     
     
     function updateValues(ips){
-        updateDisplay("ModeRolloWZ1", "white", ips[0].ID50459, "", "Man", "Auto");
-        updateDisplay("PosRolloWZ1", "white", ips[0].ID39896, "%", "", "");
-        updateImage("imageRolloWZ1", ips[0].ID39896, "rollo");
-        updateDisplay("MoFrRolloWZ1", "white", ips[0].ID29948, "", "", "");
-        updateDisplay("SaSoRolloWZ1", "white", ips[0].ID56266, "", "", "");
         
-        updateDisplay("ModeRolloB1", "white", ips[0].ID29574, "", "Man", "Auto");
-        updateDisplay("PosRolloB1", "white", ips[0].ID46035, "%", "", "");
-        updateImage("imageRolloB1", ips[0].ID46035, "rollo");
-        updateDisplay("MoFrRolloB1", "white", ips[0].ID48410, "", "", "");
-        updateDisplay("SaSoRolloB1", "white", ips[0].ID12438, "", "", "");        
-        
+ 
+        try {
+            iRolloB.update(ips[0].ID46035);
+            iRolloWZ.update(ips[0].ID39896);
+
+            DisPosRolloWZ.update(ips[0].ID39896);   
+
+            DisModeRolloWZ.update(ips[0].ID50459); 
+             
+
+            DisST1RolloWZ.update(ips[0].ID29948); 
+            DisST2RolloWZ.update(ips[0].ID56266); 
+
+            DisPosRolloB.update(ips[0].ID46035);   
+            DisModeRolloB.update(ips[0].ID29574); 
+            DisST1RolloB.update(ips[0].ID48410); 
+            DisST2RolloB.update(ips[0].ID12438); 
+
+            DisPosRolloK.update(ips[0].ID20994);   
+            DisModeRolloK.update(ips[0].ID13703); 
+            DisST1RolloK.update(ips[0].ID10780); 
+            DisST2RolloK.update(ips[0].ID48287); 
+            CbSSrolloK.update(ips[0].ID18813);
+
+
+            CbSSrolloB.update(ips[0].ID56785);
+            CbSSrolloWZ.update(ips[0].ID49927);
+            
+            VarDisTempOutside.update(ips[0].ID16709);
+            VarDisHumOutside.update(ips[0].ID27502);
+            
+            
+        } catch (error) {
+           // alert (error);
+        }    
     }
 			
      function Rollo(ips){
@@ -599,34 +515,19 @@
   
 
         //<!-- ************************** Rolladen Ctrl Kueche ************************** -->
-        if (ips[0].ID57019 == '0'){
-            $('RolloKPos1').innerHTML =  'offen'; 
-        }else if (ips[0].ID57019 == '100'){
-            $('RolloKPos1').innerHTML =  'zu'; 
-        }else {
-            $('RolloKPos1').innerHTML =  ips[0].ID33678;    
-        }
-        if (ips[0].ID26653 == '1'){
-                 $('RolloKMode1').innerHTML =  'Auto'; 
-        }else{
-                 $('RolloKMode1').innerHTML =  'Man'; 
-        }
-         //<!-- -------------------------- Rollo Schaltzeiten  ------------------------------  -->	
-        $('BRolloTime').innerHTML =  ips[0].ID11938 +' - ' +  ips[0].ID57942;
-        $('WZRolloTime').innerHTML =  ips[0].ID11938 +' - ' +  ips[0].ID57942;
-        $('KZRolloTime').innerHTML =  ips[0].ID11938 +' - ' +  ips[0].ID57942;
-        $('KRolloTime').innerHTML =  ips[0].ID11938 +' - ' +  ips[0].ID57942;       
-    }
+ 
+     }
     
         function Klima(ips){
         //<!-- **************************  Feuchte Floorplan **************************  -->
-            $('FeuchteSZ_E').innerHTML =  ips[0].ID50329 + ' %';
-            $('FeuchteKZ_E').innerHTML =  ips[0].ID56454 + ' %';
-
+  
+            VarDisHumidSZ_E.update(ips[0].ID50329);
+            VarDisHumidKZ_E.update(ips[0].ID56454);
         } 
         
         function Security(ips){
         //<!-- **************************    Security **************************  -->
+        /*
             if (ips[0].ID36168 == '1'){
                      $('humanD_E').innerHTML =  'Person anwensend'; 
                      let now = new Date();
@@ -635,7 +536,7 @@
             }else{
                      $('humanD_E').innerHTML =  'X'; 
             }
-
+ 
            if (ips[0].ID22196 == '1'){
                      $('door_E').innerHTML =  'open'; 
                      let now = new Date();
@@ -644,7 +545,9 @@
             }else{
                      $('door_E').innerHTML =  'close'; 
             }
-            
+  */
+            VarDisMainDoor.update(ips[0].ID22196);
+ 
            var alarmCode =  ips[0].ID44517;
            var alarm = "";
            switch(alarmCode) {

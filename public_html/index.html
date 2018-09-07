@@ -12,6 +12,8 @@ Noch so ein scheiss.
         <script src="myCommands.js"></script>
         <script src="myVars.js"></script>
         <script src="myLib.js"></script>
+        
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         
         <link rel="stylesheet" href="myGlides.css">
@@ -19,8 +21,7 @@ Noch so ein scheiss.
         <link href="http://allfont.net/allfont.css?fonts=dot-matrix" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-
+        <link rel="shortcut icon" href="images/favicon.ico">
 
         <!--  ..............................................................  -->
         <!--   WEBSOCKET FUNKTIONEN                                           --> 
@@ -56,7 +57,7 @@ Noch so ein scheiss.
                                                                         else{
                                                                             var ips = JSON.parse(jsontext); 
                                                                              //
-                                                                             //log(ips[0].ID24839);
+                                                                              log(ips[0]);
                                                                             checkUsedVars(ips);
                                                                              /////Media(ips);
                                                                             Heizung(ips);
@@ -79,7 +80,7 @@ Noch so ein scheiss.
                         catch(ex){  
                                 state(ex); 
                         }
-                        $('msg').focus();	
+                        //$('msg').focus();	
                 }
 
 
@@ -151,8 +152,13 @@ Noch so ein scheiss.
 				}	
 			}
 			
+                        var z = 0;
+			function log(msga){ 
+                            z = z + 1;
+                            $('log').innerHTML =  z.toString(); 
+                        } 
                         
-			function log(msga){ $('log').innerHTML =  msga; } 
+                        
 			function log15(msg){ $('prog').innerHTML =  msg; }
                         
 
@@ -205,6 +211,7 @@ Noch so ein scheiss.
     </head>
 
     <body onload='init();'>
+        
 <!-- .................................. Gesamt Container ...............................  -->
 	<div class="Container">
 	
@@ -216,400 +223,125 @@ Noch so ein scheiss.
 			</div>
 			<div id="fehler" style="z-index: 6; text-align: right;   background-color: black">
 			</div>
+ 			<div id="log" style="z-index: 6; text-align: right;   background-color: black">
+			</div>
 			<div><script type='text/javascript' src="http://www.begann.de/uhren/uhr26.js"></script>
 			</div>
+                    	
 		</div>
 
-<!-- ****************************** Linkes Menue ********************************************  -->
-	<div class="Left">
-            <div class="GlideButton grey" onclick="Home()">
-		<img  class="icon" src="images/_Home_BW.png" alt="image not found" />
-            </div>
-			 
-            <div class="GlideButton pink" onclick="floorplan()">
-                <img  class="icon" src="images/_Floorplan_BW.png" alt="image not found"/>
-                <div>
-                    <div class="room">
-                        <a >Floorplan</a>
-                    </div>
-                    <div class=container3>
-                        <div id=tempWZ1>
-                            <a >--°C</a>
-                        </div>
-                        <div id=tempKZ1>
-                             <a >--°C</a>
-                        </div>
-                        <div id=tempSZ1>
-                            <a >--°C</a>
-                         </div>
-                        <div id=tempK1>
-                            <a >--°C</a>
-                        </div>
-                     </div>
-                 </div>	
-            </div>
-
-            <div class="GlideButton cyan" onclick="MenuWZ()">
-                <img  class="icon" src="images/_Wohnzimmer_BW.png"  alt="image not found"/>
-                <div>
-                    <div class="room">
-                        <a >Wohnzimmer</a>
-                    </div>
-                    <div class=container3>
-                        <div id=tempwohnzimmer2>
-                            <a >--°C</a>
-                        </div>
-                        <div>
-                             <a >--°C</a>
-                        </div>
-                         <div>
-                             <a >--°C</a>
-                        </div>
-                        <div>
-                            <a >--°C</a>
-                         </div>
-                    </div>
-                </div>	
-            </div>
-			 
-            <div class="GlideButton olive" onclick="MenuKZ()">
-                <img  class="icon" src="images/_Kinderzimmer_BW.png"  alt="image not found"/>
-                <div>
-                    <div class="room">
-                        <a >Kinderzimmer</a>
-                    </div>
-                     <div class=container3>
-                         <div id=tempkinderzimmer2>
-                             <a >--°C</a>
-                        </div>
-                        <div>
-                             <a >--°C</a>
-                        </div>
-                        <div >
-                            <a >--°C</a>
-                        </div>
-                        <div>
-                            <a >--°C</a>
-                        </div>
-                    </div>
-                </div>	
-            </div>
-			 
-            <div class="GlideButton sandy" onclick="MenuSZ()">
-                <img  class="icon" src="images/_Schlafzimmer_BW.png"  alt="image not found"/>
-                <div>
-                    <div class="room">
-                        <a >Schlafzimmer</a>
-                    </div>
-                    <div class=container3>
-                        <div id=tempschlafzimmer2>
-                            <a >--°C</a>
-                        </div>
-                        <div>
-                            <a >--°C</a>
-                        </div>
-                        <div>
-                            <a >--°C</a>
-                        </div>
-                        <div>
-                            <a >--°C</a>
-                        </div>
-                    </div>
-                </div>	
-            </div>
-			 
-            <div class="GlideButton red" onclick="MenuK()">
-                <img class="icon" src="images/_Kueche_BW.png"  alt="image not found"/>
-                <div>
-                    <div class="room">
-                        <a>Kueche</a>
-                    </div>
-                    <div class=container3>
-                        <div id=tempkueche2>
-                            <a >--°C</a>
-                        </div>
-                        <div>
-                            <a >--°C</a>
-                        </div>
-                        <div >
-                            <a >--°C</a>
-                        </div>
-                        <div>
-                            <a >--°C</a>
-                        </div>
-                    </div>
-                </div>	
-            </div>
-			
-            <div class="GlideButton blue" onclick="MenuB()">
-                <img  class="icon" src="images/_Balkon_BW.png"  alt="image not found"/>
-                <div>
-                    <div class="room">
-                        <a>Balkon</a>
-                    </div>
-                    <div class=container3>
-                        <div >
-                            <a >--°C</a>
-                        </div>
-                        <div>
-                            <a >--°C</a>
-                        </div>
-                        <div>
-                            <a >--°C</a>
-                        </div>
-                        <div>
-                            <a >--°C</a>
-                        </div>
-                    </div>
-                </div>	
-            </div>
- 
-            <div class="GlideButton purple" onclick="MenuMultimedia()">
-                <img  class="icon" src="images/_Multimedia_BW.png"  alt="image not found"/>
-                <div>
-                    <div class="room">
-                        <a>Multimedia</a>
-                    </div>
-                    <div class=container3>
-                        <div id="pwrceol">
-                            <a >-- </a>
-                        </div>
-                        <div >
-                            <a >-- </a>
-                        </div>
-                        <div >
-                            <a >-- </a>
-                        </div>
-                        <div>
-                            <a >-- </a>
-                        </div>
-                    </div>
-                </div>	
-            </div>		
-
-            <div class="GlideButton yellow" onclick="MenuHz()">
-                <img  class="icon" src="images/_Heizung_BW.png"   alt="image not found"/>
-                <div>
-                    <div class="room">
-                        <a>Heizung</a>
-                    </div>
-                    <div class=container3>
-                        <div>
-                            <a>--°C</a>
-                        </div>
-                        <div>
-                            <a>--°C</a>
-                        </div>
-                        <div>
-                            <a>--°C</a>
-                        </div>
-                        <div>
-                            <a>--°C</a>
-                        </div>
-                    </div>
-                </div>	
-            </div>		
-
-            <div class="GlideButton brown" onclick="MenuRollo()">
-                <img  class="icon" src="images/_Rolladen_BW.png"  alt="image not found"/>
-                <div>
-                    <div class="room">
-                        <a>Rolladen</a>
-                    </div>
-                        <div class=container3>
-                             <div id=rolloWZ>
-                                <a>mid</a>
-                             </div>
-                            <div id=rolloWB>
-                                <a>mid</a>
-                            </div>
-                            <div id=rolloKZ>
-                                <a>mid</a>
-                            </div>
-                            <div id=rolloK>
-                                <a>mid</a>
-                            </div>
-                        </div>
-                    </div>	
-            </div>	
-			
-            <div class="GlideButton green" onclick="MenuNet()" >
-                <img  class="icon" src="images/_Network_BW.png"   alt="image not found"/>
-                <div>
-                    <div class="room">
-                        <a >Netzwerk</a>
-                    </div>
-                    <div class=container3>
-                        <div>
-                            <a>--°C</a>
-                        </div>
-                        <div>
-                            <a>--°C</a>
-                        </div>
-                        <div>
-                            <a>--°C</a>
-                        </div>
-                        <div>
-                            <a>--°C</a>
-                        </div>
-                    </div>
-                </div>	
-            </div>	
+<!-- ****************************** Main Menue ********************************************  -->
+	<div id="MainMenu" class="Left">
+            
         </div>
-		
-		
+
+	<script>	
+            var MenuHome = new GlideButton();
+            MenuHome.create("MainMenu", "MenuHome", "grey", "Home", "_Home_BW.png", "", "StartScreen","MM" );  
+            var LeftMenuFP = new GlideButton();
+            LeftMenuFP.create("MainMenu", "LeftMenuFF", "pink", "Floorplan", "_Floorplan_BW.png", "", "floorplan","MM" ); 
+            var LeftMenuSec = new GlideButton();
+            LeftMenuSec.create("MainMenu", "LeftSec", "red", "Alarmanlage", "AlarmAnlage.png", "MenuSec", "", "MM" ); 
+            var LeftMenuWZ = new GlideButton();
+            LeftMenuWZ.create("MainMenu", "LeftWZ", "cyan", "Wohnzimmer", "_Wohnzimmer_BW.png", "MenuWZ", "", "MM" );  
+            var LeftMenuKZ = new GlideButton();
+            LeftMenuKZ.create("MainMenu", "LeftKZ", "olive", "Kinderzimmer", "_Kinderzimmer_BW.png", "MenuKZ","","MM" );  
+            var LeftMenuSZ = new GlideButton();
+            LeftMenuSZ.create("MainMenu", "LeftSZ", "sandy", "Schlafzimmer", "_Schlafzimmer_BW.png", "MenuSZ","","MM" ); 
+            var LeftMenuK = new GlideButton();
+            LeftMenuK.create("MainMenu", "LeftK", "midgreen", "Kueche", "_Kueche_BW.png", "MenuK","","MM" ); 
+            var LeftMenuB = new GlideButton();
+            LeftMenuB.create("MainMenu", "LeftB", "blue", "Balkon", "_Balkon_BW.png", "MenuB","","MM" ); 
+            var LeftMenuMM = new GlideButton();
+            LeftMenuMM.create("MainMenu", "LeftMM", "purple", "Multimedia", "_Multimedia_BW.png", "MenuMultimedia" ,"","MM"); 
+            var LeftMenuHz = new GlideButton();
+            LeftMenuHz.create("MainMenu", "LeftHz", "yellow", "Heizung", "_Heizung_BW.png", "MenuHz","","MM" ); 
+            var LeftMenuRollo = new GlideButton();
+            LeftMenuRollo.create("MainMenu", "LeftRollo", "brown", "Rolladen", "_Rolladen_BW.png", "MenuRollo","","MM" );  
+            var LeftMenuNet = new GlideButton();
+            LeftMenuNet.create("MainMenu", "LeftNet", "green", "Netzwerk", "_Network_BW.png", "MenuNet","","MM" );  
+            
+            var MenuSecurity = new GlideButton();
+            MenuSecurity.create("MainMenu", "xx", "cyan", "Security", "_GuestroomBW.jpg", "","MM" );  
+            var MenuSecurity1 = new GlideButton();
+            MenuSecurity1.create("MainMenu","xxxx", "cyan", "Security", "_GuestroomBW.jpg","","MM" );  
+        </script>    
+            
 <!-- ********************************************* Unter Menus ***********************************************************  -->
 
+    
+	<!-- *********************** Security  **************************  -->
+	<subMenu id="SubMenuSec" class="MenuSec"></subMenu>
+ 		
+        <script>    
+             var SubMenuSecCode = new GlideButton();
+            SubMenuSecCode.create("SubMenuSec","SubMenuSeCode", "red", "Alarmanlage", "AlarmKey.png", "MainSecCode","", "SM" ); 
+            var SubMenuSecAlarm = new GlideButton();
+            SubMenuSecAlarm.create("SubMenuSec","SubMenuSecAlarm", "red", "Meldungen", "AlarmAnlage.png", "MainSecAlarm","", "SM" ); 
+        </script>
+        
         <!-- ************************* SubMenu - Wohnzimmer **************************  -->
-        <div class="MenuWZ">
-            <div class="GlideButton cyan" onclick="HeizungWZ()">
-                <div>
-                    <img  class="icon" src="images/_Heizung_BW2.png"   alt="image not found"/>
-                </div>
-                <div>
-                    <div class="room">
-                        <a>Heizung Wohnzimmer</a>
-                    </div>
-                </div>	
-            </div>
-            <div class="GlideButton cyan" onclick="RolloWZ()"  >
-                <div>
-                    <img  class="icon" src="images/_Rolladen_BW.png"   alt="image not found"/>
-                </div>
-                <div>
-                    <div class="room">
-                        <a>Rolladen Wohnzimmer</a>
-                    </div>
-                </div>	
-            </div>
-            <div class="GlideButton cyan" onclick="SubMenu_Ceol()" >	
-                <div>
-                    <img  class="icon" src="images/DenonCeolIcon.jpg"   alt="image not found"/>
-                </div>
-                <div class=room>
-                    Denon Ceol
-                </div>
-            </div>
-            <div class="GlideButton cyan" onclick="SubMenu_TV()" >	
-                <div>
-                    <img  class="icon" src="images/_TV_BW.png"   alt="image not found"/>
-                </div>
-                <div>
-                    <div class="room">
-                        <a >TV</a>
-                    </div>
-                </div>
-            </div>
-            <div class="GlideButton cyan" onclick="SubMenu_BluRay()" >	
-                <div>
-                    <img  class="icon" src="images/BlueRay.png"   alt="image not found"/>
-                </div>
-                <div>
-                    <div class="room">
-                        <a >BlueRay</a>
-                    </div>
-                </div>
-            </div>
-        </div>   
+        <subMenu id= "SubMenuWZ" class="MenuWZ">        </subMenu>  
+ 
+            
+        <script> 
+            var SubMenuHzWZ = new GlideButton();
+            SubMenuHzWZ.create("SubMenuWZ","SubMenuHzWZ", "cyan", "Heizung Wohnzimmer", "_Heizung_BW2.png", "MainHeizungWZ","", "SM" );  
+            var SubMenuRolloWZ = new GlideButton();
+            SubMenuRolloWZ.create("SubMenuWZ","SubMenuRolloWZ", "cyan", "Rolladen Wohnzimmer", "_Rolladen_BW.png", "MainRolloWZ","", "SM" ); 
+            
+             var SubMenuRolloWZ = new GlideButton();
+            SubMenuRolloWZ.create("SubMenuWZ","SubMenuCEOLWZ", "cyan", "Ceol Anlage", "DenonCeolIcon.jpg", "MainCeolWZ","", "SM" ); 
+            var SubMenuRolloWZ = new GlideButton();
+            SubMenuRolloWZ.create("SubMenuWZ","SubMenuTVWZ", "cyan", "Fernseher", "_TV_BW.png", "MainTVWZ","", "SM" ); 
+            var SubMenuRolloWZ = new GlideButton();
+            SubMenuRolloWZ.create("SubMenuWZ","SubMenuBlueRayWZ", "cyan", "BlueRayPlayer", "BlueRay.png", "MainBlueRayWZ","", "SM" ); 
+        </script>  
+ 
 
     
-		<!-- *********************** Kinderzimmer  **************************  -->
-		<div class="MenuKZ">
-			<div class="GlideButton olive" onclick="HeizungKZ()" >
-
-					<div>
-						<img  class="icon" src="images/_Heizung_BW2.png"  alt="image not found"/>
-					</div>
-					<div>
-						<div class=room>
-							<a >Heizung Kinderzimmer</a>
-						</div>
-					</div>	
-			</div>
-			<div class="GlideButton olive" onclick="RolloKZ()"  >
-
-					<div >
-						<img class="icon" src="images/_Rolladen_BW.png"  alt="image not found"/>
-					</div>
-					<div>
-						<div class=room>
-							<a >Rolladen Kinderzimmer</a>
-						</div>
-					</div>	
-			</div>
- 		</div>
-		<!-- ************************ Schlafzimmer  ************************  -->
-		<div class="MenuSZ">
-			<div class="buttonglide" onclick="HeizungSZ()" style="background: -webkit-linear-gradient(hsl(28, 100%, 25%), hsl(28, 100%, 45%));">
-					<div>
-						<img  class="icon" src="images/_Heizung_BW2.png"  alt="image not found"/>
-					</div>
-					<div>
-						<div class="room">
-							<a >Heizung Schlafzimmer</a>
-						</div>
-					</div>	
-			</div>
-			<div class="buttonglide" onclick="RolloSZ()" style="background: -webkit-linear-gradient(hsl(28, 100%, 25%), hsl(28, 100%, 45%));">
-					<div>
-						<img  class="icon" src="images/_Rolladen_BW.png"  alt="image not found"/>
-					</div>
-					<div>
-						<div class="room">
-							<a>Rolladen Schlafzimmer</a>
-						</div>
-					</div>	
-			</div>
- 		</div>
-		<!-- ************************ Kueche  ************************  -->
-		<div class="MenuK">
-			<div class="GlideButton red" onclick="HeizungK()"  >
-					<div>
-						<img  class="icon" src="images/_Heizung_BW2.png"  alt="image not found"/>
-					</div>
-					<div>
-						<div class="room">
-							<a >Heizung Kueche</a>
-						</div>
-					</div>	
-			</div>
-			<div class="GlideButton red" onclick="RolloK()"  >
-					<div>
-						<img  class="icon" src="images/_Rolladen_BW.png"  alt="image not found"/>
-					</div>
-					<div class=containe2>
-						<div class="room">
-							<a >Rolladen Kueche</a>
-						</div>
-					</div>	
-			</div>
- 		</div>
-		<!-- ************************ Menu Balkon  ************************  -->
-		<div class="MenuB">
-			<div class="GlideButton blue" onclick="HeizungB()" >
-					<div>
-						<img  class="icon" src="images/_Heizung_BW2.png"  alt="image not found"/>
-					</div>
-					<div>
-						<div class="room">
-							<a >Heizung Balkon</a>
-						</div>
-					</div>	
-			</div>
-			<div class="GlideButton blue" onclick="RolloB()" >
-					<div class=icon>
-						<img id="icon" src="images/_Rolladen_BW.png"  alt="image not found"/>
-					</div>
-					<div class=containe2>
-						<div class=room>
-							<a >Rolladen Balkon</a>
-						</div>
-					</div>	
-			</div>
- 		</div>
-
+	<!-- *********************** Kinderzimmer  **************************  -->
+	<subMenu id="SubMenuKZ" class="MenuKZ"></subMenu>
+ 		
+        <script>    
+             var SubMenuHzKZ = new GlideButton();
+            SubMenuHzKZ.create("SubMenuKZ","SubMenuHzKZ", "olive", "Heizung Kinderzimmer", "_Heizung_BW2.png", "MainHzKZ","", "SM" ); 
+            var SubMenuRolloKZ = new GlideButton();
+            SubMenuRolloKZ.create("SubMenuKZ","SubMenuRolloKZ", "olive", "Rolladen Kinderzimmer", "_Rolladen_BW.png", "MainRolloKZ","", "SM" ); 
+        </script>  
+        
+	<!-- ************************ Schlafzimmer  ************************  -->
+	<subMenu id="SubMenuSZ" class="MenuSZ"></subMenu>
+  		
+        <script>    
+            var SubMenuHzSZ = new GlideButton();
+            SubMenuHzSZ.create("SubMenuSZ","SubMenuHzSZ", "sandy", "Heizung Schlafzimmer", "_Heizung_BW2.png", "MainHzSZ","", "SM" ); 
+            var SubMenuRolloSZ = new GlideButton();
+            SubMenuRolloSZ.create("SubMenuSZ","SubMenuRolloSZ", "sandy", "Rolladen Schlafzimmer", "_Rolladen_BW.png", "MainRolloSZ","", "SM" ); 
+        </script>  
+        
+	<!-- ************************ Kueche  ************************  -->
+	<subMenu id="SubMenuK" class="MenuK"></subMenu>
+  		
+        <script>    
+            var SubMenuHzK = new GlideButton();
+            SubMenuHzK.create("SubMenuK","SubMenuHzK", "red", "Heizung Kueche", "_Heizung_BW2.png", "MainHzK","", "SM" ); 
+            var SubMenuRolloK = new GlideButton();
+            SubMenuRolloK.create("SubMenuK","SubMenuRolloK", "red", "Rolladen Kueche", "_Rolladen_BW.png", "MainRolloK","", "SM" ); 
+        </script> 
+        
+	<!-- ************************ Menu Balkon  ************************  -->
+	<subMenu id="SubMenuB" class="MenuB"></subMenu>
+  		
+        <script>   
+            var SubMenuHzB = new GlideButton();
+            SubMenuHzB.create("SubMenuB","SubMenuHzB", "blue", "Heizung Balkon", "_Heizung_BW2.png", "MainHzB","", "SM" ); 
+            var SubMenuRolloB = new GlideButton();
+            SubMenuRolloB.create("SubMenuB","SubMenuRolloB", "blue", "Rolladen Balkon", "_Rolladen_BW.png", "MainRolloB","", "SM" ); 
+        </script> 
+        
 		<!-- ************************ Multimedia  ************************  -->
-		<div class="MenuMultimedia">
+		<subMenu id="SubMenuMedia" class="MenuMultimedia">
                     <div class="GlideButton purple" onclick="SubMenu_TV()" >	
                                 <div>
                                         <img  class="icon" src="images/_TV_BW.png"  alt="image not found"/>
@@ -678,12 +410,12 @@ Noch so ein scheiss.
                             Denon Ceol
                         </div>
                     </div>
-		</div>		
+		</subMenu>		
 		 
 
 
 		<!-- ************************ Menue  Heizung  ************************  -->
-		<div class="MenuHz">
+		<subMenu id="SubMenuHz" class="MenuHz">
 			<div class="buttonglide" onclick="HeizungAll()" style="background:-webkit-linear-gradient(hsl(51, 100%, 25%), hsl(51, 100%, 45%));">
 					<div>
 						<img class="icon" src="images/_Heizung_BW2.png"  alt="image not found"/>
@@ -734,9 +466,9 @@ Noch so ein scheiss.
 						</div>
 					</div>	
 			</div>
- 		</div>
+ 		</subMenu>
 		<!-- ************************Menu  Rolladen  ************************  -->
-		<div class="MenuRollo">
+		<subMenu id="SubMenuRollo" class="MenuRollo">
 			<div class="GlideButton brown" onclick="RolladenAll()" >
 					<div class=icon>
 						<img id="icon" src="images/_Rolladen_BW.png"  alt="image not found"/>
@@ -787,7 +519,7 @@ Noch so ein scheiss.
 						</div>
 					</div>	
 			</div>
-			<div class="GlideButton sandy" onclick="RolloSZ()" >
+			<div class="GlideButton sandy" onclick="" >
 					<div class=icon>
 						<img id="icon" src="images/_Rolladen_BW.png"  alt="image not found"/>
 					</div>
@@ -798,7 +530,7 @@ Noch so ein scheiss.
 					</div>	
 			</div>
 
- 		</div>
+ 		</subMenu>
 
 		<div class="StartScreen">
 			<img src="images/MyHomeControl.png"  alt="image not found" style="width: 400px; padding-top:50px" />
@@ -807,7 +539,7 @@ Noch so ein scheiss.
 
 
 		<!-- ************************ Heizung Uebersicht ************************  -->
-		<div class="HeizungAll">	
+		<Main class="HeizungAll">	
 			<div class="reihe"  style="margin-right: 50px; margin-left: 50px">	
 				<div class="spalte" style="height: 45vh">
 		 			<div class="IconButton small cyan" onclick="HeizungWZAll()" style="margin-right: 40px" >
@@ -863,152 +595,220 @@ Noch so ein scheiss.
 				    </div>
 				</div>
 	 		</div>
-	 	</div>
+	 	</Main>
 
 		<!-- ************************ Heizung Wohnzimmer ************************  -->
-		<div id="Mid_HzWZ" class="HeizungWZ">	</div>
+		<Main id="MainHeizungWZ" class="HeizungWZ">	</Main>
  
    <script>
-        addVar("Mid_HzWZ", "var1", "cyan", "50px", "350px", "normal", "TempVorHzWZ1");
-        addVar("Mid_HzWZ", "var2", "cyan", "190px", "350px", "normal", "TempRueckHzWZ1");
-        addVar("Mid_HzWZ", "var3", "cyan", "20px", "100px", "normal", "TempHzWZ1");
-        addVar("Mid_HzWZ", "var4", "cyan", "20px", "200px", "normal", "PosHzWZ1");
-        addImage("Mid_HzWZ", "iconHzWZ1", "images/heizkoerper_blau.png","40px", "70px", "wide");
-        addTitle("Mid_HzWZ", "240px", "120px", "18px", "white", "Mode");
-        addCtrlButton("Mid_HzWZ", "btnHzWZauto", "300px", "50px", "normal", "cyan", "Automatik", "send('command(Heizung,WZ,auto)') ");
-        addCtrlButton("Mid_HzWZ", "btnHzWZman", "360px", "50px", "normal", "cyan", "Manual", "send('command(Heizung,WZ,man)') ");
-        addCtrlButton("Mid_HzWZ", "btn3", "420px", "50px", "normal", "cyan", "Urlaub", "send('command(Heizung,WZ,urlaub)') ");
-        addCtrlButton("Mid_HzWZ", "btn4", "480px", "50px", "normal", "cyan", "Party", "send('command(Heizung,WZ,party)') ");
-        addTitle("Mid_HzWZ", "240px", "400px", "18px", "white", "Presets");
-        addCtrlButton("Mid_HzWZ", "btn5", "300px", "350px", "normal", "cyan", "Heizen", "{send('command(Heizung,WZ,heizen)'); document.getElementById('AdjTempHzWZ1').innerHTML='22.5';} ");
-        addCtrlButton("Mid_HzWZ", "btn6", "360px", "350px", "normal", "cyan", "Absenken", "{send('command(Heizung,WZ,absenken)'); document.getElementById('AdjTempHzWZ1').innerHTML='16.0';}");
-        addCtrlButton("Mid_HzWZ", "btn7", "420px", "350px", "normal", "cyan", "Aus", "{send('command(Heizung,WZ,aus)'); document.getElementById('AdjTempHzWZ1').innerHTML='6.0';} ");
-        addCtrlButton("Mid_HzWZ", "btn8", "480px", "350px", "normal", "cyan", "Auf", "{send('command(Heizung,WZ,auf)'); document.getElementById('AdjTempHzWZ1').innerHTML='30.0';}");
+ 
+        
+        MainTempVHzWZ = Object.create(VarDisplay);
+        MainTempVHzWZ.create("MainHeizungWZ", "TempVorHzWZ1", "cyan","50px", "350px", "normal", "°C");
+        MainTempRHzWZ = Object.create(VarDisplay);
+        MainTempRHzWZ.create("MainHeizungWZ", "TempRueckHzWZ1", "cyan", "190px", "350px", "normal", "°C");
+        
+        MainTempHzWZ = Object.create(VarDisplay);
+        MainTempHzWZ.create("MainHeizungWZ", "TempHzWZ1", "cyan","20px", "100px", "normal", "°C");
+        MainPosHzWZ = Object.create(VarDisplay);
+        MainPosHzWZ.create("MainHeizungWZ", "PosHzWZ1", "cyan","20px", "200px", "normal", "%");
+        
+ 
+        var iHzWZ = new Image("iconHzWZ1","heizkoerper","bin");
+        iHzWZ.create("MainHeizungWZ", "40px", "70px", "wide"); 
+        addTitle("MainHeizungWZ", "240px", "120px", "18px", "white", "Mode");
+        addCtrlButton("MainHeizungWZ", "btnHzWZauto", "300px", "50px", "normal", "cyan", "Automatik", "send('command(Heizung,WZ,auto)') ");
+        addCtrlButton("MainHeizungWZ", "btnHzWZman", "360px", "50px", "normal", "cyan", "Manual", "send('command(Heizung,WZ,man)') ");
+        addCtrlButton("MainHeizungWZ", "btn3", "420px", "50px", "normal", "cyan", "Urlaub", "send('command(Heizung,WZ,urlaub)') ");
+        addCtrlButton("MainHeizungWZ", "btn4", "480px", "50px", "normal", "cyan", "Party", "send('command(Heizung,WZ,party)') ");
+        addTitle("MainHeizungWZ", "240px", "400px", "18px", "white", "Presets");
+        addCtrlButton("MainHeizungWZ", "btn5", "300px", "350px", "normal", "cyan", "Heizen", "{send('command(Heizung,WZ,heizen)'); document.getElementById('AdjTempHzWZ1').innerHTML='22.5';} ");
+        addCtrlButton("MainHeizungWZ", "btn6", "360px", "350px", "normal", "cyan", "Absenken", "{send('command(Heizung,WZ,absenken)'); document.getElementById('AdjTempHzWZ1').innerHTML='16.0';}");
+        addCtrlButton("MainHeizungWZ", "btn7", "420px", "350px", "normal", "cyan", "Aus", "{send('command(Heizung,WZ,aus)'); document.getElementById('AdjTempHzWZ1').innerHTML='6.0';} ");
+        addCtrlButton("MainHeizungWZ", "btn8", "480px", "350px", "normal", "cyan", "Auf", "{send('command(Heizung,WZ,auf)'); document.getElementById('AdjTempHzWZ1').innerHTML='30.0';}");
   </script>
  		
  
 		<!-- ************************ Heizung Ctrl Wohnzimmer ************************  -->
 
-		<div id="ctrl_HzWZ"  class="HeizungCtrlWZ"></div>
+		<Ctrl id="MainHeizungWZCtrl"  class="HeizungCtrlWZ"></Ctrl>
 
                 
    <script>
-       addStatus("ctrl_HzWZ", "BatHzWZ1", "cyan", "5px", "30px", "Battery");      
-       addTempCtrl("ctrl_HzWZ", "TempCtrl1", "cyan", "260px", "30px", "Soll Temperatur", "AdjTempHzWZ1", "SollTempAusHzWZ1", "SollTempHzWZ1", "sollTempWZ");
-       addDisplay("ctrl_HzWZ", "ModeHzWZ1", "cyan", "50px", "30px", "Mode");
-       addDisplay("ctrl_HzWZ", "TempHzWZ2", "cyan", "120px", "30px",  "Temperatur");
-       addDisplay("ctrl_HzWZ", "PosHzWZ2", "cyan", "190px", "30px", "Position");
+       addStatus("MainHeizungWZCtrl", "BatHzWZ1", "cyan", "5px", "30px", "Battery");      
+       addTempCtrl("MainHeizungWZCtrl", "TempCtrl1", "cyan", "260px", "30px", "Soll Temperatur", "AdjTempHzWZ1", "SollTempAusHzWZ1", "SollTempHzWZ1", "sollTempWZ");
+        
+        
+        DisModeHzWZ=Object.create(Display);
+        DisModeHzWZ.create("MainHeizungWZCtrl", "ModeHzWZ1", "cyan", "", "50px", "30px", "Mode", "Auto", "Man", "Urlaub", "Party", "");
+         DisTempHzWZ=Object.create(Display);
+        DisTempHzWZ.create("MainHeizungWZCtrl", "TempHzWZ2", "cyan", "°C", "120px", "30px",  "Temperatur", "", "", "", "", "");
+ 
+        DisPosHzWZ=Object.create(Display);
+        DisPosHzWZ.create("MainHeizungWZCtrl", "PosHzK2", "cyan", "%", "190px", "30px", "Position", "", "", "", "", "");
+        
+  
 
   </script>
 		
 
 		<!-- ************************ Heizung Kinderzimmer ************************  -->
-		<div id="Mid_HzKZ"  class="HeizungKZ">	
+		<Main id="MainHzKZ"  class="HeizungKZ">	
 
- 		</div>
+ 		</Main>
    <script>
-        addVar("Mid_HzKZ", "var5", "olive", "50px", "350px", "normal", "TempVorHzKZ1");
-        addVar("Mid_HzKZ", "var6", "olive", "190px", "350px", "normal", "TempRueckHzKZ1");
-        addVar("Mid_HzKZ", "var7", "olive", "20px", "100px", "normal", "TempHzKZ1");
-        addVar("Mid_HzKZ", "var8", "olive", "20px", "200px", "normal", "PosHzKZ1");
-        addImage("Mid_HzKZ", "iconHzKZ1", "images/heizkoerper_blau.png","40px", "70px", "wide");
-        addTitle("Mid_HzKZ", "240px", "120px", "18px", "white", "Mode");
-        addCtrlButton("Mid_HzKZ", "btn9", "300px", "50px", "normal", "olive", "Automatik", "send('command(Heizung,KZ,auto)') ");
-        addCtrlButton("Mid_HzKZ", "btn10", "360px", "50px", "normal", "olive", "Manual", "send('command(Heizung,KZ,man)') ");
-        addCtrlButton("Mid_HzKZ", "btn11", "420px", "50px", "normal", "olive", "Urlaub", "send('command(Heizung,KZ,urlaub)') ");
-        addCtrlButton("Mid_HzKZ", "btn12", "480px", "50px", "normal", "olive", "Party", "send('command(Heizung,KZ,party)') ");
-        addTitle("Mid_HzKZ", "240px", "400px", "18px", "white", "Presets");
-        addCtrlButton("Mid_HzKZ", "btn13", "300px", "350px", "normal", "olive", "Heizen", "{send('command(Heizung,KZ,heizen)'); document.getElementById('AdjTempHzKZ1').innerHTML='22.5';} ");
-        addCtrlButton("Mid_HzKZ", "btn14", "360px", "350px", "normal", "olive", "Absenken", "{send('command(Heizung,KZ,absenken)');  document.getElementById('AdjTempHzKZ1').innerHTML='16.0';} ");
-        addCtrlButton("Mid_HzKZ", "btn15", "420px", "350px", "normal", "olive", "Aus", "{send('command(Heizung,KZ,aus)'); document.getElementById('AdjTempHzKZ1').innerHTML='6.0';} ");
-        addCtrlButton("Mid_HzKZ", "btn16", "480px", "350px", "normal", "olive", "Auf", "{send('command(Heizung,KZ,auf)'); document.getElementById('AdjTempHzKZ1').innerHTML='30.0';}");
+ 
+        
+        
+        MainTempVHzKZ = Object.create(VarDisplay);
+        MainTempVHzKZ.create("MainHzKZ", "TempVorHzKZ1", "olive", "50px", "350px", "normal", "°C");
+        MainTempRHzKZ = Object.create(VarDisplay);
+        MainTempRHzKZ.create("MainHzKZ", "TempRueckHzKZ1", "olive", "190px", "350px", "normal", "°C");
+
+        MainTempHzKZ = Object.create(VarDisplay);
+        MainTempHzKZ.create("MainHzKZ", "TempHzKZ1", "olive","20px", "100px", "normal", "°C");
+        MainPosHzKZ = Object.create(VarDisplay);
+        MainPosHzKZ.create("MainHzKZ", "PosHzKZ1", "olive","20px", "200px", "normal", "%");        
+        
+        var iHzKZ = new Image("iconHzKZ1","heizkoerper","bin");
+        iHzKZ.create("MainHzKZ", "40px", "70px", "wide"); 
+        addTitle("MainHzKZ", "240px", "120px", "18px", "white", "Mode");
+        addCtrlButton("MainHzKZ", "btn9", "300px", "50px", "normal", "olive", "Automatik", "send('command(Heizung,KZ,auto)') ");
+        addCtrlButton("MainHzKZ", "btn10", "360px", "50px", "normal", "olive", "Manual", "send('command(Heizung,KZ,man)') ");
+        addCtrlButton("MainHzKZ", "btn11", "420px", "50px", "normal", "olive", "Urlaub", "send('command(Heizung,KZ,urlaub)') ");
+        addCtrlButton("MainHzKZ", "btn12", "480px", "50px", "normal", "olive", "Party", "send('command(Heizung,KZ,party)') ");
+        addTitle("MainHzKZ", "240px", "400px", "18px", "white", "Presets");
+        addCtrlButton("MainHzKZ", "btn13", "300px", "350px", "normal", "olive", "Heizen", "{send('command(Heizung,KZ,heizen)'); document.getElementById('AdjTempHzKZ1').innerHTML='22.5';} ");
+        addCtrlButton("MainHzKZ", "btn14", "360px", "350px", "normal", "olive", "Absenken", "{send('command(Heizung,KZ,absenken)');  document.getElementById('AdjTempHzKZ1').innerHTML='16.0';} ");
+        addCtrlButton("MainHzKZ", "btn15", "420px", "350px", "normal", "olive", "Aus", "{send('command(Heizung,KZ,aus)'); document.getElementById('AdjTempHzKZ1').innerHTML='6.0';} ");
+        addCtrlButton("MainHzKZ", "btn16", "480px", "350px", "normal", "olive", "Auf", "{send('command(Heizung,KZ,auf)'); document.getElementById('AdjTempHzKZ1').innerHTML='30.0';}");
   </script>
 		<!-- ************************ Heizung Ctrl Kinderzimmer ************************ -->
 
-		<div id="ctrl_HzKZ" class="HeizungCtrlKZ"></div>
+		<Ctrl id="MainHzKZCtrl"  class="HeizungCtrlKZ"></Ctrl>
 		
 
    <script>
-       addStatus("ctrl_HzKZ", "BatHzKZ1", "olive", "5px", "30px", "Battery");      
-       addTempCtrl("ctrl_HzKZ", "TempCtrl2", "olive", "260px", "30px", "Soll Temperatur", "AdjTempHzKZ1", "SollTempAusHzKZ1", "SollTempHzKZ1", "sollTempKZ");
-       addDisplay("ctrl_HzKZ", "ModeHzKZ1", "olive", "50px", "30px", "Mode");
-       addDisplay("ctrl_HzKZ", "TempHzKZ2", "olive", "120px", "30px",  "Temperatur");
-       addDisplay("ctrl_HzKZ", "PosHzKZ2", "olive", "190px", "30px", "Position");
+       addStatus("MainHzKZCtrl", "BatHzKZ1", "olive", "5px", "30px", "Battery");      
+       addTempCtrl("MainHzKZCtrl", "TempCtrl2", "olive", "260px", "30px", "Soll Temperatur", "AdjTempHzKZ1", "SollTempAusHzKZ1", "SollTempHzKZ1", "sollTempKZ");
+        DisModeHzKZ=Object.create(Display);
+        DisModeHzKZ.create("MainHzKZCtrl", "ModeHzKZ1", "olive", "", "50px", "30px", "Mode", "Auto", "Man", "Urlaub", "Party", "");
+        
+        DisTempHzKZ=Object.create(Display);
+        DisTempHzKZ.create("MainHzKZCtrl", "TempHzKZ2", "olive", "°C", "120px", "30px",  "Temperatur", "", "", "", "", "");
+ 
+        DisPosHzKZ=Object.create(Display);
+        DisPosHzKZ.create("MainHzKZCtrl", "PosHzKZ2", "olive", "%", "190px", "30px", "Position", "", "", "", "", "");
+ 
+ 
 
   </script>
 		<!-- ************************ Heizung Schlafzimmer ************************  -->
-		<div id="Mid_HzSZ"   class="HeizungSZ">	</div>
+		<Main id="MainHzSZ"   class="HeizungSZ">	</Main>
                 
    <script>
-        addVar("Mid_HzSZ", "var9", "sandy", "50px", "350px", "normal", "TempVorHzSZ1");
-        addVar("Mid_HzSZ", "var10", "sandy", "190px", "350px", "normal", "TempRueckHzSZ1");
-        addVar("Mid_HzSZ", "var11", "sandy", "20px", "100px", "normal", "TempHzSZ1");
-        addVar("Mid_HzSZ", "var12", "sandy", "20px", "200px", "normal", "PosHzSZ1");
-        addImage("Mid_HzSZ", "iconHzSZ1", "images/heizkoerper_blau.png","40px", "70px", "wide");
-        addTitle("Mid_HzSZ", "240px", "120px", "18px", "white", "Mode");
-        addCtrlButton("Mid_HzSZ", "btn17", "300px", "50px", "normal", "sandy", "Automatik", "send('command(Heizung,SZ,auto)') ");
-        addCtrlButton("Mid_HzSZ", "btn18", "360px", "50px", "normal", "sandy", "Manual", "send('command(Heizung,SZ,man)') ");
-        addCtrlButton("Mid_HzSZ", "btn19", "420px", "50px", "normal", "sandy", "Urlaub", "send('command(Heizung,SZ,urlaub)') ");
-        addCtrlButton("Mid_HzSZ", "btn20", "480px", "50px", "normal", "sandy", "Party", "send('command(Heizung,SZ,party)') ");
-        addTitle("Mid_HzSZ", "240px", "400px", "18px", "white", "Presets");
-        addCtrlButton("Mid_HzSZ", "btn21", "300px", "350px", "normal", "sandy", "Heizen", "{send('command(Heizung,SZ,heizen)'); document.getElementById('AdjTempHzSZ1').innerHTML='22.5';} ");
-        addCtrlButton("Mid_HzSZ", "btn22", "360px", "350px", "normal", "sandy", "Absenken", "{send('command(Heizung,SZ,absenken)'); document.getElementById('AdjTempHzSZ1').innerHTML='16.0';} ");
-        addCtrlButton("Mid_HzSZ", "btn23", "420px", "350px", "normal", "sandy", "Aus", "{send('command(Heizung,SZ,aus)'); document.getElementById('AdjTempHzSZ1').innerHTML='6.0';} ");
-        addCtrlButton("Mid_HzSZ", "btn24", "480px", "350px", "normal", "sandy", "Auf", "{send('command(Heizung,SZ,auf)'); document.getElementById('AdjTempHzSZ1').innerHTML='30.0';}");
+ 
+        
+        MainTempVHzSZ = Object.create(VarDisplay);
+        MainTempVHzSZ.create("MainHzSZ", "TempVorHzSZ1", "sandy", "50px", "350px", "normal", "°C");
+        MainTempRHzSZ = Object.create(VarDisplay);
+        MainTempRHzSZ.create("MainHzSZ", "TempRueckHzSZ1", "sandy", "190px", "350px", "normal", "°C");
+
+        MainTempHzSZ = Object.create(VarDisplay);
+        MainTempHzSZ.create("MainHzSZ", "TempHzSZ1", "sandy","20px", "100px", "normal", "°C");
+        MainPosHzSZ = Object.create(VarDisplay);
+        MainPosHzSZ.create("MainHzSZ", "PosHzSZ1", "sandy","20px", "200px", "normal", "%");     
+        
+        var iHzSZ = new Image("iconHzSZ1","heizkoerper","bin");
+        iHzSZ.create("MainHzSZ", "40px", "70px", "wide"); 
+        addTitle("MainHzSZ", "240px", "120px", "18px", "white", "Mode");
+        addCtrlButton("MainHzSZ", "btn17", "300px", "50px", "normal", "sandy", "Automatik", "send('command(Heizung,SZ,auto)') ");
+        addCtrlButton("MainHzSZ", "btn18", "360px", "50px", "normal", "sandy", "Manual", "send('command(Heizung,SZ,man)') ");
+        addCtrlButton("MainHzSZ", "btn19", "420px", "50px", "normal", "sandy", "Urlaub", "send('command(Heizung,SZ,urlaub)') ");
+        addCtrlButton("MainHzSZ", "btn20", "480px", "50px", "normal", "sandy", "Party", "send('command(Heizung,SZ,party)') ");
+        addTitle("MainHzSZ", "240px", "400px", "18px", "white", "Presets");
+        addCtrlButton("MainHzSZ", "btn21", "300px", "350px", "normal", "sandy", "Heizen", "{send('command(Heizung,SZ,heizen)'); document.getElementById('AdjTempHzSZ1').innerHTML='22.5';} ");
+        addCtrlButton("MainHzSZ", "btn22", "360px", "350px", "normal", "sandy", "Absenken", "{send('command(Heizung,SZ,absenken)'); document.getElementById('AdjTempHzSZ1').innerHTML='16.0';} ");
+        addCtrlButton("MainHzSZ", "btn23", "420px", "350px", "normal", "sandy", "Aus", "{send('command(Heizung,SZ,aus)'); document.getElementById('AdjTempHzSZ1').innerHTML='6.0';} ");
+        addCtrlButton("MainHzSZ", "btn24", "480px", "350px", "normal", "sandy", "Auf", "{send('command(Heizung,SZ,auf)'); document.getElementById('AdjTempHzSZ1').innerHTML='30.0';}");
   </script>
 		<!-- ************************ Heizung Ctrl Schlafzimmer ************************  -->
-		<div id="ctrl_HzSZ" class="HeizungCtrlSZ">  </div>
+		<Ctrl id="MainHzSZCtrl" class="HeizungCtrlSZ">  </Ctrl>
 
    <script>
-       addStatus("ctrl_HzSZ", "BatHzSZ1", "sandy", "5px", "30px", "Battery");      
-       addTempCtrl("ctrl_HzSZ", "TempCtrl3", "sandy", "260px", "30px", "Soll Temperatur", "AdjTempHzSZ1", "SollTempAusHzSZ1", "SollTempHzSZ1", "sollTempSZ");
-       addDisplay("ctrl_HzSZ", "ModeHzSZ1", "sandy", "50px", "30px", "Mode");
-       addDisplay("ctrl_HzSZ", "TempHzSZ2", "sandy", "120px", "30px",  "Temperatur");
-       addDisplay("ctrl_HzSZ", "PosHzSZ2", "sandy", "190px", "30px", "Position");
+       addStatus("MainHzSZCtrl", "BatHzSZ1", "sandy", "5px", "30px", "Battery");      
+       addTempCtrl("MainHzSZCtrl", "TempCtrl3", "sandy", "260px", "30px", "Soll Temperatur", "AdjTempHzSZ1", "SollTempAusHzSZ1", "SollTempHzSZ1", "sollTempSZ");
+        DisModeHzSZ=Object.create(Display);
+        DisModeHzSZ.create("MainHzSZCtrl", "ModeHzSZ1", "sandy", "", "50px", "30px", "Mode", "Auto", "Man", "Urlaub", "Party", "");
+        
+        DisTempHzSZ=Object.create(Display);
+        DisTempHzSZ.create("MainHzSZCtrl", "TempHzSZ2", "sandy", "°C", "120px", "30px",  "Temperatur", "", "", "", "", "");
+ 
+        DisPosHzSZ=Object.create(Display);
+        DisPosHzSZ.create("MainHzSZCtrl", "PosHzSZ2", "sandy", "%", "190px", "30px", "Position", "", "", "", "", "");
+        
+
 
   </script>
 
 		<!-- ************************ Heizung Kueche ************************ -->
-		<div id="Mid_HzK"   class="HeizungK">   </div>	
+		<Main  id="MainHzK"   class="HeizungK">   </Main>	
 
 
  	 
    <script>
-        addVar("Mid_HzK", "var13", "red", "50px", "350px", "normal", "TempVorHzK1");
-        addVar("Mid_HzK", "var14", "red", "190px", "350px", "normal", "TempRueckHzK1");
-        addVar("Mid_HzK", "var15", "red", "20px", "100px", "normal", "TempHzK1");
-        addVar("Mid_HzK", "var16", "red", "20px", "200px", "normal", "PosHzK1");
-        addImage("Mid_HzK", "iconHzK1", "images/heizkoerper_blau.png","40px", "70px", "wide");
-        addTitle("Mid_HzK", "240px", "120px", "18px", "white", "Mode");
-        addCtrlButton("Mid_HzK", "btnHzKauto", "300px", "50px", "normal", "red", "Automatik", "send('command(Heizung,K,auto)') ");
-        addCtrlButton("Mid_HzK", "btn26", "360px", "50px", "normal", "red", "Manual", "send('command(Heizung,K,man)') ");
-        addCtrlButton("Mid_HzK", "btn27", "420px", "50px", "normal", "red", "Urlaub", "send('command(Heizung,K,urlaub)') ");
-        addCtrlButton("Mid_HzK", "btn28", "480px", "50px", "normal", "red", "Party", "send('command(Heizung,K,party)') ");
-        addTitle("Mid_HzK", "240px", "400px", "18px", "white", "Presets");
-        addCtrlButton("Mid_HzK", "btn29", "300px", "350px", "normal", "red", "Heizen", "{send('command(Heizung,K,heizen)'); document.getElementById('AdjTempHzK1').innerHTML='22.5';} ");
-        addCtrlButton("Mid_HzK", "btn30", "360px", "350px", "normal", "red", "Absenken", "{send('command(Heizung,K,absenken)'); document.getElementById('AdjTempHzK1').innerHTML='16.0';} ");
-        addCtrlButton("Mid_HzK", "btn31", "420px", "350px", "normal", "red", "Aus", "{send('command(Heizung,K,aus)'); document.getElementById('AdjTempHzK1').innerHTML='6.0';} ");
-        addCtrlButton("Mid_HzK", "btn32", "480px", "350px", "normal", "red", "Auf", "{send('command(Heizung,K,auf)'); document.getElementById('AdjTempHzK1').innerHTML='30.0';}");
+ 
+        
+        MainTempVHzK = Object.create(VarDisplay);
+        MainTempVHzK.create("MainHzK", "TempVorHzK1", "red", "50px", "350px", "normal", "°C");
+        MainTempRHzK = Object.create(VarDisplay);
+        MainTempRHzK.create("MainHzK", "TempRueckHzK1", "red", "190px", "350px", "normal", "°C");
+
+        MainTempHzK = Object.create(VarDisplay);
+        MainTempHzK.create("MainHzK", "TempHzK1", "red","20px", "100px", "normal", "°C");
+        MainPosHzK = Object.create(VarDisplay);
+        MainPosHzK.create("MainHzK", "PosHzK1", "red","20px", "200px", "normal", "%");
+        
+        var iHzK = new Image("iconHzK1","heizkoerper","bin");
+        iHzK.create("MainHzK", "40px", "70px", "wide");
+        addTitle("MainHzK", "240px", "120px", "18px", "white", "Mode");
+        addCtrlButton("MainHzK", "btnHzKauto", "300px", "50px", "normal", "red", "Automatik", "send('command(Heizung,K,auto)') ");
+        addCtrlButton("MainHzK", "btn26", "360px", "50px", "normal", "red", "Manual", "send('command(Heizung,K,man)') ");
+        addCtrlButton("MainHzK", "btn27", "420px", "50px", "normal", "red", "Urlaub", "send('command(Heizung,K,urlaub)') ");
+        addCtrlButton("MainHzK", "btn28", "480px", "50px", "normal", "red", "Party", "send('command(Heizung,K,party)') ");
+        addTitle("MainHzK", "240px", "400px", "18px", "white", "Presets");
+        addCtrlButton("MainHzK", "btn29", "300px", "350px", "normal", "red", "Heizen", "{send('command(Heizung,K,heizen)'); document.getElementById('AdjTempHzK1').innerHTML='22.5';} ");
+        addCtrlButton("MainHzK", "btn30", "360px", "350px", "normal", "red", "Absenken", "{send('command(Heizung,K,absenken)'); document.getElementById('AdjTempHzK1').innerHTML='16.0';} ");
+        addCtrlButton("MainHzK", "btn31", "420px", "350px", "normal", "red", "Aus", "{send('command(Heizung,K,aus)'); document.getElementById('AdjTempHzK1').innerHTML='6.0';} ");
+        addCtrlButton("MainHzK", "btn32", "480px", "350px", "normal", "red", "Auf", "{send('command(Heizung,K,auf)'); document.getElementById('AdjTempHzK1').innerHTML='30.0';}");
   </script>
 		<!-- ************************ Heizung Ctrl Kueche ************************  -->
-		<div id="ctrl_HzK"  class="HeizungCtrlK">
+		<Ctrl  id="MainHzKCtrl"  class="HeizungCtrlK">
 
-		</div>
+		</Ctrl>
    <script>
-       addStatus("ctrl_HzK", "BatHzK1", "red", "5px", "30px", "Battery");      
-       addTempCtrl("ctrl_HzK", "TempCtrl4", "red", "260px", "30px", "Soll Temperatur", "AdjTempHzK1", "SollTempAusHzK1", "SollTempHzK1", "sollTempK");
-       addDisplay("ctrl_HzK", "ModeHzK1", "red", "50px", "30px", "Mode");
-       addDisplay("ctrl_HzK", "TempHzK2", "red", "120px", "30px",  "Temperatur");
-       addDisplay("ctrl_HzK", "PosHzK2", "red", "190px", "30px", "Position");
+       addStatus("MainHzKCtrl", "BatHzK1", "red", "5px", "30px", "Battery");      
+       addTempCtrl("MainHzKCtrl", "TempCtrl4", "red", "260px", "30px", "Soll Temperatur", "AdjTempHzK1", "SollTempAusHzK1", "SollTempHzK1", "sollTempK");
+        DisModeHzK = Object.create(Display);
+        DisModeHzK.create("MainHzKCtrl", "ModeHzK1", "red", "", "50px", "30px", "Mode", "Auto", "Man", "Urlaub", "Party", "");
+        
+         DisTempHzK=Object.create(Display);
+        DisTempHzK.create("MainHzKCtrl", "TempHzK2", "red", "°C", "120px", "30px",  "Temperatur", "", "", "", "", "");
+ 
+        DisPosHzK=Object.create(Display);
+        DisPosHzK.create("MainHzKCtrl", "PosHzK2", "red", "%", "190px", "30px", "Position", "", "", "", "", "");
+ 
+     
 
   </script>
 		<!-- ************************ Rolladen  Wohnzimmer ************************ -->
-		<div id="MainRolloWZ"   class="RolloWZ"> </div>
+		<Main id="MainRolloWZ"   class="RolloWZ"> </Main>
  		
                 
-    <script>      
-        addImage("MainRolloWZ", "imageRolloWZ1", "images/rollo0.png", "30px", "170px", "normal");
-        addTitle("MainRolloWZ", "210px", "100px", "18px", "white", "Presets");
+    <script>     
+        var iRolloWZ = new Image("imageRolloWZ1","rollo","ana");
+        iRolloWZ.create("MainRolloWZ", "30px", "170px", "normal"); 
+        addTitle("MainRolloWZ", "200px", "100px", "18px", "white", "Presets");
         addCtrlButton("MainRolloWZ", "btn33", "260px", "50px", "normal", "cyan", "Automatik", "send('command(Rollo,WZ,Auto)') ");
         addCtrlButton("MainRolloWZ", "btn34", "320px", "50px", "normal", "cyan", "Manual", "send('command(Rollo,WZ,Man)') ");     
         addCtrlButton("MainRolloWZ", "btn35", "380px", "50px", "normal", "cyan", "75%", "send('command(Rollo,WZ,dark)') ");
@@ -1022,28 +822,32 @@ Noch so ein scheiss.
         addCtrlButton("MainRolloWZ", "btn42", "500px", "350px", "normal", "cyan", "Step Down", "send('command(Rollo,WZ,StepDown)') ");
     </script>
  		<!-- ************************ Rolladen  BalkonTuer ************************  -->
-		<div id="MainRolloB"  class="RolloB">	</div>
+		<Main id="MainRolloB"  class="RolloB">	</Main>
 
-     <script>      
-        addImage("MainRolloB", "imageRolloWZ1", "images/rollo0.png", "30px", "170px", "normal");
-        addTitle("MainRolloB", "210px", "100px", "18px", "white", "Presets");
+     <script>    
+        var iRolloB = new Image("imageRolloB1","rollo","ana");
+        iRolloB.create("MainRolloB", "30px", "170px", "normal");   
+        addTitle("MainRolloB", "200px", "100px", "24px", "white", "Presets");
         addCtrlButton("MainRolloB", "btn73", "260px", "50px", "normal", "blue", "Automatik", "send('command(Rollo,B,Auto)') ");
         addCtrlButton("MainRolloB", "btn74", "320px", "50px", "normal", "blue", "Manual", "send('command(Rollo,B,Man)') ");     
         addCtrlButton("MainRolloB", "btn75", "380px", "50px", "normal", "blue", "75%", "send('command(Rollo,B,dark)') ");
         addCtrlButton("MainRolloB", "btn76", "440px", "50px", "normal", "blue", "50%", "send('command(Rollo,B,mid)') ");
         addCtrlButton("MainRolloB", "btn77", "500px", "50px", "normal", "blue", "25%", "send('command(Rollo,B,bright)') ");
-        addTitle("MainRolloB", "210px", "400px", "18px", "white", "Control");
+        addTitle("MainRolloB", "200px", "400px", "24px", "white", "Control");
         addCtrlButton("MainRolloB", "btn78", "260px", "350px", "normal", "blue", "Hoch", "send('command(Rollo,B,up)') ");
         addCtrlButton("MainRolloB", "btn79", "320px", "350px", "normal", "blue", "Stop", "send('command(Rollo,B,stop)') ");     
         addCtrlButton("MainRolloB", "btn80", "380px", "350px", "normal", "blue", "Runter", "send('command(Rollo,B,down)') ");
         addCtrlButton("MainRolloB", "btn81", "440px", "350px", "normal", "blue", "Step Up", "send('command(Rollo,B,StepUp)') ");
         addCtrlButton("MainRolloB", "btn82", "500px", "350px", "normal", "blue", "Step Down", "send('command(Rollo,B,StepDown)') ");
+        
+
     </script>
  		<!-- ************************ Rolladen  Kinderzimmer ************************  -->
-		<div id="MainRolloKZ"  class="RolloKZ">	</div>
+		<Main id="MainRolloKZ"  class="RolloKZ">	</Main>
 
     <script>      
-        addImage("MainRolloKZ", "imageRolloKZ1", "images/rollo0.png", "30px", "170px", "normal");
+        var iRolloKZ = new Image("imageRolloKZ1","rollo","ana");
+        iRolloKZ.create("MainRolloKZ", "30px", "170px", "normal","ana");         
         addTitle("MainRolloKZ", "210px", "100px", "18px", "white", "Presets");
         addCtrlButton("MainRolloKZ", "btn43", "260px", "50px", "normal", "olive", "Automatik", "send('command(Rollo,KZ,Auto)') ");
         addCtrlButton("MainRolloKZ", "btn44", "320px", "50px", "normal", "olive", "Manual", "send('command(Rollo,KZ,Man)') ");     
@@ -1058,10 +862,11 @@ Noch so ein scheiss.
         addCtrlButton("MainRolloKZ", "btn52", "500px", "350px", "normal", "olive", "Step Down", "send('command(Rollo,KZ,StepDown)') ");
     </script>
  		<!-- ************************ Rolladen  Kueche ************************ -->
-		<div id="MainRolloK"  class="RolloK">	</div>
+		<Main id="MainRolloK"  class="RolloK">	</Main>
  		
-    <script>      
-        addImage("MainRolloK", "imageRolloK1", "images/rollo0.png", "30px", "170px", "normal");
+    <script>     
+        var iRolloK = new Image("imageRolloK1","rollo","ana");
+        iRolloK.create("MainRolloK", "30px", "170px", "normal","ana");    
         addTitle("MainRolloK", "210px", "100px", "18px", "white", "Presets");
         addCtrlButton("MainRolloK", "btn53", "260px", "50px", "normal", "red", "Automatik", "send('command(Rollo,K,Auto)') ");
         addCtrlButton("MainRolloK", "btn54", "320px", "50px", "normal", "red", "Manual", "send('command(Rollo,K,Man)') ");     
@@ -1076,35 +881,50 @@ Noch so ein scheiss.
         addCtrlButton("MainRolloK", "btn62", "500px", "350px", "normal", "red", "Step Down", "send('command(Rollo,K,StepDown)') ");
     </script>
 
- 
+        <!-- ***********************************************************************************      -->
+	<!--  ************************          INDEX S - Security    ************************      -->   
+        <!-- ***********************************************************************************      -->
+		<Main id ="MainSecCode" class="SecurityCode"></Main>
+		
+   <script>
+            var MainSecKey = new KeyFrame();
+            MainSecKey.create("MainSecCode", "KeyCode", "grey", "10px" , "20px" );  
+   </script>
+   
         <!-- ***********************************************************************************      -->
 	<!--  ************************          INDEX E - Floorplan    ************************      -->   
         <!-- ***********************************************************************************      -->
-		<div class="floorplan">
-                    <div id="tempK_E" class='Wert' style="  top:320px; left:15%  " >---°C</div>
-                    <div id="tempWZ_E" class='Wert' style="  top:320px; left:60%  ">---°C</div>
-                    <div id="tempSZ_E" class='Wert' style="  top:150px; left:20%  ">---°C</div>
-                    <div id="tempKZ_E" class='Wert' style="  top:100px; left:65%  " >---°C</div>
-
-
-                    <div id="FeuchteSZ_E" class='Wert' style="  top:20px; left:10%  ">---%</div>
-                    <div id="FeuchteKZ_E" class='Wert' style="  top:10px; left:70%  " >---%</div>
-
-                    <div id="humanD_E" class='Wert1' style="  top:340px; left:17%  " ></div>
-                    <div id="humanTimeD_E" class='Wert1' style="  top:350px; left:17%  " ></div>
-
-                    <div id="door_E" class='Wert' style="  top:400px; left:25%  " ></div>
-                    <div id="humanDoor_E" class='Wert1' style="  top:380px; left:37%  " ></div>
-
-		</div>
+		<Main id ="Grundriss" class="floorplan"></Main>
 		
-
-
+   <script>
+        VarDisTempK_E = Object.create(VarDisplay);
+        VarDisTempK_E.create("Grundriss", "tempK_E", "cyan","55vh", "15vw", "normal", "°C");
+        VarDisTempWZ_E = Object.create(VarDisplay);
+        VarDisTempWZ_E.create("Grundriss", "tempWZ_E", "cyan","60vH", "60vw", "normal", "°C");        
+        VarDisTempSZ_E = Object.create(VarDisplay);
+        VarDisTempSZ_E.create("Grundriss", "tempSZ_E", "cyan","150px", "20vw", "normal", "°C");
+        VarDisTempKZ_E = Object.create(VarDisplay);
+        VarDisTempKZ_E.create("Grundriss", "tempKZ_E", "cyan","100px", "65vw", "normal", "°C"); 
+    
+        VarDisHumidSZ_E = Object.create(VarDisplay);
+        VarDisHumidSZ_E.create("Grundriss", "FeuchteSZ_E", "cyan","70px", "9vw", "normal", "%");
+        VarDisHumidKZ_E = Object.create(VarDisplay);
+        VarDisHumidKZ_E.create("Grundriss", "FeuchteKZ_E", "cyan","70px", "65vw", "normal", "%");        
+ 
+        VarDisTempOutside = Object.create(VarDisplay);
+        VarDisTempOutside.create("Grundriss", "TempOut", "cyan","10vh", "80vw", "normal", "°C");
+        VarDisHumOutside = Object.create(VarDisplay);
+        VarDisHumOutside.create("Grundriss", "HumidOut", "cyan","15vH", "80vw", "normal", "%");
+        
+        VarDisMainDoor = Object.create(VarDisplay);
+        VarDisMainDoor.create("Grundriss", "door_E", "cyan","90vh", "24vw", "normal", "", "close", "open");
+   </script>
+   
         <!-- ***********************************************************************************      -->
 	<!--  ************************          INDEX D - Samsung TV    ************************      -->   
         <!-- ***********************************************************************************      -->
 		 
-        <div class="TV">
+        <Main id="MainTVWZ" class="TV">
             <!-- ************************ Status Anzeige TOP ************************  -->
             <div class="reihe">
                     <div class="status cyan" style="width: 100px;  Float:left ">
@@ -1299,7 +1119,7 @@ Noch so ein scheiss.
                 </div>
             </div> 			 
 			 	 
-        </div>
+        </Main>
 		
 
 
@@ -1309,7 +1129,7 @@ Noch so ein scheiss.
 		
 			
 		  <!-- ************************  -->
-		   <div class="Network" >
+		   <Main class="Network" >
 				<div class="reihe" style="display: inline"  >
 					<div class="spalte"  >
 						<div id="ws1"></div>
@@ -1321,13 +1141,13 @@ Noch so ein scheiss.
 
 					<img id="iconWebServer" src="images/WebServer.jpg" onclick="send('Client' + '*' + 'WebSocketServer' + '*' +'OnOff')" style="border: thick groove #00FF00; width: 100px; height: 100px; position: relative; " />
 			   </div>
-		  </div>		
+		  </Main>		
 		  
         <!-- ***********************************************************************************      -->
 	<!--  ************************ INDEX C - UPNP ************************ -->   
         <!-- ***********************************************************************************      -->
 		  
-		<div class="upnp">
+		<Main class="upnp">
 	 
 					<div class="reihe" >
 							<div class="status cyan" style="width: 150px  ">
@@ -1415,13 +1235,13 @@ Noch so ein scheiss.
 					</span>				  
 				</label>
 			</div>
-		</div>
+		</Main>
 
  		
         <!-- *********************************************************************************** -->
 	<!--  ************************** INDEX B - UPNP CD Musik ******************************* -->   
         <!-- *********************************************************************************** -->	
-        <div class="UpnpCD">
+        <Main class="UpnpCD">
             <div class="col"> 
                 <!-- **************************  Anzeige 1 ************************** -->
                                  
@@ -1544,12 +1364,12 @@ Noch so ein scheiss.
                         </div>	
                 </div>
             </div>                               
-        </div>
+        </Main>
                 
         <!-- ***********************************************************************************      -->
 	<!--  ************************** INDEX A - Anlage Ceol von Denon ************************** -->   
         <!-- ***********************************************************************************      -->
-        <div class="Ceol"> 
+        <Main id="MainCeolWZ" class="Ceol"> 
             <div class="col"> 
                 <!-- ************************** Anzeige  **************************  -->
                 <div class="DenonAnzeige" >
@@ -1718,10 +1538,10 @@ Noch so ein scheiss.
                     </div>
                 </div> 
             </div>	      
-        </div> 
+        </Main> 
 
 		<!-- ************************** Rolladen Uebersicht ************************** -->
-		<div class="RolladenAll" >
+		<Main class="RolladenAll" >
  			<div class="spalte"  style="margin-right: 50px; margin-left: 40px">
  				<div class="RowLeft">
 		 			<div class="IconButton small cyan" onclick="RolloCtrlWZ()" style="margin-right: 40px" >
@@ -1796,13 +1616,13 @@ Noch so ein scheiss.
 					</div>
 				</div>
         		</div>
-		</div>
+		</Main>
 
 
 
 <!-- **************************                                  RECHTE Fenster                                        ************************** -->      
         <!-- ************************** TV Guide  **************************  -->
-        <div class = "TVGuide">
+        <Ctrl  id="MainTVWZCtrl" class = "TVGuide">
                 <div style=" text-align: center;">TV Programm</div >
                 <hr />
                 <div id="TVz1">z1</div >
@@ -1852,14 +1672,14 @@ Noch so ein scheiss.
                 <div id="TVz34">z4</div >
                 <div id="TVz35">z5</div >
                 <div id="TVz36">z6</div >
-        </div>
+        </Ctrl>
 
 
 		
 		<!-- ************************** Right PNP CONFIG  ************************** -->
 
 
-		<div class="UPNPConfig">
+		<Ctrl class="UPNPConfig">
                          
                          <div id="message">Meldungen</div>    
 			<div class="col">
@@ -1890,10 +1710,10 @@ Noch so ein scheiss.
                                         <span style="font-size: 22px; margin-top:5px; margin-left: 20px;">search Server</span>
                                 </div>
                             </div>
-		</div>
+		</Ctrl>
 
 		<!-- ************************** Denon Ceol Navigation  **************************  -->
-		<div class="Navigation">
+		<Ctrl id="MainCeolWZCtrl" class="Navigation">
                     <div class="reihe">
                         <div class="nav">
                             <div class="reihe" style="margin-top: 7px;"  >
@@ -1923,11 +1743,11 @@ Noch so ein scheiss.
                         </div>
 
                     </div> 
-                </div>
+                </Ctrl>
 		
 
                 <!-- ************************** Denon Ceol Server Control  **************************  -->
-		<div class="CEOLServerCtrl">
+		<Ctrl class="CEOLServerCtrl">
                     <div class="col" >
                         <div class="IconButton small sandy" onclick="send('command(DenonCeol,setServer,AVM)')"   style="margin-top:50px">
                                 <img id="xx" class="IconMid" src="images/FrizNas.png"  />
@@ -1948,7 +1768,7 @@ Noch so ein scheiss.
                             </div>
                         </div>
                     </div>    
-                </div>
+                </Ctrl>
 
 
 
@@ -1956,7 +1776,7 @@ Noch so ein scheiss.
 
 
 		  <!-- ************************** CEOL Player Control  **************************  -->
-		<div class="CEOLctrl">
+		<Ctrl class="CEOLctrl">
 				<img id="RadioCover" src='images/RadioStation/0000.png' style="margin-top: 20px; margin-bottom: 20px; width: 200px; height: 200px;"/>
 			 <div class="reihe" style="border: thin solid #FFFFFF">
 		  		<div class="col" style="border: thin solid #808080; width: 60px; font-size: 18px;" >
@@ -2004,9 +1824,9 @@ Noch so ein scheiss.
 	
 			</div>
 
-		</div>
+		</Ctrl>
 		  <!-- ************************** Denon CEOL CD Player Control  **************************  -->
-		<div class="CEOLCDctrl">
+		<Ctrl class="CEOLCDctrl">
 			<img id="CDCover_A" src='CDs/0001.jpg' style="margin-top: 20px; margin-bottom: 20px; "/>
 			 <div style="border: thin solid #FFFFFF">
 		  		<div class="reihe" >
@@ -2041,9 +1861,9 @@ Noch so ein scheiss.
 	
 
 
-		</div>
+		</Ctrl>
                 <!-- ************************** Server Control  ************************** -->
-		<div class="UpnpServerCtrl">
+		<Ctrl class="UpnpServerCtrl">
                     <div class="col" >
                         <div class="IconButton small sandy" onclick="send('command(upnp,setServer,AVM)')"   style="margin-top:50px">
                                 <img id="xx" class="IconMid" src="images/FrizNas.png"  />
@@ -2054,10 +1874,10 @@ Noch so ein scheiss.
                                 <span style="font-size: 22px; margin-top:20px; margin-left: 20px;">Plex Server</span>
                         </div>
                     </div>
-                </div>
+                </Ctrl>
 
 		  <!-- ************************** CD Player Control  **************************  -->
-		<div class="CDctrl">
+		<Ctrl class="CDctrl">
 			<img id="iconCover" src='CDs/0001.jpg' style="margin-top: 20px; margin-bottom: 20px; "/>
 			 <div style="border: thin solid #FFFFFF">
 		  		<div class="reihe" >
@@ -2089,195 +1909,133 @@ Noch so ein scheiss.
 			
 			<div style=" margin: 10px; font-size: x-large;   ">Denon Ceol</div>
 			<img  id="CDclientimg" src='images/DenonCeolAnlage.png' style=" width: 200px; height: 100px;"/>
-		</div>
+		</Ctrl>
 
 		<!-- **************************  Rolladen Ctrl Wohnzimmer **************************  -->
-		<div id = CtrlRolloWZ class="RolloCtrlWZ"></div>
+		<Ctrl id = "MainRolloWZCtrl" class="RolloCtrlWZ"></Ctrl>
 			 			
     <script>
-        addDisplay("CtrlRolloWZ", "PosRolloWZ1", "cyan", "50px", "30px", "Position");
-        addDisplay("CtrlRolloWZ", "ModeRolloWZ1", "cyan", "120px", "30px", "Mode");   
-        addDisplay("CtrlRolloWZ", "MoFrRolloWZ1", "cyan", "190px", "30px", "Schaltzeiten Mo-Fr");
-        addDisplay("CtrlRolloWZ", "SaSoRolloWZ1", "cyan", "260px", "30px", "Schaltzeiten Sa-so");   
-        addFontButton("CtrlRolloWZ", "cyan", "big", "350px", "10px", "fa fa-chevron-up", "send('command(Rollo,WZ,up)')");
-        addFontButton("CtrlRolloWZ", "cyan", "big", "350px", "90px", "fa fa-stop", "send('command(Rollo,WZ,stop)')");
-        addFontButton("CtrlRolloWZ", "cyan", "big", "350px", "170px", "fa fa-chevron-up", "send('command(Rollo,WZ,down)')");
-        addFontButton("CtrlRolloWZ", "cyan", "big", "430px", "10px", "fa fa-plus", "send('command(Rollo,WZ,StepUp)')");
-        addFontButton("CtrlRolloWZ", "cyan", "big", "430px", "170px", "fa fa-minus", "send('command(Rollo,WZ,StepDown)')");
+        DisPosRolloWZ=Object.create(Display);
+        DisPosRolloWZ.create("MainRolloWZCtrl", "PosRolloWZ1", "cyan", "%", "40px", "30px", "Position", "", "", "", "", "");
+        
+        DisModeRolloWZ=Object.create(Display);
+        DisModeRolloWZ.create("MainRolloWZCtrl", "ModeRolloWZ1", "cyan", "", "110px", "30px", "Mode", "Auto", "Man", "", "", "");
+        
+        DisST1RolloWZ=Object.create(Display);
+        DisST1RolloWZ.create("MainRolloWZCtrl", "MoFrRolloWZ1", "cyan", "", "180px", "30px", "Schaltzeiten Mo-Fr", "", "", "", "", "");
+        
+        DisST2RolloWZ=Object.create(Display);
+        DisST2RolloWZ.create("MainRolloWZCtrl", "SaSoRolloWZ1", "cyan", "", "250px", "30px", "Schaltzeiten Sa-so", "", "", "", "", "");
+       
+        addFontButton("MainRolloWZCtrl", "cyan", "big", "340px", "10px", "fa fa-chevron-up", "send('command(Rollo,WZ,up)')");
+        addFontButton("MainRolloWZCtrl", "cyan", "big", "340px", "90px", "fa fa-stop", "send('command(Rollo,WZ,stop)')");
+        addFontButton("MainRolloWZCtrl", "cyan", "big", "340px", "170px", "fa fa-chevron-up", "send('command(Rollo,WZ,down)')");
+        addFontButton("MainRolloWZCtrl", "cyan", "big", "420px", "10px", "fa fa-plus", "send('command(Rollo,WZ,StepUp)')");
+        addFontButton("MainRolloWZCtrl", "cyan", "big", "420px", "170px", "fa fa-minus", "send('command(Rollo,WZ,StepDown)')");
+        CbSSrolloWZ = Object.create(CheckBox);
+        CbSSrolloWZ.create("MainRolloWZCtrl", "SSRolloWZ", "cyan" ,"520px", "10px",  "SunRise-SunSet", "command(Rollo,WZ,SSXX");  
     </script>    
 		<!-- ************************** Rolladen Ctrl Kinderzimmer **************************  -->
-		<div id = CtrlRolloKZ  class="RolloCtrlKZ"> </div>
+		<Ctrl id = MainRolloKZCtrl  class="RolloCtrlKZ"> </Ctrl>
 		
     <script>
-        addDisplay("CtrlRolloKZ", "PosRolloWZ1", "olive", "50px", "30px", "Position");
-        addDisplay("CtrlRolloKZ", "ModeRolloWZ1", "olive", "120px", "30px", "Mode");   
-        addDisplay("CtrlRolloKZ", "MoFrRolloWZ1", "olive", "190px", "30px", "Schaltzeiten Mo-Fr");
-        addDisplay("CtrlRolloKZ", "SaSoRolloWZ1", "olive", "260px", "30px", "Schaltzeiten Sa-so");   
-        addFontButton("CtrlRolloKZ", "olive", "big", "350px", "10px", "fa fa-chevron-up", "send('command(Rollo,KZ,up)')");
-        addFontButton("CtrlRolloKZ", "olive", "big", "350px", "90px", "fa fa-stop", "send('command(Rollo,KZ,stop)')");
-        addFontButton("CtrlRolloKZ", "olive", "big", "350px", "170px", "fa fa-chevron-up", "send('command(Rollo,KZ,down)')");
-        addFontButton("CtrlRolloKZ", "olive", "big", "430px", "10px", "fa fa-plus", "send('command(Rollo,KZ,StepUp)')");
-        addFontButton("CtrlRolloKZ", "olive", "big", "430px", "170px", "fa fa-minus", "send('command(Rollo,KZ,StepDown)')");
+        DisPosRolloKZ=Object.create(Display);
+        DisPosRolloKZ.create("MainRolloKZCtrl", "PosRolloKZ1", "olive", "%", "50px", "30px", "Position", "", "", "", "", "");
+        
+        DisModeRolloKZ=Object.create(Display);
+        DisModeRolloKZ.create("MainRolloKZCtrl", "ModeRolloKZ1", "olive", "", "120px", "30px", "Mode", "Auto", "Man", "", "", "");
+        
+        DisST1RolloKZ=Object.create(Display);
+        DisST1RolloKZ.create("MainRolloKZCtrl", "MoFrRolloKZ1", "olive", "", "190px", "30px", "Schaltzeiten Mo-Fr", "", "", "", "", "");
+        
+        DisST2RolloKZ=Object.create(Display);
+        DisST2RolloKZ.create("MainRolloKZCtrl", "SaSoRolloKZ1", "olive", "", "260px", "30px", "Schaltzeiten Sa-so", "", "", "", "", "");
+        
+   
+        addFontButton("MainRolloKZCtrl", "olive", "big", "350px", "10px", "fa fa-chevron-up", "send('command(Rollo,KZ,up)')");
+        addFontButton("MainRolloKZCtrl", "olive", "big", "350px", "90px", "fa fa-stop", "send('command(Rollo,KZ,stop)')");
+        addFontButton("MainRolloKZCtrl", "olive", "big", "350px", "170px", "fa fa-chevron-up", "send('command(Rollo,KZ,down)')");
+        addFontButton("MainRolloKZCtrl", "olive", "big", "430px", "10px", "fa fa-plus", "send('command(Rollo,KZ,StepUp)')");
+        addFontButton("MainRolloKZCtrl", "olive", "big", "430px", "170px", "fa fa-minus", "send('command(Rollo,KZ,StepDown)')");
     </script>   
 		<!-- ************************** Rolladen Ctrl BalkontTuer **************************  -->
-		<div id = CtrlRolloB  class="RolloCtrlB"></div>
-		
+		<Ctrl id = MainRolloBCtrl  class="RolloCtrlB">  </Ctrl> 
+
+               
     <script>
-        addDisplay("CtrlRolloB", "PosRolloB1", "blue", "50px", "30px", "Position");
-        addDisplay("CtrlRolloB", "ModeRolloB1", "blue", "120px", "30px", "Mode");   
-        addDisplay("CtrlRolloB", "MoFrRolloB1", "blue", "190px", "30px", "Schaltzeiten Mo-Fr");
-        addDisplay("CtrlRolloB", "SaSoRolloB1", "blue", "260px", "30px", "Schaltzeiten Sa-so");   
-        addFontButton("CtrlRolloB", "blue", "big", "350px", "10px", "fa fa-chevron-up", "send('command(Rollo,B,up)')");
-        addFontButton("CtrlRolloB", "blue", "big", "350px", "90px", "fa fa-stop", "send('command(Rollo,B,stop)')");
-        addFontButton("CtrlRolloB", "blue", "big", "350px", "170px", "fa fa-chevron-up", "send('command(Rollo,B,down)')");
-        addFontButton("CtrlRolloB", "blue", "big", "430px", "10px", "fa fa-plus", "send('command(Rollo,B,StepUp)')");
-        addFontButton("CtrlRolloB", "blue", "big", "430px", "170px", "fa fa-minus", "send('command(Rollo,B,StepDown)')");
+        DisPosRolloB=Object.create(Display);
+        DisPosRolloB.create("MainRolloBCtrl", "PosRolloB1", "blue", "%", "40px", "30px", "Position", "", "", "", "", "");
+        
+        DisModeRolloB=Object.create(Display);
+        DisModeRolloB.create("MainRolloBCtrl", "ModeRolloB1", "blue", "", "110px", "30px", "Mode", "Auto", "Man", "", "", "");
+        DisST1RolloB=Object.create(Display);
+        DisST1RolloB.create("MainRolloBCtrl", "MoFrRolloB1", "blue", "", "180px", "30px", "Schaltzeiten Mo-Fr", "", "", "", "", "");
+        
+        DisST2RolloB=Object.create(Display);
+        DisST2RolloB.create("MainRolloBCtrl", "SaSoRolloB1", "blue", "", "250px", "30px", "Schaltzeiten Sa-so", "", "", "", "", "");
+
+        addFontButton("MainRolloBCtrl", "blue", "big", "340px", "10px", "fa fa-chevron-up", "send('command(Rollo,B,up)')");
+        addFontButton("MainRolloBCtrl", "blue", "big", "340px", "90px", "fa fa-stop", "send('command(Rollo,B,stop)')");
+        addFontButton("MainRolloBCtrl", "blue", "big", "340px", "170px", "fa fa-chevron-up", "send('command(Rollo,B,down)')");
+        addFontButton("MainRolloBCtrl", "blue", "big", "420px", "10px", "fa fa-plus", "send('command(Rollo,B,StepUp)')");
+        addFontButton("MainRolloBCtrl", "blue", "big", "420px", "170px", "fa fa-minus", "send('command(Rollo,B,StepDown)')");
+        
+        CbSSrolloB = Object.create(CheckBox);
+        CbSSrolloB.create("MainRolloBCtrl", "SSRolloB", "blue",  "520px", "10px",  "SunRise-SunSet", "command(Rollo,B,SSXX");  
     </script>   
 		<!-- ************************** Rolladen Ctrl Kueche ************************** -->
-		<div id = CtrlRolloK  class="RolloCtrlK"></div>
-		
+		<Ctrl id = MainRolloKCtrl  class="RolloCtrlK"></Ctrl>
     <script>
-        addDisplay("CtrlRolloK", "PosRolloK1", "red", "50px", "30px", "Position");
-        addDisplay("CtrlRolloK", "ModeRolloK1", "red", "120px", "30px", "Mode");   
-        addDisplay("CtrlRolloK", "MoFrRolloK1", "red", "190px", "30px", "Schaltzeiten Mo-Fr");
-        addDisplay("CtrlRolloK", "SaSoRolloK1", "red", "260px", "30px", "Schaltzeiten Sa-so");   
-        addFontButton("CtrlRolloK", "red", "big", "350px", "10px", "fa fa-chevron-up", "send('command(Rollo,K,up)')");
-        addFontButton("CtrlRolloK", "red", "big", "350px", "90px", "fa fa-stop", "send('command(Rollo,K,stop)')");
-        addFontButton("CtrlRolloK", "red", "big", "350px", "170px", "fa fa-chevron-up", "send('command(Rollo,K,down)')");
-        addFontButton("CtrlRolloK", "red", "big", "430px", "10px", "fa fa-plus", "send('command(Rollo,K,StepUp)')");
-        addFontButton("CtrlRolloK", "red", "big", "430px", "170px", "fa fa-minus", "send('command(Rollo,K,StepDown)')");
+        DisPosRolloK=Object.create(Display);
+        DisPosRolloK.create("MainRolloKCtrl", "PosRolloK1", "red", "%", "50px", "30px", "Position", "", "", "", "", "");
+        DisModeRolloK=Object.create(Display);
+        DisModeRolloK.create("MainRolloKCtrl", "ModeRolloK1", "red", "", "120px", "30px", "Mode", "Auto", "Man", "", "", "");
+        
+        DisST1RolloK=Object.create(Display);
+        DisST1RolloK.create("MainRolloKCtrl", "MoFrRolloK1", "red", "", "190px", "30px", "Schaltzeiten Mo-Fr", "", "", "", "", "");
+        DisST2RolloK=Object.create(Display);
+        DisST2RolloK.create("MainRolloKCtrl", "SaSoRolloK1", "red", "", "260px", "30px", "Schaltzeiten Sa-so", "", "", "", "", "");
+
+        addFontButton("MainRolloKCtrl", "red", "big", "350px", "10px", "fa fa-chevron-up", "send('command(Rollo,K,up)')");
+        addFontButton("MainRolloKCtrl", "red", "big", "350px", "90px", "fa fa-stop", "send('command(Rollo,K,stop)')");
+        addFontButton("MainRolloKCtrl", "red", "big", "350px", "170px", "fa fa-chevron-up", "send('command(Rollo,K,down)')");
+        addFontButton("MainRolloKCtrl", "red", "big", "430px", "10px", "fa fa-plus", "send('command(Rollo,K,StepUp)')");
+        addFontButton("MainRolloKCtrl", "red", "big", "430px", "170px", "fa fa-minus", "send('command(Rollo,K,StepDown)')");
+        CbSSrolloK = Object.create(CheckBox);
+        CbSSrolloK.create("MainRolloKCtrl", "SSRolloK", "red",  "520px", "10px",  "SunRise-SunSet", "command(Rollo,K,SSXX");  
     </script>   
 		<!-- **************************Time Picker  ************************** -->
-                <div class="TimePicker" >
+                <Ctrl class="TimePickerX" >
 
-                    <div>
-                        <div class="timeContainer">
-                       
-                            <div id="timer1Left" class="timeLeft" onscroll="UpselectHour()">
-                                <div>22</div>
-                                <div>23</div>
-                                <div>00</div>
-                                <div>01</div>
-                                <div>02</div>
-                                <div>03</div>
-                                <div>04</div>
-                                <div>05</div>
-                                <div>06</div>
-                                <div>07</div>
-                                <div>08</div>
-                                <div>09</div>
-                                <div>10</div>
-                                <div>11</div>
-                                <div>12</div>
-                                <div>13</div>
-                                <div>14</div>
-                                <div>15</div>
-                                <div>16</div>
-                                <div>17</div>
-                                <div>18</div>
-                                <div>19</div>
-                                <div>20</div>
-                                <div>21</div>
-                                <div>22</div>
-                                <div>23</div>
-                                <div>00</div>
-                                <div>01</div>
-                           </div> 
-                            <div style="width:40px; font-size: 44px; padding-top:50px;">
-                                :
-                            </div>
-                            <div id="timer1Right" class="timeRight" onscroll="UpselectMinute()">
-                                <div>40</div>
-                                <div>55</div>
-                                <div>00</div>
-                                <div>05</div>
-                                <div>10</div>
-                                <div>15</div>
-                                <div>20</div>
-                                <div>25</div>
-                                <div>30</div>
-                                <div>35</div>
-                                <div>40</div>
-                                <div>45</div>
-                                <div>50</div>
-                                <div>55</div>
-                                <div>00</div>
-                                <div>05</div>
-                            </div> 
-                        </div>
-
- 
-                        <div id = "Timer1"></div>
- 
-                </div>
+    
+                </Ctrl> 
 
 
-                   
-                    <div class="timeContainer">
-
-                        <div id="timer2Left"  class="timeLeft" onscroll="DownselectHour()">
-                            <div>22</div>
-                            <div>23</div>
-                            <div>00</div>
-                            <div>01</div>
-                            <div>02</div>
-                            <div>03</div>
-                            <div>04</div>
-                            <div>05</div>
-                            <div>06</div>
-                            <div>07</div>
-                            <div>08</div>
-                            <div>09</div>
-                            <div>10</div>
-                            <div>11</div>
-                            <div>12</div>
-                            <div>13</div>
-                            <div>14</div>
-                            <div>15</div>
-                            <div>16</div>
-                            <div>17</div>
-                            <div>18</div>
-                            <div>19</div>
-                            <div>20</div>
-                            <div>21</div>
-                            <div>22</div>
-                            <div>23</div>
-                            <div>00</div>
-                            <div>01</div>
-                       </div> 
-                        <div style="width:40px; font-size: 44px; padding-top:50px;">
-                            :
-                        </div>
-                        <div id="timer2Right" class="timeRight" onscroll="DownselectMinute()">
-                            <div>40</div>
-                            <div>55</div>
-                            <div>00</div>
-                            <div>05</div>
-                            <div>10</div>
-                            <div>15</div>
-                            <div>20</div>
-                            <div>25</div>
-                            <div>30</div>
-                            <div>35</div>
-                            <div>40</div>
-                            <div>45</div>
-                            <div>50</div>
-                            <div>55</div>
-                            <div>00</div>
-                            <div>05</div>
-                        </div> 
-                    </div>  
-
-<div id = "Timer2"></div>
-
-   <script>
-       addTimerCtrlButton("Timer1");
-       addTimerCtrlButton("Timer2");
-  </script>
-                </div> 
+        <!-- **************************Time Picker Rollo Class ************************** 
+                rechtes Seitenfenster nur einmal vorhanden Weret werden in Klasse überschrieben -->
+        <Ctrl id="TimePickerl" class="TimePicker" >    </Ctrl> 
+        
+        <script>  
+            var Timer1 = new TimePicker("WZ","MoFr","up");
+            var Timer2 = new TimePicker("WZ","MoFr","up");
+            Timer1.create("TimePickerl", "Timer1", "10px", "5px",  "Hochfahren" );    
+            Timer2.create("TimePickerl", "Timer2", "300px", "5px", "Runterfahren");         
+        </script>     
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
 
         <!-- ************************** Right - TV Internet Links **************************  -->
-        <div  class = "TVINet">
+        <Ctrl  class = "TVINet">
             <div class="col">
                 <div class="IconButton small sandy" onclick="wwwLink('https://www.twitch.tv/summonersinnlive')" style="position: relative; top: 100px"  >
                         <img  class="IconS" src="images/www.png"  />
@@ -2296,10 +2054,10 @@ Noch so ein scheiss.
                         <span style="font-size: 22px; padding-top: 5px;">-    -             </span>
                 </div>
             </div>
-        </div>	
+        </Ctrl>	
 
         <!-- ************************** Right - TV Sender **************************  -->
-        <div class="TVChannel">
+        <Ctrl class="TVChannel">
             <img class="iconTV" src="images/Sender/Das Erste HD.png" alt="image not found" onclick="send('command(TV,Channel,Das Erste HD)');" />
             <img class="iconTV" src="images/Sender/ZDF HD.png" alt="image not found" onclick="send('command(TV,Channel,ZDF HD)');" />
             <img class="iconTV" src="images/Sender/RTL Television.png" alt="image not found" onclick="send('command(TV,Channel,RTL Television)');" />
@@ -2330,11 +2088,11 @@ Noch so ein scheiss.
             <img class="iconTV" src="images/Sender/ZEE.ONE.png" alt="image not found" onclick="send('command(TV,Channel,ZEE.ONE)');" />
             <img class="iconTV" src="images/Sender/SPORT1.png" alt="image not found" onclick="send('command(TV,Channel,SPORT1)');" />
             <img class="iconTV" src="images/Sender/BBC HD.png" alt="image not found" onclick="send('command(TV,Channel,BBC HD)');" />
-        </div>
+        </Ctrl>
                     
 
 		<!-- ************************** Internet Radio Stationen  **************************  -->
-		<div class="RadioStation">
+		<Ctrl class="RadioStation">
                     <img class="iconRadio" src="images/RadioStation/0000.png" alt="image not found" onclick= "send('command(iradio,setRadioChannel,01)')">
                     <img class="iconRadio" src="images/RadioStation/0001.png" alt="image not found" onclick= "send('command(iradio,setRadioChannel,02)')">		
                     <img class="iconRadio" src="images/RadioStation/0002.png" alt="image not found" onclick= "send('command(iradio,setRadioChannel,03)')">
@@ -2345,16 +2103,16 @@ Noch so ein scheiss.
                     <img class="iconRadio" src="images/RadioStation/0007.png" alt="image not found" onclick= "send('command(iradio,setRadioChannel,08)')">
                     <img class="iconRadio" src="images/RadioStation/0008.png" alt="image not found" onclick= "send('command(iradio,setRadioChannel,09)')">
 
-		</div>
+		</Ctrl>
 
 
 		  <!-- ************************** CD Player **************************  -->
 		  
 
-		  <div id="placeCDLibhere" class="CoverCD" >
+		  <Ctrl id="placeCDLibhere" class="CoverCD" >
 
 
-		  </div>
+		  </Ctrl>
 
 	
 
@@ -2363,45 +2121,9 @@ Noch so ein scheiss.
 	</div>
 	
 <!--  ************************** Event Listener für Time Wheel ************************** -->
-   <script>       
-       // document.getElementByID("timerLeft").addEventListener("scroll",selectHour);
-        //document.getElementByID("timerRight").addEventListener("scroll",selectMinute);
-        
-        function UpselectHour() {
-            var elmnt = document.getElementById("timer1Left");
-
-            var y = elmnt.scrollTop;
-            h = Math.floor(y/38)
-            document.getElementById ("Timer1hour").innerHTML = h;
-        }
-
-        function UpselectMinute() {
-        var elmnt = document.getElementById("timer1Right");
-
-        var x = elmnt.scrollTop;
-        m = Math.floor(x/38)
-        document.getElementById ("Timer1minute").innerHTML = m*5;
-        }
-        
-        function DownselectHour() {
-            var elmnt = document.getElementById("timer2Left");
-
-            var y = elmnt.scrollTop;
-            h = Math.floor(y/38)
-            document.getElementById ("Timer2hour").innerHTML = h;
-        }
-
-        function DownselectMinute() {
-        var elmnt = document.getElementById("timer2Right");
-
-        var x = elmnt.scrollTop;
-        m = Math.floor(x/38)
-        document.getElementById ("Timer2minute").innerHTML = m*5;
-        }   
-        
-        
-   </script>
-
-
+        <script> 
+ 
+           
+        </script> 
    </body>
 </html>

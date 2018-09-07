@@ -54,6 +54,7 @@
                 document.getElementsByClassName("Navigation")[0].style.width = "0px";
                 document.getElementsByClassName("UpnpServerCtrl")[0].style.width = "0px";
                 document.getElementsByClassName("TimePicker")[0].style.width = "0px";
+                document.getElementsByClassName("TimePickerX")[0].style.width = "0px";
                 document.getElementsByClassName("CEOLCDctrl")[0].style.width = "0px";
                 document.getElementsByClassName("upnp")[0].style.width = "0px";
                 document.getElementsByClassName("UpnpServerCtrl")[0].style.width = "0px";
@@ -65,61 +66,8 @@
                 document.getElementsByClassName("Left")[0].style.width = "8vw";
                 document.getElementsByClassName("Network")[0].style.width = "58vw";
         }	
-
-        function MenuWZ(){ 
-                closeallglides();
-                document.getElementsByClassName("MenuWZ")[0].style.width = "28vw";
-                document.getElementsByClassName("StartScreen")[0].style.width = "65vw";
-                document.getElementsByClassName("Top")[0].style.backgroundColor = "hsl(174, 100%, 25%)";
-                document.getElementsByClassName("Top")[0].style.color = "white";
-
-    $('TopTitle').innerHTML = 'Wohnzimmer';
-        }	
-
-        function MenuSZ(){ 
-                closeallglides();
-                document.getElementsByClassName("MenuSZ")[0].style.width = "28vw";
-                document.getElementsByClassName("StartScreen")[0].style.width = "65vw";				
-                document.getElementsByClassName("Top")[0].style.backgroundColor = "hsl(28, 100%, 25%)";
-                document.getElementsByClassName("Top")[0].style.color = "white";
-                document.getElementById("TopTitle").innerHTML =  "Schlafzimmer" ;
-
-
-
-        }
-
-        function MenuKZ(){ 
-                closeallglides();
-                document.getElementsByClassName("MenuKZ")[0].style.width = "28vw";
-                document.getElementsByClassName("StartScreen")[0].style.width = "65vw";				
-                document.getElementsByClassName("Top")[0].style.backgroundColor = "hsl(82, 100%, 25%)";
-                document.getElementsByClassName("Top")[0].style.color = "white";
-                document.getElementById("TopTitle").innerHTML =  "Kinderzimmmer" ;
-
-
-
-        }			
-
-        function MenuK(){ 
-                closeallglides();
-                document.getElementsByClassName("MenuK")[0].style.width = "28vw";
-                document.getElementsByClassName("StartScreen")[0].style.width = "65vw";				
-                document.getElementsByClassName("Top")[0].style.backgroundColor = "hsl(0, 100%, 25%)";
-                document.getElementsByClassName("Top")[0].style.color = "white";
-                document.getElementById("TopTitle").innerHTML =  "Kueche" ;
-
-
-
-        }
-
-        function MenuB(){ 
-                closeallglides();
-                document.getElementsByClassName("MenuB")[0].style.width = "28vw";
-                document.getElementsByClassName("StartScreen")[0].style.width = "65vw";				
-                document.getElementsByClassName("Top")[0].style.backgroundColor = "hsl(0, 100%, 25%)";
-                document.getElementsByClassName("Top")[0].style.color = "white";
-                $('TopTitle').innerHTML = 'Balkon';
-        }	
+ 			
+ 	
 
         function MenuMultimedia(){ 
                 closeallglides();
@@ -145,7 +93,7 @@
                 document.getElementsByClassName("StartScreen")[0].style.width = "65vw";				
                 document.getElementsByClassName("Top")[0].style.backgroundColor = "hsl(0, 100%, 25%)";
                 document.getElementsByClassName("Top")[0].style.color = "white";
-                $('TopTitle').innerHTML = 'Rolladen';
+                document.getElementById("TopTitle").innerHTML = 'Rolladen';
         }	
 
         function HeizungAll(){ 
@@ -190,109 +138,7 @@
                 document.getElementsByClassName("Top")[0].style.backgroundColor = "hsl(0, 100%, 25%)";
         }
 
-        function HeizungWZ(){ 
-                closeallglides();
-                document.getElementsByClassName("MenuWZ")[0].style.width = "8vw";
-                document.getElementsByClassName("HeizungWZ")[0].style.width = "58vw";
-                document.getElementsByClassName("HeizungCtrlWZ")[0].style.width = "26vw";
-        }
-
-        function RolloWZ(){ 
-                document.getElementsByClassName("Top")[0].style.backgroundColor = "hsl(174, 100%, 25%)";
-                document.getElementsByClassName("Top")[0].style.color = "white";
-                document.getElementById("TopTitle").innerHTML =  "Rolladen Wohnzimmer"; 			
-                closeallglides();
-                document.getElementsByClassName("MenuWZ")[0].style.width = "8vw";
-                document.getElementsByClassName("RolloWZ")[0].style.width = "58vw";
-                document.getElementsByClassName("RolloCtrlWZ")[0].style.width = "26vw";
-        }
-        function RolloCtrlWZ(){ 
-                document.getElementsByClassName("Top")[0].style.backgroundColor = "hsl(174, 100%, 25%)";
-                document.getElementsByClassName("Top")[0].style.color = "white";
-                document.getElementsByClassName("Top")[0].innerHTML =  "Rolladen Wohnzimmer";		
-                document.getElementsByClassName("RolloCtrlK")[0].style.width = "0px";
-                document.getElementsByClassName("RolloCtrlB")[0].style.width = "0px";
-                document.getElementsByClassName("RolloCtrlKZ")[0].style.width = "0px";
-                document.getElementsByClassName("RolloCtrlWZ")[0].style.width = "26vw";
-        }
-
-        function RolloB(){ 
-                document.getElementsByClassName("Top")[0].style.backgroundColor = "hsl(200, 100%, 25%)";
-                document.getElementsByClassName("Top")[0].style.color = "white";
-                document.getElementById("TopTitle").innerHTML =  "Rolladen Balkontuer"; 			
-                closeallglides();
-                document.getElementsByClassName("MenuB")[0].style.width = "8vw";
-                document.getElementsByClassName("RolloB")[0].style.width = "58vw";
-                document.getElementsByClassName("RolloCtrlB")[0].style.width = "26vw";
-        }
-        function RolloCtrlB(){ 
-                document.getElementsByClassName("Top")[0].style.backgroundColor = "hsl(200, 100%, 25%)";
-                document.getElementsByClassName("Top")[0].style.color = "white";
-                document.getElementsByClassName("Top")[0].innerHTML =  "Rolladen Balkon";
-                document.getElementsByClassName("RolloCtrlWZ")[0].style.width = "0px";
-                document.getElementsByClassName("RolloCtrlB")[0].style.width = "26vw";
-                document.getElementsByClassName("RolloCtrlK")[0].style.width = "0px";
-                document.getElementsByClassName("RolloCtrlKZ")[0].style.width = "0px";
-
-        }
-
-        function HeizungKZ(){ 
-                closeallglides();
-                document.getElementsByClassName("MenuKZ")[0].style.width = "8vw";
-                document.getElementsByClassName("HeizungKZ")[0].style.width = "58vw";
-                document.getElementsByClassName("HeizungCtrlKZ")[0].style.width = "26vw";
-        }
-
-        function RolloKZ(){ 
-                document.getElementsByClassName("Top")[0].style.backgroundColor = "hsl(82, 100%, 25%)";
-                document.getElementsByClassName("Top")[0].style.color = "white";
-                document.getElementById("TopTitle").innerHTML =  "Rolladen Kinderzimmer"; 	
-                closeallglides();
-                document.getElementsByClassName("MenuKZ")[0].style.width = "8vw";
-                document.getElementsByClassName("RolloKZ")[0].style.width = "58vw";
-                document.getElementsByClassName("RolloCtrlKZ")[0].style.width = "26vw";
-        }
-        function RolloCtrlKZ(){ 
-                document.getElementsByClassName("Top")[0].style.backgroundColor = "hsl(82, 100%, 25%)";
-                document.getElementsByClassName("Top")[0].style.color = "white";
-                document.getElementsByClassName("Top")[0].innerHTML =  "Rolladen Kinderzimmer"; 		
-                document.getElementsByClassName("RolloCtrlWZ")[0].style.width = "0px";
-                document.getElementsByClassName("RolloCtrlB")[0].style.width = "0px";
-                document.getElementsByClassName("RolloCtrlK")[0].style.width = "0px";
-                document.getElementsByClassName("RolloCtrlKZ")[0].style.width = "26vw)";
-        }
-
-        function HeizungSZ(){ 
-                closeallglides();
-                document.getElementsByClassName("MenuSZ")[0].style.width = "8vw";
-                document.getElementsByClassName("HeizungSZ")[0].style.width = "58vw";
-                document.getElementsByClassName("HeizungCtrlSZ")[0].style.width = "26vw";
-        }
-        function RolloK(){ 
-                document.getElementsByClassName("Top")[0].style.backgroundColor = "hsl(0, 100%, 25%)";
-                document.getElementsByClassName("Top")[0].style.color = "white";
-                document.getElementById("TopTitle").innerHTML =  "Rolladen Kueche"; 	
-                closeallglides();
-                document.getElementsByClassName("MenuK")[0].style.width = "8vw";
-                document.getElementsByClassName("RolloK")[0].style.width = "58vw";
-                document.getElementsByClassName("RolloCtrlK")[0].style.width = "26vw";
-        }
-        function RolloCtrlK(){ 
-                document.getElementsByClassName("Top")[0].style.backgroundColor = "hsl(100, 100%, 25%)";
-                document.getElementsByClassName("Top")[0].style.color = "white";
-                document.getElementsByClassName("Top")[0].innerHTML =  "Rolladen Kueche"; 
-                document.getElementsByClassName("RolloCtrlWZ")[0].style.width = "0px";
-                document.getElementsByClassName("RolloCtrlB")[0].style.width = "0px";
-                document.getElementsByClassName("RolloCtrlKZ")[0].style.width = "0px";
-                document.getElementsByClassName("RolloCtrlK")[0].style.width = "26vw";
-        }
-
-        function HeizungK(){ 
-                closeallglides();
-                document.getElementsByClassName("MenuK")[0].style.width = "8vw";
-                document.getElementsByClassName("HeizungK")[0].style.width = "58vw";
-                document.getElementsByClassName("HeizungCtrlK")[0].style.width = "26vw";
-        }
+ 
 
         function CD(){ 
                 closeallglides();
@@ -360,18 +206,7 @@
             document.getElementsByClassName("Top")[0].style.backgroundColor = "hsl(0, 100%, 25%)";
         }	
 
-        function SubMenu_TV(){
-                closeallglides();
-
-                document.getElementsByClassName("Top")[0].style.color = "white";
-                document.getElementById("TopTitle").innerHTML =  "Samsung - TV" ;
-                document.getElementsByClassName("Top")[0].style.backgroundColor = "hsl(300, 100%, 25%)";
-
-                document.getElementsByClassName("Left")[0].style.width = "8vw";
-                document.getElementsByClassName("MenuWZ")[0].style.width = "8vw";				
-                document.getElementsByClassName("TV")[0].style.width = "58vw";
-                document.getElementsByClassName("TVChannel")[0].style.width = "26vw";
-        }
+ 
 
 
 
@@ -398,17 +233,7 @@
                 document.getElementsByClassName("RadioStation")[0].style.width = "0px"; 
         }
 
-        function SubMenu_Ceol(){
-            closeallglides();
-            document.getElementsByClassName("Top")[0].style.color = "white";
-            document.getElementById("TopTitle").innerHTML =  "Denon Ceol";
-            document.getElementsByClassName("Left")[0].style.width = "8vw";
-            document.getElementsByClassName("MenuWZ")[0].style.width = "8vw";
-            document.getElementsByClassName("Ceol")[0].style.width = "58vw";
-            document.getElementsByClassName("CEOLCDctrl")[0].style.width = "26vw";
-            //send('command(upnp,setClient,CEOL)');
-        }
-
+ 
 
 
 
