@@ -77,11 +77,11 @@
             check(ips[0].ID33678, 14);  //Rollo KZ Postion         
             
             check(ips[0].ID13703, 15);  //Rollo K Mode
-            check(ips[0].ID20994, 16);  //Rollo K Postion     
-            check(ips[0].ID21851, 47);  //Rollo K up/down
-            check(ips[0].ID10780, 48);  //Rollo K Schaltzeit Mo-Fr
-            check(ips[0].ID48287, 49); //Rollo K Schaltzeit Sa-So
-            check(ips[0].ID18813, 50); //Rollo K SSunSet
+            check(ips[0].ID13174, 16);  //Rollo K Postion     
+            check(ips[0].ID20341, 47);  //Rollo K up/down
+            check(ips[0].ID45555, 48);  //Rollo K Schaltzeit Mo-Fr
+            check(ips[0].ID54826, 49); //Rollo K Schaltzeit Sa-So
+            check(ips[0].ID45141, 50); //Rollo K SSunSet
            
 
             check(ips[0].ID13013, 17);  //Rollo WZ up/down
@@ -132,6 +132,9 @@
             
             check(ips[0].ID16709, 51);  //Temperatur Balkon Aussen
             check(ips[0].ID27502, 52);  //Humidity Balkon Aussen
+            
+            check(ips[0].ID30115, 53);  //Alarm Analge aktiv
+            
             
      }
     function check(value, n){
@@ -461,9 +464,11 @@
         
  
         try {
+            //Dynamisches Bild Rolladen
             iRolloB.update(ips[0].ID46035);
             iRolloWZ.update(ips[0].ID39896);
-
+            iRolloK.update(ips[0].ID20994);
+            
             DisPosRolloWZ.update(ips[0].ID39896);   
 
             DisModeRolloWZ.update(ips[0].ID50459); 
@@ -480,7 +485,7 @@
             DisPosRolloK.update(ips[0].ID20994);   
             DisModeRolloK.update(ips[0].ID13703); 
             DisST1RolloK.update(ips[0].ID10780); 
-            DisST2RolloK.update(ips[0].ID48287); 
+            DisST2RolloK.update(ips[0].ID46774); 
             CbSSrolloK.update(ips[0].ID18813);
 
 
@@ -490,6 +495,8 @@
             VarDisTempOutside.update(ips[0].ID16709);
             VarDisHumOutside.update(ips[0].ID27502);
             
+             DisAlarmActiveSec.update(ips[0].ID30115); 
+             ABox.update(ips[0].ID44517);
             
         } catch (error) {
            // alert (error);
@@ -555,7 +562,7 @@
                     var alarm = "Battery Low";
                     break;
                 case 2:
-                     
+                      
                     break;
                 default:
                      
