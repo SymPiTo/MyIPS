@@ -144,7 +144,7 @@
  
  }
 
-/* ------------------------------------------------------------------------------------- */
+/* ------------------- muss noch gegen klasse ausgetauscht werden ---------------------------------- */
 
 function addCtrlButton(ParentID, Ident, posTop, posLeft, size, color, text,  command){
     var elem = document.createElement("div");
@@ -160,6 +160,47 @@ function addCtrlButton(ParentID, Ident, posTop, posLeft, size, color, text,  com
 }
 
 
+ /* --------------------- Klasse Ctrl Button ---------------------------------------- */
+class CtrlButton { 
+    constructor(  ) {
+        this.ID = "";
+    }
+
+    create(ParentID, posTop, posLeft, size, color, text, cmdType, command){
+        var elem = document.createElement("div");
+        elem.className = "ctrlbutton";
+        elem.classList.add(size, color);
+        this.ID = elem;
+        elem.innerHTML = text;
+        elem.style.position = "absolute";
+        elem.style.left = posLeft;
+        elem.style.top = posTop;
+        
+        if(cmdType == "ctrlWindow"){
+                    elem.onclick = function(){
+ 
+                // alle Ctrl auf 0px verkleinern 
+                var Ctrl = document.getElementsByTagName("Ctrl");
+                var MCtrlWindow = Array.from(Ctrl);
+                MCtrlWindow.forEach(function(element){
+                                        var a = element.className;
+                                        document.getElementsByClassName(a)[0].style.width = "0px";   
+                                    } 
+                );
+                // ctrlWindow umschalten
+                document.getElementsByClassName(command)[0].style.width = "26vw"; 
+            }
+        }
+        else if(cmdType == "command"){
+            elem.setAttribute("onclick", command);
+        }
+        
+        
+        
+        document.getElementById(ParentID).appendChild(elem);
+    }
+ }
+ 
 /* --------------------- ProtoType Klasse ToggelCtrlButton ---------------------------------------- */
 var ToggleCtrlBtn = {
     create : function(ParentID, Ident, posTop, posLeft, size, color, text1, text2, class1, class2, cmd1, cmd2 ){
@@ -221,7 +262,78 @@ function addTitle(TitleID, posTop, posLeft, fontsize, fontcolor, text){
     document.getElementById(TitleID).appendChild(elem);			 
 }
 
+/* --------------------- class Dynamic ImageDisplay ---------------------------------------- */
+ class ImageDisplay {
+    
+    
+    constructor() {
+        this.imgID = "";
+        this.elemA = "";
+        this.elemB = "";
+        this.elemC = "";
+    }
+ 
 
+    create(ParentID, posTop, posLeft, size){
+        var elem = document.createElement("div");
+        elem.className = "DenonDisplay";
+        elem.style.position = "absolute";
+        elem.style.left = posLeft;
+        elem.style.top = posTop;
+        elem.style.marginLeft = "5px";
+        elem.style.marginRight = "5px";
+        elem.style.height = "200px"
+        elem.style.width = "510px" 
+ 
+        var elem1 = document.createElement("img");
+        elem1.className = "icon";
+        elem1.classList.add(size);
+        elem1.style.margin = "10px";
+        elem1.style.marginRight = "30px";
+        elem1.src = "";
+        this.imgID = elem1;
+        elem.append(elem1);
+        
+        var elem2 = document.createElement("div");
+        elem2.className = "spalteLeft";
+        
+        elem.append(elem2);
+        
+        var elem3 = document.createElement("div");
+        elem3.innerHTML = "Sender:" ;
+        this.elemA = elem3;
+        elem3.style.marginBottom = "15px";
+        elem3.style.fontSize = "28px"
+        elem3.style.color = "lime";
+        var elem4 = document.createElement("div");
+        elem4.innerHTML = "Artist: ";
+        
+        var elem4a = document.createElement("div");
+        this.elemB = elem4a;
+        elem4a.innerHTML = "";
+        elem4a.style.marginBottom = "15px";
+        elem4a.style.color = "yellow";
+        var elem5 = document.createElement("div");
+        elem5.innerHTML = "Song:";
+        var elem5a = document.createElement("div");
+        this.elemC = elem5a;
+        elem5a.innerHTML = "";
+        elem5a.style.color = "yellow";
+        elem2.append(elem3);
+        elem2.append(elem4);
+        elem2.append(elem4a);
+        elem2.append(elem5);
+        elem2.append(elem5a);
+        document.getElementById(ParentID).appendChild(elem);
+    }
+    
+    update(value1, value2, value3, value4){
+        this.imgID.src =  value1;
+        this.elemA.innerHTML =   value2;
+        this.elemB.innerHTML = value3;
+        this.elemC.innerHTML = value4;
+    }
+}
 
 /* --------------------- class Dynamic Image ---------------------------------------- */
  class Image {
@@ -349,36 +461,41 @@ function addTitle(TitleID, posTop, posLeft, fontsize, fontcolor, text){
         elem1.append(elem3);
         document.getElementById(ParentID).appendChild(elem1);			 
     },  
-    update: function(value){
+    update: function(value, n=0){
          try {
-        document.getElementById(this.Ident).style.color = this.textColor;
-        if (this.state0 === ""){
-            $(this.Ident).innerHTML =  (value.toString() + this.unit)  ;
-        }else{
-            switch(value){
-                case 0:
-                    $(this.Ident).innerHTML =  this.state0;
-                    break;
-                case 1:
-                    $(this.Ident).innerHTML =  this.state1;
-                    break;  
-                 case 2:
-                    $(this.Ident).innerHTML =  this.state2;
-                    break;
-                case 3:
-                    $(this.Ident).innerHTML =  this.state3;
-                    break;  
-                case true:
-                    $(this.Ident).innerHTML =  this.state0;
-                    break;
-                case false:
-                    $(this.Ident).innerHTML =  this.state1;
-                    break;
+            document.getElementById(this.Ident).style.color = this.textColor;
+            if (this.state0 === "Number"){
+                 var wert = value.toFixed(n);
+                $(this.Ident).innerHTML =  (wert.toString() + this.unit);
+            }
+            else if(this.state0 === "String"){
+                 $(this.Ident).innerHTML =  (value.toString() + this.unit);
+            }
+            else{
+                switch(value){
+                    case 0:
+                        $(this.Ident).innerHTML =  this.state0;
+                        break;
+                    case 1:
+                        $(this.Ident).innerHTML =  this.state1;
+                        break;  
+                     case 2:
+                        $(this.Ident).innerHTML =  this.state2;
+                        break;
+                    case 3:
+                        $(this.Ident).innerHTML =  this.state3;
+                        break;  
+                    case true:
+                        $(this.Ident).innerHTML =  this.state0;
+                        break;
+                    case false:
+                        $(this.Ident).innerHTML =  this.state1;
+                        break;
+                }    
             }    
-        }    
-            } catch (error) {
+        } catch (error) {
              alert("value in Display error" + this.Ident);
-        }
+          }
     },
     
     setTextColor(farbe){
@@ -422,10 +539,10 @@ function addTitle(TitleID, posTop, posLeft, fontsize, fontcolor, text){
             if (value === false){
                document.getElementById(this.Ident).innerHTML = this.state1; 
             }
-            else if (value == true) {
+            else if (value === true) {
                 document.getElementById(this.Ident).innerHTML = this.state2; 
             }
-            else if (n){
+            else if (n === 0 || n > 0){
                 //var wert = Math.round(value).toFixed(n);
                 var wert = value.toFixed(n);
                 document.getElementById(this.Ident).innerHTML = wert + this.unit;
@@ -733,10 +850,22 @@ function addFontButton(ParentID, color, size, posTop, posLeft, symbol, cmd){
                 }
             }
             else {
-                document.getElementsByClassName("StartScreen")[0].style.width = "0px";
-                document.getElementById(ParentID).style.width = "8vw";
-                document.getElementById(IDMain).style.width = "58vw";
-                document.getElementById(IDMain + "Ctrl").style.width = "26vw";
+                if(IDMain !== ""){
+                    document.getElementsByClassName("StartScreen")[0].style.width = "0px";
+                    //SubMenue Leiste verkuerzt einblenden
+                    document.getElementById(ParentID).style.width = "8vw";
+                    //Haupt Fenster einblenden
+                    document.getElementById(IDMain).style.width = "58vw";
+                    //Control Fenster einblenden
+                    document.getElementById(IDMain + "Ctrl").style.width = "26vw";
+                }
+                else {
+                    document.getElementsByClassName("StartScreen")[0].style.width = "0px";
+                    //SubMenue Leiste verkuerzt einblenden
+                    document.getElementById(ParentID).style.width = "8vw";
+                    //Haupt Fenster komplett einblenden
+                    document.getElementById(IDFull).style.width = "92vw"; 
+                }
             }
                 			
                 document.getElementsByClassName("Top")[0].style.backgroundColor = farbe;
@@ -804,13 +933,12 @@ function addFontButton(ParentID, color, size, posTop, posLeft, symbol, cmd){
     
     
      /* --------------------- Klasse Zahlenfeld ---------------------------------------- */
-    class KeyFrame { 
+    class KeyPad { 
         constructor(  ) {
  
         }
  
-        create(ParentID, ObjID, color, posTop, posLeft ){
-            
+        create(ParentID, ObjID, Device, color, size, posTop, posLeft ){
             var elem = document.createElement("div"); 
             elem.style.position = "absolute";
             elem.style.left = posLeft;
@@ -818,7 +946,14 @@ function addFontButton(ParentID, color, size, posTop, posLeft, symbol, cmd){
      
             var Zcontainer = document.createElement("div"); 
             Zcontainer.className = "ZahlenContainer"; 
-            Zcontainer.style.backgroundColor = "black"
+            Zcontainer.style.backgroundColor = "black";
+            Zcontainer.style.padding = "7px" * size;
+            let h = 300*size;
+            let b = 320*size;
+            Zcontainer.style.height = h +"px";
+            Zcontainer.style.width = b + "px";      
+            	
+	
             elem.append(Zcontainer);
             
             var i;
@@ -826,9 +961,14 @@ function addFontButton(ParentID, color, size, posTop, posLeft, symbol, cmd){
                 var taste = document.createElement("div");
                 taste.className = "fontbutton"; 
                 taste.classList.add(color); 
-                taste.style.fontSize = "38px";
+                let f1 = 38*size;
+                taste.style.fontSize = f1 + "px"  ;
                 taste.style.padding = "8px";
-                taste.setAttribute("onclick", "send('command(security,key,"+ i + ")')");
+                let a1 = 100 * size;
+                let b1 = 70 * size;
+                taste.style.width = a1 + "px";
+                taste.style.height = b1 + "px";
+                taste.setAttribute("onclick", "send('command("+ Device + ",keyNo,"+ i + ")')");
                 taste.innerHTML = i;
                 Zcontainer.append(taste);
             }
@@ -837,40 +977,57 @@ function addFontButton(ParentID, color, size, posTop, posLeft, symbol, cmd){
             var reply = document.createElement("div");
             reply.className = "fontbutton";
             reply.classList.add(color);
-            reply.style.fontSize = "38px";
+            let f2 = 38*size;
+            reply.style.fontSize = f2 + "px";
             reply.style.padding = "8px";
-            reply.setAttribute("onclick", "send('command(security,keyCmd,cancel)')");
+            let a2 = 100 * size;
+            let b2 = 70 * size;
+            reply.style.width = a2 + "px";
+            reply.style.height = b2 + "px";
+            reply.setAttribute("onclick", "send('command(" + Device + ",key,cancel)')");
             Zcontainer.append(reply);
             
             var replyA = document.createElement("span");
             replyA.className = "fa fa-reply"; 
-            replyA.style.fontSize = "30px";
+            let f6 = 30*size;
+            replyA.style.fontSize = f6 + "px";
             replyA.style.padding = "5px";
-            replyA.style.marginTop = "10px";
+            replyA.style.marginTop = "10px" * size;
             reply.append(replyA); 
 
             var taste9 = document.createElement("div");
             taste9.className = "fontbutton";
             taste9.classList.add(color);
-            taste9.style.fontSize = "38px";
+            let f3 = 38*size;
+            taste9.style.fontSize = f3 + "px";
             taste9.style.padding = "8px";
-            taste9.setAttribute("onclick", "send('command(security,keyNo,9)')");
+            let a3 = 100 * size;
+            let b3 = 70 * size;
+            taste9.style.width = a3 + "px";
+            taste9.style.height = b3 + "px";
+            taste9.setAttribute("onclick", "send('command("+ Device + ",keyNo,9)')");
             taste9.innerHTML = "9";
             Zcontainer.append(taste9);      
             
             var enter = document.createElement("div");
             enter.className = "fontbutton";
             enter.classList.add(color);
-            enter.style.fontSize = "38px";
+            let f4 = 38*size;
+            enter.style.fontSize = f4 + "px";
             enter.style.padding = "8px";
-            enter.setAttribute("onclick", "send('command(security,keyCmd,enter)')");
+            let a4 = 100 * size;
+            let b4 = 70 * size;
+            enter.style.width = a4 + "px";
+            enter.style.height = b4 + "px";
+            enter.setAttribute("onclick", "send('command(" + Device + ",key,enter)')");
             Zcontainer.append(enter); 
             
             var enterA = document.createElement("span");
             enterA.className = "fa fa-check"; 
-            enterA.style.fontSize = "30px";
+            let f5 = 30*size;
+            enterA.style.fontSize = f5 + "px";
             enterA.style.padding = "5px";
-            enterA.style.marginTop = "10px";
+            enterA.style.marginTop = "10px" * size;
             enter.append(enterA); 
               
             document.getElementById(ParentID).appendChild(elem);
@@ -878,3 +1035,423 @@ function addFontButton(ParentID, color, size, posTop, posLeft, symbol, cmd){
         }
     }
       
+     /* --------------------- Klasse AlarmBox ---------------------------------------- */
+    class AlarmBox { 
+        constructor() {
+            this.ID = "";     
+        }
+ 
+        create(ParentID, ObjID, color, posTop, posLeft ){ 
+            this.ID = ObjID;
+            var elem = document.createElement("div");
+            elem.className = "AlarmBox"; 
+            elem.classList.add(color); 
+            elem.id = this.ID;
+            elem.style.fontSize = "80px";
+            elem.style.padding = "8px";
+            elem.setAttribute("onclick", "send('command(security,alarm,aus)')");
+            elem.innerHTML = "Einbrecher!";  
+            elem.style.position = "absolute";
+            elem.style.left = posLeft;
+            elem.style.top = posTop; 
+            elem.style.width = "700px";
+            elem.style.height = "200px";
+            elem.style.display = "none";
+             
+            elem.style.zIndex = "4";
+             
+            elem.style.backgroundColor = color;
+            elem.style.fontFamily = "Arial";
+            elem.href = "#";
+            elem.style.paddingTop = "40px";
+            elem.style.border = "thick solid #0000FF";                                                                                                                    
+            elem.style.borderRadius = "10px";                                                                                                            
+            document.getElementById(ParentID).appendChild(elem);
+        }
+        
+        update(value){
+            if(value == 2){
+               document.getElementById(this.ID).style.display = "block";
+            }  
+            else {
+               document.getElementById(this.ID).style.display = "none";
+            }
+        }
+    }    
+    
+ 
+    /* --------------------- Klasse IconSelectList ---------------------------------------- */
+    class IconList { 
+        constructor() {
+             
+        }
+
+        create(ParentID, source ){ 
+            if (source == "CD"){
+                var SourceList = [];
+                for (var i=1; i<99; i++) {
+                    SourceList[i] = {
+                        No:   i-1,
+                        selected: false,
+                        icon:   i
+                    };
+                } 
+
+            }
+            else{
+                // Liste einlesen
+                var Liste = new data();
+                switch(source) {
+                   case "TV":
+                       var SourceList = Liste.getTVchannels();
+                       break;
+                   case "IRadio":
+                       var SourceList = Liste.getIRadiochannels();
+                       break;
+                   default:
+                }
+            }
+            SourceList.forEach ( function(item){
+                var elem = document.createElement("img");
+                             
+                switch(source) {
+                    case "TV":
+                        var icon = item["icon"];
+                        break;
+                    case "IRadio":
+                        var icon = item["icon"];
+                        break;
+                    case "CD":
+                         
+                            var n = item["icon"];
+                            var laenge = n.toString().length;
+
+                            if (laenge == 1) {
+                                    n = "000" + n.toString();
+                            }	
+                            if (laenge == 2) {
+                                    n = "00" + n.toString();
+                            }	
+                            if (laenge == 3) {
+                                    n = "0" + n.toString();
+                            }
+                            if (laenge == 4) {
+                                    n = n.toString();
+                            }
+                        break;
+                        
+                    default:
+                }
+                
+                elem.className = "iconTV";
+                elem.id = source + item["No"];
+                elem.style.padding = "2px";
+                if (source === "TV"){
+                    elem.src = "images/Sender/" + icon;
+                }
+                else if (source === "IRadio"){
+                    elem.src = "images/RadioStation/" + icon;
+                }
+                else if (source === "CD"){
+                    elem.src = "CDs/" + n + ".jpg";
+                }
+                elem.onclick = function(){
+                        var index = SourceList.findIndex((item) => item.selected === true);
+                        if (index !== -1){
+                            SourceList[index]['selected'] = false;
+                            var ObjID = source + index;
+                            var elem0 = document.getElementById(ObjID);
+                            elem0.classList.add("iconTV");
+                            elem0.classList.remove("iconTVToggle");
+                        }
+                        elem.classList.add("iconTVToggle");
+                        elem.classList.remove("iconTV");
+                        item['selected'] = true;
+                        if (source === "TV"){
+                            var cmd = "command(TV,Channel," + item['Sender'] + ")";
+                        }
+                        else if (source === "IRadio"){
+                            var cmd = "command(DenonCeol,Channel," + item['FV'] + ")";
+                        }
+                        else if (source === "CD"){
+                            var wert = item;
+                            cmd("command(" + wert.substring(4, wert.length) + ",loadCDPlaylist," + wert.substring(0, 4) + ")") ;
+                        }
+                        send(cmd);
+                    } ; 
+                         
+                document.getElementById(ParentID).appendChild(elem);
+            });
+            
+         }
+   
+               
+      
+    }
+    
+   /* ---------------------  Klasse FontButton (Rest noch austauschen ---------------------------------------- */
+    class FontButtonNew {
+           constructor(  ) {
+               this.ID = "";
+           }
+        create (ParentID, color, size, posTop, posLeft, symbol, cmd){  
+                   var elem = document.createElement("div");
+                   elem.className = "fontbutton";   
+                   elem.classList.add(size, color);
+                   this.ID = elem;
+                   elem.style.position = "absolute";
+                   elem.style.left = posLeft;
+                   elem.style.top = posTop;
+                   elem.setAttribute("onclick", cmd);
+                   var elem1 = document.createElement("span");
+                   elem1.className = symbol; 
+                   elem1.style.fontSize = "30px";
+                   elem1.style.padding = "5px";
+            
+                   
+                   elem.append(elem1);
+                   document.getElementById(ParentID).appendChild(elem);
+       }    
+       
+        update (value){
+            if (value === true){
+               this.ID.style.color = "lime"; 
+            }
+            else {
+                this.ID.style.color = "white";
+            }
+       }
+    };
+
+      /* --------------------- Klasse Navigation Pad ---------------------------------------- */
+    class NavPad { 
+        constructor(  ) {
+             
+        }
+ 
+        create(ParentID, ObjID, color,   posTop, posLeft, sym ){
+            
+            var elem = document.createElement("div"); 
+            elem.style.position = "absolute";
+            elem.style.left = posLeft;
+            elem.style.top = posTop;   
+	
+            
+            var Navcontainer = document.createElement("div"); 
+            Navcontainer.className = "NavContainer"; 
+             
+            Navcontainer.style.width =   "220px";
+
+	
+            elem.append(Navcontainer);
+            
+            var i;
+            for (i = 0; i < 9; i++) { 
+                var taste = document.createElement("div");
+                taste.className = "fontbutton"; 
+                taste.classList.add(color); 
+              
+                
+                taste.style.padding = "8px";
+                taste.style.margin = "0px";
+  
+                taste.style.width =  "60px";
+                taste.style.height =  "60px";
+                var cmd = "";
+                switch(i){
+                    case 0:
+                        taste.style.marginTop = "30px";
+                        taste.style.marginLeft = "0px";
+                        taste.style.width = "50px";
+                        taste.style.height = "50px";
+                        taste.style.color = "yellow";
+                        cmd = "command(TV,key,c)";
+                        break;
+                    case 1:
+                        taste.style.borderRadius = "20px 20px 0px 0px" ;
+                        taste.style.fontSize = "45px";
+                        taste.style.height =  "80px";
+                        taste.style.marginTop = "0px";
+                        cmd = "command(TV,key,KEY_UP)";
+                        break;
+                    case 2:
+                        taste.style.marginTop = "30px";
+                        taste.style.marginRight = "0px";
+                        taste.style.width = "50px";
+                        taste.style.height = "50px";
+                        taste.style.color = "green";
+                        cmd = "command(TV,key,c)";
+                        break;
+                    case 3:
+                        taste.style.borderRadius = "20px  0px  0px 20px" ;
+                        taste.style.width =  "80px";
+                        cmd = "command(TV,key,KEY_LEFT)";
+                        break;
+                    case 4:
+                        cmd = "command(TV,key,KEY_ENTER)"; 
+                        break;
+                    case 5:
+                        taste.style.borderRadius = "0px 20px 20px 0px" ;
+                        taste.style.width = "80px";
+                        cmd = "command(TV,key,KEY_RIGHT)";
+                        break;
+                    case 6:
+                        taste.style.marginBottom = "0px";
+                        taste.style.marginLeft = "0px";
+                        taste.style.width = "50px";
+                        taste.style.height = "50px";
+                        taste.style.color = "blue"; 
+                        cmd = "command(TV,key,c)";
+                        break;
+                    case 7:
+                        taste.style.borderRadius = "0px  0px 20px 20px";
+                        taste.style.height =  "80px"; 
+                        cmd = "command(TV,key,KEY_DOWN)";
+                        break;
+                    case 8:
+                        taste.style.marginBottom = "0px";
+                        taste.style.marginRight = "0px";
+                        taste.style.width = "50px";
+                        taste.style.height = "50px";
+                        taste.style.color = "red";
+                        cmd = "command(TV,key,c)";
+                        break;
+                }        
+ 
+ 
+                taste.onclick = send(cmd); 
+                 
+                Navcontainer.append(taste);
+                
+                var symbol = document.createElement("span");
+                
+                symbol.className = sym[i]; 
+                symbol.style.position = "relative";
+                
+                symbol.style.fontSize =  "38px";
+                if(i == 7){
+                    symbol.style.top = "25px"; 
+                }
+                else if (i == 1){
+                   symbol.style.top = "-10px";  
+                }
+                else if (i == 3){
+                   symbol.style.left = "-15px";  
+                }
+                else if (i == 5){
+                   symbol.style.left = "15px";  
+                } 
+                taste.append(symbol); 
+            }
+            document.getElementById(ParentID).appendChild(elem);
+        }
+    } 
+    
+       /* --------------------- Klasse Navigation Pad ---------------------------------------- */
+    class LEDdisplay { 
+        constructor(  ) {
+             
+        }
+ 
+        create(ParentID, ObjID,  posTop, posLeft, hoehe, breite ){
+            
+            var elem = document.createElement("div"); 
+            elem.className = "DenonAnzeige"; 
+            elem.style.position = "absolute";
+            elem.style.left = posLeft;
+            elem.style.top = posTop; 
+            elem.style.height = hoehe;
+            elem.style.width = breite; 
+            elem.innerHTML = "TEST Sender"
+            
+            document.getElementById(ParentID).appendChild(elem);
+        }
+        
+        update() {
+            
+        }
+    }    
+       
+        /* --------------------- Klasse     ---------------------------------------- */
+    class MainWindow { 
+        constructor(  ) {
+             
+        }
+ 
+        create(ParentID, ObjID, windowsClass ){
+            
+            var elem = document.createElement("Main"); 
+            elem.className = windowsClass;
+ 
+ 
+            document.getElementById(ParentID).appendChild(elem);
+ 
+ 
+        }
+    }
+   
+   
+    /* --------------------- Klasse IconVarDisplay ---------------------------------------- */
+    class IconVarDisplay {
+        constructor() {
+            this.ID = ""; 
+            this.color = "white",
+            this.textcolor = "white",
+            this.textsize = "14px";
+            this.unit = "°C",
+            this.state =  ""
+             
+        }
+
+    
+    create (ParentID, ObjektFarbe, posTop, posLeft, symbol, einheit, ...status){  
+        this.color = ObjektFarbe;
+        this.unit = einheit;
+        this.state = status;
+        
+        
+        var elem = document.createElement("div");
+        elem.className = "status";  
+        elem.classList.add(this.color);
+        elem.style.position = "absolute";
+        elem.style.left = posLeft;
+        elem.style.top = posTop;
+        elem.style.width = "100px";
+        
+        var elem1 =  document.createElement("span");
+        elem1.className = symbol;
+        elem1.style.fontSize = this.textsize;
+        elem1.style.color = this.textcolor;
+        
+        elem.append(elem1);
+
+        var elem2 =  document.createElement("span");
+        elem2.style.marginLeft = "15px";
+        elem2.innerHTML = "- - -";
+        this.ID = elem2;
+        elem1.append(elem2);
+     
+        document.getElementById(ParentID).appendChild(elem);   
+    };
+    update(value, n){
+        try { 
+            if(n === "state"){ 
+                this.ID.innerHTML = this.state[value]; 
+            }
+ 
+            else if (n === 0 || n > 0){
+                //var wert = Math.round(value).toFixed(n);
+                var wert = value.toFixed(n);
+                this.ID.innerHTML = wert + this.unit;
+            }
+            else {
+                this.ID.innerHTML = value + this.unit;
+            }
+        } catch (error) {
+           // alert("error");
+        }
+        
+     }
+  }  ; 
+  
+  

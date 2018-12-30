@@ -64,7 +64,11 @@
             check(ips[0].ID18059, 5);    
             check(ips[0].ID49335, 6);
             check(ips[0].ID23116, 7);
-            check(ips[0].ID37045, 8);
+            check(ips[0].ID37045, 54); // Posittion Heizung Kueche
+            
+            check(ips[0].ID36448, 55); // Posittion Heizung Schlafzimmer
+            
+            check(ips[0].ID51619, 8);
             //Security
             check(ips[0].ID36168, 9);  // Diele Präsenzmelder
             check(ips[0].ID22196, 10);  // Diele Haustür
@@ -76,7 +80,7 @@
             check(ips[0].ID58797, 13);  //Rollo KZ Mode
             check(ips[0].ID33678, 14);  //Rollo KZ Postion         
             
-            check(ips[0].ID13703, 15);  //Rollo K Mode
+            check(ips[0].ID46774, 15);  //Rollo K Mode
             check(ips[0].ID13174, 16);  //Rollo K Postion     
             check(ips[0].ID20341, 47);  //Rollo K up/down
             check(ips[0].ID45555, 48);  //Rollo K Schaltzeit Mo-Fr
@@ -135,7 +139,12 @@
             
             check(ips[0].ID30115, 53);  //Alarm Analge aktiv
             
-            
+            check(ips[0].ID34292, 56);  //ArtisPicLastFM
+            check(ips[0].ID30505, 57);  //DIDL Artist - Denon
+            check(ips[0].ID19922, 58);  //DIDL Title - Denon
+            check(ips[0].ID31822, 58);  //Line3 - Denon
+            check(ips[0].ID22520, 59);  //Power - Denon
+            check(ips[0].ID19185, 59);  //Volume - Denon
      }
     function check(value, n){
         if (typeof value === "undefined") {$('fehler').innerHTML =  "Variable  wrong ID:" + n;} else {return value;}
@@ -340,22 +349,20 @@
         LeftMenuKZ.update(ips[0].ID54070, "°C","","","","","","");
  
         //<!-- ************************ Heizung Wohnzimmer ************************  -->
-       // $('TempHzWZ1').innerHTML =  ips[0].ID51079 + '°C'  ;
-       // $('PosHzWZ1').innerHTML =   Math.round(ips[0].ID18059).toFixed(0) + '%';
+
         MainTempHzWZ.update(ips[0].ID51079, 1);
         MainPosHzWZ.update(ips[0].ID18059, 0);
-      //  $('TempHzWZ2').innerHTML =  ips[0].ID51079 + '°C'  ;
-      //  $('PosHzWZ2').innerHTML =   Math.round(ips[0].ID18059).toFixed(0) + '%';
+
         $('TempVorHzWZ1').innerHTML =  "--"  + '°C'  ;
         $('TempRueckHzWZ1').innerHTML =  "--" + '°C' ;
         $('SollTempHzWZ1').innerHTML =  ips[0].ID31769 + '°C'  ;
         $('SollTempAusHzWZ1').innerHTML =  ips[0].ID27789 + '°C' ;
 
         iHzWZ.update(ips[0].ID18059);
-        
+       
         DisModeHzWZ.update(ips[0].ID53071);
         DisTempHzWZ.update(ips[0].ID51079);
-        DisPosHzWZ.update(Math.round(ips[0].ID18059).toFixed(0));
+        DisPosHzWZCtrl.update(ips[0].ID18059);
         
         var BatHzWZ1 = ips[0].ID23472;
         if (BatHzWZ1){
@@ -380,9 +387,9 @@
         iHzKZ.update(ips[0].ID49335);
         
        
-        DisModeHzKZ.update(ips[0].ID34102);
-        DisTempHzKZ.update(ips[0].ID37045);
-        DisPosHzKZ.update(Math.round(ips[0].ID49335).toFixed(0));
+        DisModeHzKZCtrl.update(ips[0].ID34102);
+        DisTempHzKZCtrl.update(ips[0].ID37045);
+        DisPosHzKZCtrl.update(ips[0].ID49335);
         
         var BatHzKZ1 = ips[0].ID52085;
         if (BatHzKZ1){
@@ -407,9 +414,9 @@
         iHzSZ.update(ips[0].ID36448);
         
        
-        DisModeHzSZ.update(ips[0].ID31202);
-        DisTempHzSZ.update(ips[0].ID23116);
-        DisPosHzSZ.update(Math.round(ips[0].ID36448).toFixed(0));
+        DisModeHzSZCtrl.update(ips[0].ID31202);
+        DisTempHzSZCtrl.update(ips[0].ID23116);
+        DisPosHzSZCtrl.update(ips[0].ID36448);
 
         
         var BatHzSZ1 = ips[0].ID57118;
@@ -435,9 +442,9 @@
         iHzK.update(ips[0].ID51619);
         
        
-        DisModeHzK.update(ips[0].ID39562);
-        DisTempHzK.update(ips[0].ID54070);
-        DisPosHzK.update(Math.round(ips[0].ID51619).toFixed(0));
+        DisModeHzKCtrl.update(ips[0].ID39562);
+        DisTempHzKCtrl.update(ips[0].ID54070);
+        DisPosHzKCtrl.update(ips[0].ID51619);
         
          var BatHzK1 = ips[0].ID22083;
         if (BatHzK1){
@@ -467,26 +474,23 @@
             //Dynamisches Bild Rolladen
             iRolloB.update(ips[0].ID46035);
             iRolloWZ.update(ips[0].ID39896);
-            iRolloK.update(ips[0].ID20994);
+            iRolloK.update(ips[0].ID13174);
             
-            DisPosRolloWZ.update(ips[0].ID39896);   
-
-            DisModeRolloWZ.update(ips[0].ID50459); 
-             
-
-            DisST1RolloWZ.update(ips[0].ID29948); 
-            DisST2RolloWZ.update(ips[0].ID56266); 
+            DisPosRolloWZCtrl.update(ips[0].ID39896);   
+            DisModeRolloWZCtrl.update(ips[0].ID50459); 
+            DisST1RolloWZCtrl.update(ips[0].ID29948); 
+            DisST2RolloWZCtrl.update(ips[0].ID56266); 
 
             DisPosRolloB.update(ips[0].ID46035);   
             DisModeRolloB.update(ips[0].ID29574); 
             DisST1RolloB.update(ips[0].ID48410); 
             DisST2RolloB.update(ips[0].ID12438); 
 
-            DisPosRolloK.update(ips[0].ID20994);   
-            DisModeRolloK.update(ips[0].ID13703); 
-            DisST1RolloK.update(ips[0].ID10780); 
+            DisPosRolloK.update(ips[0].ID13174);   
+            DisModeRolloK.update(ips[0].ID54826); 
+            DisST1RolloK.update(ips[0].ID42555); 
             DisST2RolloK.update(ips[0].ID46774); 
-            CbSSrolloK.update(ips[0].ID18813);
+            CbSSrolloK.update(ips[0].ID45141);
 
 
             CbSSrolloB.update(ips[0].ID56785);
@@ -497,6 +501,16 @@
             
              DisAlarmActiveSec.update(ips[0].ID30115); 
              ABox.update(ips[0].ID44517);
+             
+            iDisArtist.update(ips[0].ID34292, ips[0].ID31822, ips[0].ID30505, ips[0].ID17922);
+            FontBtnIRadioPower.update(ips[0].ID22520);
+            IconVarDisVol.update(ips[0].ID19185,0);
+            IconVarDisSource.update(ips[0].ID46852,"state");
+
+            iDisArtistWZ.update(ips[0].ID34292, ips[0].ID31822, ips[0].ID30505, ips[0].ID17922);
+            FontBtnIRadioPowerWZ.update(ips[0].ID22520);
+            IconVarDisVolWZ.update(ips[0].ID19185,0);
+            IconVarDisSourceWZ.update(ips[0].ID46852,"state");
             
         } catch (error) {
            // alert (error);

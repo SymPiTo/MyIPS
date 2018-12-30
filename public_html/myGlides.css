@@ -67,6 +67,10 @@ button :active {
 	top: 0vh;
 	background-color: #8BDAF7;
 }
+
+
+ 
+
 /*All the scrollable sections should overflow and be whatever height they need to be. As they are flex-items (due to being inside a flex container) they could be made to stretch full height at all times if needed.
 WebKit inertia scrolling is being added here for any present/future devices that are able to make use of it.
 */
@@ -80,6 +84,7 @@ WebKit inertia scrolling is being added here for any present/future devices that
 .MenuMultimedia,
 .MenuHz,
 .MenuRollo,
+.MenuNet,
 .HeizungAll,
 .HeizungWZ,
 .HeizungCtrlWZ,
@@ -125,7 +130,11 @@ WebKit inertia scrolling is being added here for any present/future devices that
 .TimePickerX,
 .Wetter,
 .SecurityCode,
-.TV {
+.SecCodeCtrl,
+.IRadio,
+.WSS,
+.TV
+{
     overflow: auto;
     padding: .0rem;
     -webkit-overflow-scrolling: touch;
@@ -151,25 +160,8 @@ WebKit inertia scrolling is being added here for any present/future devices that
 .MenuMultimedia::-webkit-scrollbar,
 .MenuHz::-webkit-scrollbar,
 .MenuRollo::-webkit-scrollbar,
+.MenuNet::-webkit-scrollbar,
 .HeizungAll::-webkit-scrollbar,
-.HeizungWZ::-webkit-scrollbar,
-.HeizungCtrlWZ::-webkit-scrollbar,
-.HeizungKZ::-webkit-scrollbar,
-.HeizungCtrlKZ::-webkit-scrollbar,
-.HeizungSZ::-webkit-scrollbar,
-.HeizungCtrlSZ::-webkit-scrollbar,
-.HeizungK::-webkit-scrollbar,
-.HeizungCtrlK::-webkit-scrollbar,
-.RolloWZ::-webkit-scrollbar,
-.RolloCtrlWZ::-webkit-scrollbar,
-.RolloKZ::-webkit-scrollbar,
-.RolloCtrlKZ::-webkit-scrollbar,
-.RolloSZ::-webkit-scrollbar,
-.RolloCtrlSZ::-webkit-scrollbar,
-.RolloK::-webkit-scrollbar,
-.RolloCtrlK::-webkit-scrollbar,
-.RolloB::-webkit-scrollbar,
-.RolloCtrlB::-webkit-scrollbar,
 .RadioStation::-webkit-scrollbar,
 .RolladenAll::-webkit-scrollbar,
 .Network::-webkit-scrollbar,
@@ -194,7 +186,8 @@ WebKit inertia scrolling is being added here for any present/future devices that
 .ScrollReihe::-webkit-scrollbar,
 .TimePicker::-webkit-scrollbar,
 .TimePickerX::-webkit-scrollbar,
-.SecurityCode::-webkit-scrollbar,
+.IRadio::-webkit-scrollbar,
+.WSS::-webkit-scrollbar,
 .TV::-webkit-scrollbar {
     display: none;
 }
@@ -297,7 +290,7 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	width: 0px;
 	height: 95vh;
         left:16.2vw;
-	background: hsl(0, 100%, 10%);
+background: -webkit-linear-gradient(hsl(152, 70%, 15%), hsl(152,70%,25%),hsl(152, 70%, 15%)); /* CHROME */
 	/* border-right-color: #FFFFFF;
 	border-right-style: solid;
 	border-right-width: 1px; */
@@ -309,7 +302,7 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	width: 0px;
 	height: 95vh;
         left:74vw;
-	background: hsl(0, 100%, 10%);
+background: -webkit-linear-gradient(hsl(152, 70%, 15%), hsl(152,70%,25%),hsl(152, 70%, 15%)); /* CHROME */
 }
 /* MID */
 .RolloWZ{
@@ -379,7 +372,7 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	width: 0px;
 	height: 95vh;
         left: 16.2vw;
-	background: hsl(0, 100%, 10%);
+background: -webkit-linear-gradient(hsl(152, 70%, 15%), hsl(152,70%,25%),hsl(152, 70%, 15%)); /* CHROME */
 	/* border-right-color: #FFFFFF;
 	border-right-style: solid;
 	border-right-width: 1px; */
@@ -391,7 +384,7 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	width: 0px;
 	height: 95vh;
         left:74vw;
-	background: hsl(0, 100%, 10%);
+background: -webkit-linear-gradient(hsl(152, 70%, 15%), hsl(152,70%,25%),hsl(152, 70%, 15%)); /* CHROME */
 }
 .RolloB{
 	position:absolute;
@@ -559,7 +552,7 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	top: 5vh;
     width: 0px;
 	height: 95vh;
-	background: hsl(174, 100%, 10%);
+
 }
 
 .MenuSZ{
@@ -567,7 +560,7 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	top: 5vh;
     width: 0px;
 	height: 95vh;
-	background: hsl(28, 100%, 10%);	
+	
 }
 
 .MenuKZ{
@@ -575,7 +568,7 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	top: 5vh;
     width: 0px;
 	height: 95vh;
-	background: hsl(82, 100%, 10%);
+
 }
 
 .MenuK{
@@ -583,14 +576,14 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	top: 5vh;
     width: 0px;
 	height: 95vh;
-	background: hsl(0, 100%, 10%);
+
  }
 .MenuSec{
 	position:relative;
 	top: 5vh;
         width: 0px;
 	height: 95vh;
-	background: hsl(152,70%,45%);
+
  }
 
 .MenuB{
@@ -598,7 +591,7 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	top: 5vh;
     width: 0px;
 	height: 95vh;
-	background: hsl(200, 100%, 10%);
+
  }
 
 .MenuMultimedia{
@@ -606,7 +599,7 @@ WebKit inertia scrolling is being added here for any present/future devices that
     top: 5vh;
     width: 0px;
     height: 95vh;
-    background: hsl(300, 100%, 10%);
+
 }
 
 .MenuHz{
@@ -619,12 +612,19 @@ WebKit inertia scrolling is being added here for any present/future devices that
 }
 
 .MenuRollo{
-	position:relative;
-	top: 5vh;
-
+    position:relative;
+    top: 5vh;
     width: 0px;
-	height: 530px;
-	background-color: black;
+    height: 530px;
+
+}
+
+.MenuNet{
+    position:relative;
+    top: 5vh;
+    width: 0px;
+    height: 450px;
+
 }
 
 
@@ -675,8 +675,8 @@ WebKit inertia scrolling is being added here for any present/future devices that
         left: 16vw;
         width: 0vw;
 	height: 95vh;	
-	 
-        color: black;
+	background-color: maroon;
+        color: white;
 }
 
 .Network{
@@ -687,8 +687,23 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	height: 95vh;	
 	background-color: black;
 }
-
-
+.IRadio {
+	position:absolute;
+	top: 5vh;
+        left: 16.2vw;
+	width: 0px;
+	height: 95vh;
+	background: hsl(300, 100%, 10%);
+	color: #FFFFFF;
+}
+.WSS{
+	position:absolute;
+	top: 5vh;
+        left: 16.2vw;
+        width: 0px;
+	height: 95vh;	
+	background-color: black;
+}
 .TV {
 	position:absolute;
 	top: 5vh;
@@ -707,6 +722,7 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	flex-direction: column;
 	width: 0px;
 	height: 95vh;
+         
 	background: hsl(300, 1%, 10%);
 } 
 
@@ -796,52 +812,52 @@ WebKit inertia scrolling is being added here for any present/future devices that
 }
 .GlideButton.cyan {
 	  /*Gradient*/
-	  background: -webkit-linear-gradient(hsl(174, 100%, 25%), hsl(174, 100%, 45%)); /* CHROME
+	  background: -webkit-linear-gradient(hsl(174, 100%, 25%), hsl(174, 100%, 45%),hsl(174, 100%, 25%)); /* CHROME
 	  background: linear-gradient(0deg, hsl(174, 100%, 25%) 5%, hsl(174, 100%, 45%) 70%)); /* Standard syntax (must be last) */
 }
 .GlideButton.olive {
 	  /*Gradient*/
-	  background: -webkit-linear-gradient(hsl(82, 100%, 25%), hsl(82, 100%, 45%)); /* CHROME */
+	  background: -webkit-linear-gradient(hsl(82, 100%, 25%), hsl(82, 100%, 45%), hsl(82, 100%, 25%)); /* CHROME */
 }
 .GlideButton.sandy {
 	  /*Gradient*/
-	  background: -webkit-linear-gradient(hsl(28, 100%, 25%), hsl(28, 100%, 45%)); /* CHROME */
+	  background: -webkit-linear-gradient(hsl(28, 100%, 25%), hsl(28, 100%, 45%), hsl(28, 100%, 25%)); /* CHROME */
 }
 .GlideButton.red {
 	  /*Gradient*/
-	  background: -webkit-linear-gradient(hsl(0, 100%, 25%), hsl(0, 100%, 45%)); /* CHROME */
+	  background: -webkit-linear-gradient(hsl(0, 100%, 25%), hsl(0, 100%, 45%), hsl(0, 100%, 25%)); /* CHROME */
 }
 .GlideButton.yellow {
 	  /*Gradient*/
-	  background: -webkit-linear-gradient(hsl(51, 100%, 25%), hsl(51, 100%, 45%)); /* CHROME */
+	  background: -webkit-linear-gradient(hsl(51, 100%, 25%), hsl(51, 100%, 45%), hsl(51, 100%, 25%)); /* CHROME */
 }
 .GlideButton.purple {
 	  /*Gradient*/
-	  background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 45%)); /* CHROME */
+	  background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 45%), hsl(300, 100%, 25%)); /* CHROME */
 }
 .GlideButton.grey {
 	  /*Gradient*/
-	  background: -webkit-linear-gradient(hsl(205, 10%, 45%), hsl(205, 10%, 75%)); /* CHROME */
+	  background: -webkit-linear-gradient(hsl(205, 10%, 45%), hsl(205, 10%, 75%), hsl(205, 10%, 45%)); /* CHROME */
 }
 .GlideButton.pink {
 	  /*Gradient*/
-	  background: -webkit-linear-gradient(hsl(350, 100%, 65%), hsl(350, 100%, 85%)); /* CHROME */
+	  background: -webkit-linear-gradient(hsl(350, 100%, 65%), hsl(350, 100%, 85%), hsl(350, 100%, 65%)); /* CHROME */
 }
 .GlideButton.blue{
 	  /*Gradient*/
-	  background: -webkit-linear-gradient(hsl(200, 100%, 25%), hsl(200, 100%, 45%)); /* CHROME */
+	  background: -webkit-linear-gradient(hsl(200, 100%, 25%), hsl(200, 100%, 45%), hsl(200, 100%, 25%)); /* CHROME */
 }
 .GlideButton.brown{
 	  /*Gradient*/
-	  background: -webkit-linear-gradient(hsl(30, 56%, 25%), hsl(30, 56%, 45%)); /* CHROME */
+	  background: -webkit-linear-gradient(hsl(30, 56%, 25%), hsl(30, 56%, 45%), hsl(30, 56%, 25%)); /* CHROME */
 }
 .GlideButton.green{
 	  /*Gradient*/
-	  background: -webkit-linear-gradient(hsl(120, 56%, 25%), hsl(120, 56%, 45%)); /* CHROME */
+	  background: -webkit-linear-gradient(hsl(120, 56%, 25%), hsl(120, 56%, 45%), hsl(120, 56%, 25%)); /* CHROME */
 }
 .GlideButton.midgreen{
 	  /*Gradient*/
-	  background: -webkit-linear-gradient(hsl(152, 70%, 25%), hsl(152,70%,45%),hsl(152, 70%, 25%)); /* CHROME */
+	  background: -webkit-linear-gradient(hsl(152, 70%, 25%), hsl(152,70%,45%), hsl(152, 70%, 25%)); /* CHROME */
 }
 
 .GlideButton:hover {
@@ -868,7 +884,7 @@ WebKit inertia scrolling is being added here for any present/future devices that
 }
 .GlideButton.purple:hover {
 	  /*Gradient*/
-	  background: -webkit-linear-gradient(hsl(300, 100%, 15%), hsl(300, 100%, 25%)); /* CHROME */
+	  background: -webkit-linear-gradient(hsl(300, 100%, 15%), hsl(300, 100%, 25%),hsl(300, 100%, 15%)); /* CHROME */
 }
 .GlideButton.grey:hover {
 	  /*Gradient*/
@@ -920,7 +936,7 @@ WebKit inertia scrolling is being added here for any present/future devices that
 }
 .GlideButton.purple:active {
 	  /*Gradient*/
-	  background: -webkit-linear-gradient(hsl(300, 100%, 5%), hsl(300, 100%, 15%)); /* CHROME */
+	  background: -webkit-linear-gradient(hsl(300, 100%, 5%), hsl(300, 100%, 15%),hsl(300, 100%, 5%)); /* CHROME */
 }
 .GlideButton.grey:active {
 	  /*Gradient*/
@@ -1059,12 +1075,19 @@ overflow: hidden;
 
  
 .iconTV{
-	margin-top: 10px;
+	margin-top: 5px;
 	width: 110px;
 	height: 110px;
+        opacity: 0.25;
 }
-.iconTV:active {
-    opacity: 0.3;
+.iconTV:hover {
+    opacity: 0.8;
+}
+.iconTVToggle {
+	margin-top: 5px;
+	width: 110px;
+	height: 110px;
+    opacity: 1;
 }
 
 #icon{
@@ -1177,6 +1200,11 @@ margin-right: auto;
   	align-items: center;
 	height: 95vh;
 }
+ .spalteLeft {
+	display: flex; /* or inline-flex */;
+	flex-direction: column;
+ 
+	}
  .col {
 	display: flex; /* or inline-flex */;
 	flex-direction: column;
@@ -1190,11 +1218,15 @@ margin-right: auto;
 	justify-content: space-between;
  
 }
- .RowLeft {
+ .DenonDisplay {
 	display: flex; /* or inline-flex */;
 	flex-direction: row;
 	align-items: center;
  	margin:20px;
+	border: 1px #C0C0C0 inset;
+	border-color: #777777;
+	 
+	background-color: hsl(174, 100%, 5%);
 }
 
  .ScrollReihe {
@@ -1246,17 +1278,16 @@ margin-right: auto;
 
 
 .DenonAnzeige {
-	margin-top: 40px;
+	
 	border: 1px #C0C0C0 inset;
 	border-color: #777777;
 	font-family: 'dot matrix', arial;
 	font-size: 30px;
 	background-color: hsl(174, 100%, 5%);
-	padding: 10px;
+	 
 	color: #00FF00;
 	border-width: thin;
-	width: 500px;
-        height: 120px;
+
 }
 
 .CDAnzeige {
@@ -1701,12 +1732,22 @@ width:40%;
 
 .ZahlenContainer {
 	border: thin black solid;
-	height: 300px;
-	width: 320px;
+
         display: flex;
         flex-wrap: Wrap ;
         justify-content: space-evenly;
         color: white;
+}
+
+
+.NavContainer {
+	 
+        border-radius: 80px;
+     
+        display: flex;
+        flex-wrap: Wrap ;
+        justify-content: center;
+      
 }
 
 .fontbutton{
@@ -1723,10 +1764,13 @@ width:40%;
 .fontbutton.normal{
     width: 100px;
     height: 50px;
- 
+    
     margin:1px;
 }
-
+.fontbutton.normal>span{
+    position: relative;
+    top: 5%;
+}
 .fontbutton.small{
 	width: 60px;
 	margin:2px;
@@ -1735,6 +1779,10 @@ width:40%;
 	width: 60px;
 	height:60px;
 	margin:1px;
+}
+.fontbutton.mid>span{
+    position: relative;
+    top: 15%;
 }
 .fontbutton.big{
 	width: 80px;
@@ -1764,7 +1812,7 @@ width:40%;
 	background: -webkit-linear-gradient(hsl(0, 100%, 25%), hsl(0, 100%, 45%));
 }
 .fontbutton.purple{
-	background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 45%));
+	background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 45%),hsl(300, 100%, 25%));
 }
 .fontbutton.blue{
 	background:-webkit-linear-gradient(hsl(200, 100%, 25%), hsl(200, 100%, 45%)); /* CHROME */
@@ -1773,6 +1821,9 @@ width:40%;
     background: -webkit-linear-gradient(hsl(200, 0%, 25%), hsl(200, 0%, 45%),hsl(200, 0%, 25%));
 }
 
+.fontbutton.midgreen {
+    background: -webkit-linear-gradient(hsl(152, 70%, 25%), hsl(152,70%,45%),hsl(152, 70%, 25%)); /* CHROME */
+}   
 .fontbutton:hover {
 }
 .fontbutton.cyan:active {
@@ -1788,7 +1839,7 @@ width:40%;
 	background: -webkit-linear-gradient(hsl(0, 100%, 5%), hsl(0, 100%, 15%));
 }
 .fontbutton.purple:active {
-	background: -webkit-linear-gradient(hsl(300, 100%, 5%), hsl(300, 100%, 15%));
+	background: -webkit-linear-gradient(hsl(300, 100%, 5%), hsl(300, 100%, 15%),hsl(300, 100%, 5%));
 }
 .fontbutton.blue:active {
 	background: -webkit-linear-gradient(hsl(200, 100%, 5%), hsl(200, 100%, 15%));
@@ -1796,7 +1847,9 @@ width:40%;
 .fontbutton.grey:active {
     background: -webkit-linear-gradient(hsl(200, 0%, 5%), hsl(200, 0%, 15%), hsl(200, 0%, 5%));
 }
-
+.fontbutton.midgreen:active {
+    background: -webkit-linear-gradient(hsl(152, 70%, 25%), hsl(152,70%,45%),hsl(152, 70%, 25%)); /* CHROME */
+} 
 .ctrlbutton{
 	border: thin #000000 solid;
 	height: 80px;
@@ -1887,6 +1940,9 @@ width:40%;
 .ctrlbutton.grey {
 	background: -webkit-linear-gradient(hsl(200, 0%, 25%), hsl(200, 0%, 45%), hsl(200, 100%, 25%));
 }
+.ctrlbutton.midgreen {
+    background: -webkit-linear-gradient(hsl(152, 70%, 25%), hsl(152,70%,45%),hsl(152, 70%, 25%)); /* CHROME */
+} 
 
 .ctrlbutton:hover {
  
@@ -1907,7 +1963,7 @@ width:40%;
 	background: -webkit-linear-gradient(hsl(0, 100%, 5%), hsl(0, 100%, 15%));
 }
 .ctrlbutton.purple:active {
-	background: -webkit-linear-gradient(hsl(300, 100%, 5%), hsl(300, 100%, 15%));
+	background: -webkit-linear-gradient(hsl(300, 100%, 5%), hsl(300, 100%, 15%), hsl(300, 100%, 5%));
 }
 .ctrlbutton.blue:active {
 	background: -webkit-linear-gradient(hsl(200, 100%, 5%), hsl(200, 100%, 15%), hsl(200, 100%, 5%));
@@ -1916,7 +1972,9 @@ width:40%;
 .ctrlbutton.grey:active {
 	background: -webkit-linear-gradient(hsl(200, 0%, 5%), hsl(200, 0%, 15%));
 }
-
+.ctrlbutton.midgreen:active {
+    background: -webkit-linear-gradient(hsl(152, 70%, 25%), hsl(152,70%,45%),hsl(152, 70%, 25%)); /* CHROME */
+} 
 
 .ctrlbutton.cyanA {
 	background: -webkit-linear-gradient(hsl(174, 100%, 5%), hsl(174, 100%, 15%));
@@ -1979,6 +2037,12 @@ width:40%;
 .anzeige.blue{
 	background-color: hsl(200, 100%, 5%); 
 }
+.anzeige.midgreen {
+    background: -webkit-linear-gradient(hsl(152, 70%, 25%), hsl(152,70%,45%),hsl(152, 70%, 25%)); /* CHROME */
+} 
+.anzeige.midgreen:active{
+    background: -webkit-linear-gradient(hsl(152, 70%, 25%), hsl(152,70%,45%),hsl(152, 70%, 25%)); /* CHROME */
+} 
 .anzeige.blueA{
         background: -webkit-linear-gradient(hsl(200, 100%, 25%), hsl(200, 100%, 45%), hsl(200, 100%, 25%));
 }
@@ -2013,7 +2077,9 @@ width:40%;
 .status.red{
 	background-color: hsl(0, 100%, 5%);	
 }
-
+.status.midgreen {
+    background: -webkit-linear-gradient(hsl(152, 70%, 25%), hsl(152,70%,45%),hsl(152, 70%, 25%)); /* CHROME */
+} 
 
 
 .blackground{
@@ -2046,6 +2112,9 @@ width:40%;
 .tempcontrol.red{
 	background-color: hsl(0, 100%, 5%);	
 }
+.tempcontrol.midgreen {
+    background: -webkit-linear-gradient(hsl(152, 70%, 25%), hsl(152,70%,45%),hsl(152, 70%, 25%)); /* CHROME */
+} 
 
 
 #awesomeIcon{
@@ -2146,7 +2215,7 @@ background-color: pink;
 background-color: green;
 }
 #radioselector .purple {
-background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 45%));	
+background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 45%),hsl(300, 100%, 25%));	
 }
 
 
@@ -2195,7 +2264,7 @@ background-color: pink;
 background-color: green;
 }
 #Bradioselector .purple {
-background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 45%));	
+background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 45%),hsl(300, 100%, 25%));	
 }
 
 
@@ -2248,7 +2317,7 @@ background-color: pink;
 background-color: green;
 }
 #radioselectorA .purple {
-background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 45%));	
+background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 45%),hsl(300, 100%, 25%));	
 }
 
 
@@ -2313,7 +2382,7 @@ background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 45%));
 }
 .IconButton.purple {
 	  /*Gradient*/
-	  background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 45%)); /* CHROME */
+	  background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 45%),hsl(300, 100%, 25%)); /* CHROME */
 }
 .IconButton.grey {
 	  /*Gradient*/
@@ -2335,7 +2404,9 @@ background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 45%));
 	  /*Gradient*/
 	  background: -webkit-linear-gradient(hsl(120, 56%, 25%), hsl(120, 56%, 45%)); /* CHROME */
 }
-
+.IconButton.midgreen {
+    background: -webkit-linear-gradient(hsl(152, 70%, 25%), hsl(152,70%,45%),hsl(152, 70%, 25%)); /* CHROME */
+} 
 
 .IconButton:hover {
 }	 
@@ -2361,7 +2432,7 @@ background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 45%));
 }
 .IconButton.purple:hover {
 	  /*Gradient*/
-	  background: -webkit-linear-gradient(hsl(300, 100%, 15%), hsl(300, 100%, 25%)); /* CHROME */
+	  background: -webkit-linear-gradient(hsl(300, 100%, 15%), hsl(300, 100%, 25%),hsl(300, 100%, 15%)); /* CHROME */
 }
 .IconButton.grey:hover {
 	  /*Gradient*/
@@ -2383,7 +2454,9 @@ background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 45%));
 	  /*Gradient*/
 	  background: -webkit-linear-gradient(hsl(120, 56%, 15%), hsl(120, 56%, 25%)); /* CHROME */
 }
-
+.IconButton.midgreen:hover {
+    background: -webkit-linear-gradient(hsl(152, 70%, 25%), hsl(152,70%,45%),hsl(152, 70%, 25%)); /* CHROME */
+} 
 
 .IconButton:active {
 	 
@@ -2410,7 +2483,7 @@ background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 45%));
 }
 .IconButton.purple:active {
 	  /*Gradient*/
-	  background: -webkit-linear-gradient(hsl(300, 100%, 5%), hsl(300, 100%, 15%)); /* CHROME */
+	  background: -webkit-linear-gradient(hsl(300, 100%, 5%), hsl(300, 100%, 15%),hsl(300, 100%, 5%)); /* CHROME */
 }
 .IconButton.grey:active {
 	  /*Gradient*/
@@ -2432,7 +2505,9 @@ background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 45%));
 	  /*Gradient*/
 	  background: -webkit-linear-gradient(hsl(120, 56%, 5%), hsl(120, 56%, 15%)); /* CHROME */
 }
-
+.IconButton.midgreen:active {
+    background: -webkit-linear-gradient(hsl(152, 70%, 25%), hsl(152,70%,45%),hsl(152, 70%, 25%)); /* CHROME */
+} 
 
 
 
@@ -2568,7 +2643,9 @@ WebKit inertia scrolling is being added here for any present/future devices that
 	background: -webkit-linear-gradient(hsl(300, 100%, 25%), hsl(300, 100%, 35%), hsl(300, 100%, 45%), hsl(300, 100%, 35%) , hsl(300, 100%, 25%));
 	padding-bottom: 20px;
 }
-
+.CBcontainer.midgreen {
+    background: -webkit-linear-gradient(hsl(152, 70%, 25%), hsl(152,70%,45%),hsl(152, 70%, 25%)); /* CHROME */
+} 
 /* Hide the browser's default checkbox */
 .CBcontainer input {
     position: absolute;
@@ -2616,3 +2693,51 @@ WebKit inertia scrolling is being added here for any present/future devices that
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+/* ****************** blinkendes Text Feld ***************************************** */
+.AlarmBox {
+     
+  -webkit-border-radius: 10px;
+  cursor: pointer;
+  background-color: #004A7F; 
+   text-align: center;
+  text-decoration: none;
+  -webkit-animation: glowing 1500ms infinite;
+  -moz-animation: glowing 1500ms infinite;
+  -o-animation: glowing 1500ms infinite;
+  animation: glowing 1500ms infinite;
+ }
+ @-webkit-keyframes glowing {
+  0% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; -webkit-box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; -webkit-box-shadow: 0 0 3px #B20000; }
+}
+@-moz-keyframes glowing {
+  0% { background-color: #B20000; -moz-box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; -moz-box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; -moz-box-shadow: 0 0 3px #B20000; }
+}
+@-o-keyframes glowing {
+  0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+}
+@keyframes glowing {
+  0% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+  50% { background-color: #FF0000; box-shadow: 0 0 40px #FF0000; }
+  100% { background-color: #B20000; box-shadow: 0 0 3px #B20000; }
+}
+ 
+
+/* ****************** Controls ***************************************** */
+.SecCodeCtrl {
+	position:absolute;
+	top:  5vh;
+        left: 74vw;
+	width: 0px;
+	height: 95vh;
+        background-color: maroon;
+       
+}
+
+img { border: 0; }
+img.highlight { border: 5px solid blue; }
